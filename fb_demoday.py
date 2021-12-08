@@ -45,7 +45,7 @@ options = st.selectbox(
 # Filter the information for this port specifically
 ind_country = df_behaviour_countries[df_behaviour_countries['country']== options]
 
-fig = px.bar(split_country(ind_country), 
+fig = px.bar(ind_country, 
                  x = "date", 
                  y = ["spend $","revenue $"],title='Spain')
 fig.update_yaxes(visible=False, fixedrange=True)
