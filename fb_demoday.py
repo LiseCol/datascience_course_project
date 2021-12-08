@@ -40,7 +40,7 @@ with col1:
                                         'purchase': np.sum}
                                         ).reset_index()
     def split_country(country):
-    return df_behaviour_countries[df_behaviour_countries['country']==country]
+        return df_behaviour_countries[df_behaviour_countries['country']==country]
 
     st.subheader('KPI behaviour according to country')
     fig = fig = px.bar(split_country('ES'), 
