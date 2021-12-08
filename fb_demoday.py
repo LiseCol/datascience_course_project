@@ -37,15 +37,13 @@ df_behaviour_countries = df.groupby(['country','date']).agg(
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
                                         ).reset_index()
-def split_country(country):
-    return df_behaviour_countries[df_behaviour_countries['country']==country]
 
 all_countries = df_behaviour_countries['country'].unique().tolist()
 options = st.selectbox(
  'Which country are you interested in diving in?', all_countries)
 
 # Filter the information for this port specifically
-ind_country = df[df['country']== options]
+ind_country = df_behaviour_countries[df_behaviour_countries['country']== options]
 
 fig = px.bar(split_country(ind_country), 
                  x = "date", 
