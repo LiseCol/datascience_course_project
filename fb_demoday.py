@@ -30,26 +30,27 @@ Bla bla bla information about facebook bla bla bla"""
 df = pd.read_csv('data_clean_2.csv', index_col=0)
 color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
-# Static plots in two columns
-col1, col2 = st.columns(2)
-
-with col1:
-    df_behaviour_countries = df.groupby(['country','date']).agg(
+# View per country
+st.title('KPI behaviour according to country')
+df_behaviour_countries = df.groupby(['country','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
                                         ).reset_index()
-    def split_country(country):
-        return df_behaviour_countries[df_behaviour_countries['country']==country]
+def split_country(country):
+    return df_behaviour_countries[df_behaviour_countries['country']==country]
 
-    st.subheader('KPI behaviour according to country')
-    fig = fig = px.bar(split_country('ES'), 
+all_countries = df_behaviour_countries['country'].unique().tolist()
+options = st.selectbox(
+ 'Which country are you interested in diving in?', all_countries)
+
+# Filter the information for this port specifically
+ind_country = df[df['country']== options]
+
+fig = px.bar(split_country(ind_country), 
                  x = "date", 
                  y = ["spend $","revenue $"],title='Spain')
-    fig.update_yaxes(visible=False, fixedrange=True)
+fig.update_yaxes(visible=False, fixedrange=True)
 
-    fig.update_layout(barmode='group')
-    st.plotly_chart(fig)
-
-with col2:
-    st.markdown('test')
+ig.update_layout(barmode='group')
+st.plotly_chart(fig)
