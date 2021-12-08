@@ -50,5 +50,5 @@ fig = px.bar(ind_country,
                  y = ["spend $","revenue $"],title='Spain')
 fig.update_yaxes(visible=False, fixedrange=True)
 
-ig.update_layout(barmode='group')
+fig.update_layout(barmode='group')
 st.plotly_chart(fig)
