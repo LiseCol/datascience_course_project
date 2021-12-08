@@ -58,7 +58,7 @@ with col1:
     st.plotly_chart(fig1)
 
 with col2:    
-    st.subheader('Per country')
+    st.subheader('Per target type')
     df_behaviour_target = df.groupby(['target type','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
