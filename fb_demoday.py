@@ -31,7 +31,7 @@ df = pd.read_csv('data_clean_2.csv', index_col=0)
 color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
 # Static plots in two columns
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 
 with col1:
     df_behaviour_countries = df.groupby(['country','date']).agg(
