@@ -45,7 +45,7 @@ with col1:
     st.subheader('KPI behaviour according to country')
     fig = fig = px.bar(split_country('ES'), 
                  x = "date", 
-                 y = ["spend $","revenue $"],title=Spain)
+                 y = ["spend $","revenue $"],title='Spain')
     fig.update_yaxes(visible=False, fixedrange=True)
 
     fig.update_layout(barmode='group')
