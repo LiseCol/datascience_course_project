@@ -47,7 +47,7 @@ ind_country = df_behaviour_countries[df_behaviour_countries['country']== options
 
 fig = px.bar(ind_country, 
                  x = "date", 
-                 y = ["spend $","revenue $"],title='Spain')
+                 y = ["spend $","revenue $"])
 fig.update_yaxes(visible=False, fixedrange=True)
 
 fig.update_layout(barmode='group')
