@@ -36,9 +36,10 @@ def groupby_all(variable):
 
 # Add sth into sidebar
 text = """
-    :arrow_forward: **To start** :Don't forget to select your favorite filters\n
+    :arrow_forward: **To start**: \n
+    Don't forget to select your favorite filters\n
     ---------------------\n
-    `This dashboard is based on a sample of 2 months facebook ads historical data.`\n
+    `This dashboard is based on a sample of 2 months facebook historical data.`\n
     ---------------------
     """
 st.sidebar.markdown(text)
@@ -46,7 +47,7 @@ st.sidebar.markdown(text)
     # Selectbox : View of the dataframe
 st.sidebar.subheader("FILTERS")
 
-status = st.sidebar.selectbox('Select your favorite view',["Performance per country","Performance per target type","Daily view"])
+status = st.sidebar.selectbox('Select your favorite view:',["Performance per country","Performance per target type","Daily view"])
 if status == "Performance per country":
     st.subheader("Performance per country")
     st.table(groupby_all('country'))
@@ -59,6 +60,16 @@ elif status == "Daily view":
     st.subheader("Daily view")
     st.table(groupby_all('date'))
 
+status = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))
+if status == "Local currency":
+    groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2
+
+elif status == "USD":
+    groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2
+    
+ 
+                                          
+                                          
 # Static plots in two columns
 col1, col2 = st.columns(2)
 
