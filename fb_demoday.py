@@ -44,11 +44,23 @@ st.sidebar.markdown(text)
     #Checkbox
 st.sidebar.subheader("Summary")
     
-st.sidebar.checkbox("Performance of three campaigns")
-st.subheader("Performance of three campaigns")
+st.sidebar.checkbox("Performance per country")
+st.subheader("Performance per country")
 
-st.sidebar.checkbox("Performance of three campaigns")
-st.subheader("Performance of three campaigns")
+st.table(df.pivot_table(index='country',
+                             values=['impressions','spend', 'purchase', 
+                                     'link click', 'revenue', 'daily budget',
+                                     'spend $', 'daily budget $', 'revenue $','currency'],
+                           aggfunc = {'impressions':np.sum, 
+                                      'spend': np.sum, 
+                                      'purchase': np.sum, 
+                                      'link click': np.sum, 
+                                      'revenue': np.sum, 
+                                      'daily budget $': np.sum,
+                                      'spend $': np.sum, 
+                                      'revenue $': np.sum, 
+                                      'daily budget': np.sum,
+                                     'currency':pd.Series.mode}).reset_index())
 
 # Static plots in two columns
 col1, col2 = st.columns(2)
