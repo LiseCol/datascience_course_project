@@ -7,7 +7,10 @@ from PIL import Image
 import numpy as np
 import plotly.express as px
 
-
+## Page config ##
+st.set_page_config(page_title="Facebook ad Report", 
+                   page_icon=":bar_chart:",
+                   layout='wide')
 # Define functions
 @st.cache
 def load_data():
@@ -33,12 +36,7 @@ def groupby_all(variable):
 
 def main():
     
-    df = load_data()
-    
-    ## Page config ##
-    st.set_page_config(page_title="Facebook ad Report", 
-                   page_icon=":bar_chart:",
-                   layout='wide')
+    df =load_data()
 
     # Page title                   
     st.title("Facebook ad Report :bar_chart:")
