@@ -16,7 +16,11 @@ st.set_page_config(page_title="Facebook ad Report",
 st.title("Facebook ad Report :bar_chart:")
 
 # Load the data
-df = pd.read_csv('data_clean_2.csv', index_col=0)
+@st.cache(allow_output_mutation=True)
+def load_data():
+        df = pd.read_csv('data_clean_2.csv', index_col=0)
+        return  df
+
 color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
 # Define functions
