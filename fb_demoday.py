@@ -60,6 +60,7 @@ status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","U
 if status == "Performance per country":
     if status2 == "Local currency":
         st.subheader("Performance per country")
+        df = load_data()
         groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2)
         st.dataframe(groupby_all('country'))
 
