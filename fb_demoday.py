@@ -47,9 +47,16 @@ st.sidebar.markdown(text)
     # Selectbox : View of the dataframe
 st.sidebar.subheader("FILTERS")
 
-status = st.sidebar.selectbox('Select your favorite view:',["Performance per country","Performance per target type","Daily view"])
+status = st.sidebar.selectbox('Select your favorite view:',["Performance per country",
+                                                            "Performance per target type",
+                                                            "Daily view"])
+
+status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))
+
 if status == "Performance per country":
+    if status2 == "Local currency":
     st.subheader("Performance per country")
+    groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2)
     st.dataframe(groupby_all('country'))
 
 elif status == "Performance per target type":
@@ -60,16 +67,7 @@ elif status == "Daily view":
     st.subheader("Daily view")
     st.dataframe(groupby_all('date'))
 
-status = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))
-if status == "Local currency":
-    groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2)
-    st.dataframe(groupby_all('country'))
-#else:
-    #groupby_all('country')['CPA $'] = round(groupby_all('country')['spend $']/groupby_all('country')['purchase'],2
-    
- 
-                                          
-                                          
+                                                                                  
 # Static plots in two columns
 col1, col2 = st.columns(2)
 
