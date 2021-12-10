@@ -50,7 +50,7 @@ st.sidebar.subheader("FILTERS")
 status = st.sidebar.selectbox('Select your favorite view:',["Performance per country","Performance per target type","Daily view"])
 if status == "Performance per country":
     st.subheader("Performance per country")
-    st.dataframe(groupby_all('country')
+    st.dataframe(groupby_all('country'))
 
 elif status == "Performance per target type":
     st.subheader("Performance per target type")
@@ -60,11 +60,11 @@ elif status == "Daily view":
     st.subheader("Daily view")
     st.dataframe(groupby_all('date'))
 
-#status = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))
-#if status == "Local currency":
-    #@st.cache():
-        #groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2
-        #return st.dataframe(groupby_all('country')
+status = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))
+if status == "Local currency":
+    @st.cache():
+        groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2
+        return st.dataframe(groupby_all('country')
 #else:
     #groupby_all('country')['CPA $'] = round(groupby_all('country')['spend $']/groupby_all('country')['purchase'],2
     
