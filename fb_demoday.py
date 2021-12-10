@@ -32,12 +32,12 @@ def groupby_all(variable,cur):
                                       'spend $': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-                groupby_all([variable])['CPA'] = round(groupby_all([variable])['spend']/groupby_all([variable])['purchase'],2)
-                groupby_all([variable])['CPM'] = round(groupby_all([variable])['spend']/
+        groupby_all([variable])['CPA'] = round(groupby_all([variable])['spend']/groupby_all([variable])['purchase'],2)
+        groupby_all([variable])['CPM'] = round(groupby_all([variable])['spend']/
                                                            (groupby_all([variable]['impressions']/1000),2)
-                groupby_all([variable])['CPC'] = round(groupby_all([variable])['spend']/
+        groupby_all([variable])['CPC'] = round(groupby_all([variable])['spend']/
                                                        groupby_all([variable])['link click'],2)
-                groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
+        groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
                                                         groupby_all([variable])['impressions'])*100,3)
     else:
         return load_data().groupby([variable]).agg(
@@ -49,13 +49,13 @@ def groupby_all(variable,cur):
                                       'spend $': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-                groupby_all([variable])['CPA $'] = round(groupby_all([variable])['spend $']/
+        groupby_all([variable])['CPA $'] = round(groupby_all([variable])['spend $']/
                                                          groupby_all([variable])['purchase'],2)
-                groupby_all([variable])['CPM $'] = round(groupby_all([variable])['spend $']/
+        groupby_all([variable])['CPM $'] = round(groupby_all([variable])['spend $']/
                                                            (groupby_all([variable]['impressions']/1000),2)
-                groupby_all([variable])['CPC $'] = round(groupby_all([variable])['spend $']/
+        groupby_all([variable])['CPC $'] = round(groupby_all([variable])['spend $']/
                                                        groupby_all([variable])['link click'],2)
-                groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
+        groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
                                                         groupby_all([variable])['impressions'])*100,3)
 
 def main():
