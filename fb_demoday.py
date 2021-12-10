@@ -32,6 +32,9 @@ def groupby_all(variable):
                                      'currency':pd.Series.mode}).reset_index()
 
 def main():
+    
+    df = load_data()
+    
     ## Page config ##
     st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
@@ -63,7 +66,6 @@ def main():
     if status == "Performance per country":
         if status2 == "Local currency":
             st.subheader("Performance per country")
-            df = load_data()
             groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2)
             st.dataframe(groupby_all('country'))
 
