@@ -88,12 +88,20 @@ def main():
             st.dataframe(groupby_all('country','usd'))
 
     elif status == "Performance per target type":
-        st.subheader("Performance per target type")
-        st.dataframe(groupby_all('target type','local'))
+        if status2 == "Local currency":
+            st.subheader("Performance per target type")
+            st.dataframe(groupby_all('target type','local'))
+        if status2 == "USD":  
+            st.subheader("Performance per target type")
+            st.dataframe(groupby_all('target type','usd'))
         
     elif status == "Daily view":
-        st.subheader("Daily view")
-        st.dataframe(groupby_all('date','local'))
+        if status2 == "Local currency":
+            st.subheader("Daily view")
+            st.dataframe(groupby_all('date','local'))
+        if status2 == "USD":  
+            st.subheader("Daily view")
+            st.dataframe(groupby_all('date','usd'))
 
                                                                                   
     # Static plots in two columns
