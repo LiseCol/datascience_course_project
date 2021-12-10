@@ -45,23 +45,21 @@ text = """
     """
 st.sidebar.markdown(text)
 
-    #Checkbox
+    # Selectbox : View of the dataframe
 st.sidebar.subheader("Choose your favorite view")
-    
-st.table(groupby_all('country'))
 
 status = st.sidebar.selectbox("Select:",["Performance per country","Performance per target type","Daily view"])
-    if status == "Performance per country":
-        st.subheader("Performance per country")
-        st.table(groupby_all('country'))
+if status == "Performance per country":
+    st.subheader("Performance per country")
+    st.table(groupby_all('country'))
 
-    elif status == "Performance per target type":
-        st.subheader("Performance per target type")
-        st.table(groupby_all('target type'))
+elif status == "Performance per target type":
+    st.subheader("Performance per target type")
+    st.table(groupby_all('target type'))
         
-    elif status == "Daily view":
-        st.subheader("Daily view")
-        st.table(groupby_all('date'))
+elif status == "Daily view":
+    st.subheader("Daily view")
+    st.table(groupby_all('date'))
 
 # Static plots in two columns
 col1, col2 = st.columns(2)
