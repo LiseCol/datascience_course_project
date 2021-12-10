@@ -22,7 +22,7 @@ def load_data():
 # Define functions
 def groupby_all(variable):
     # one variable only
-    return df.groupby([variable]).agg(
+    return load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
