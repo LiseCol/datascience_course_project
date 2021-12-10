@@ -50,7 +50,7 @@ st.sidebar.subheader("Choose your favorite view")
 st.sidebar.checkbox("Performance per country")
 st.subheader("Performance per country")
 
-st.table(groupby_all('country))
+st.table(groupby_all('country'))
 
 # Static plots in two columns
 col1, col2 = st.columns(2)
