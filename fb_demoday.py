@@ -50,7 +50,7 @@ st.sidebar.subheader("FILTERS")
 status = st.sidebar.selectbox('Select your favorite view:',["Performance per country","Performance per target type","Daily view"])
 if status == "Performance per country":
     st.subheader("Performance per country")
-    st.dataframe(df_countrygroupby_all=('country'))
+    st.dataframe(df_country=groupby_all('country'))
 
 elif status == "Performance per target type":
     st.subheader("Performance per target type")
