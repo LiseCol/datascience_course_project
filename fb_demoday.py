@@ -48,7 +48,7 @@ st.sidebar.markdown(text)
     # Selectbox : View of the dataframe
 st.sidebar.subheader("Select your favorite view")
 
-status = st.sidebar.selectbox(["Performance per country","Performance per target type","Daily view"])
+status = st.sidebar.selectbox('Select',["Performance per country","Performance per target type","Daily view"])
 if status == "Performance per country":
     st.subheader("Performance per country")
     st.table(groupby_all('country'))
