@@ -7,48 +7,22 @@ from PIL import Image
 import numpy as np
 import plotly.express as px
 
-##############################################################################################
-# PAGE STYLING
-##############################################################################################
-st.set_page_config(page_title="Best facebook reporting ever ", 
-                   page_icon=":star:",
+## Page config ##
+st.set_page_config(page_title="Facebook ad Report", 
+                   page_icon=":bar_chart:",
                    layout='wide')
-                   
-st.title("Facebook ad repport :bar_chart:")
-# Page styling
 
-st.markdown("Let's make some test: ***'hello' ***")
+# Page title                   
+st.title("Facebook ad Report :bar_chart:")
 
-st.header("**Overall information about my dashboard**")
-"""
-Bla bla bla information about facebook bla bla bla"""
-
-# Data loading and first checks
+# Load the data
 df = pd.read_csv('data_clean_2.csv', index_col=0)
 color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
-st.title('KPIs evolutions')
-# add sth into sidebar
-text = """
-    ## Welcome to my interactive dashboard ##
-    ---------------------
-    **Let's have a look at the performance for a cool cosmetic brand!**\n
-    **The dashboard is based on a sample of 2 months facebook ads data.**\n
-    ---------------------
-    """
-st.sidebar.markdown(text)
-
-    #Checkbox
-st.sidebar.subheader("Summary")
-    
-st.sidebar.checkbox("Performance per country")
-st.subheader("Performance per country")
-
-st.table(df.pivot_table(index='country',
-                             values=['impressions','spend', 'purchase', 
-                                     'link click', 'revenue', 'daily budget',
-                                     'spend $', 'daily budget $', 'revenue $','currency'],
-                           aggfunc = {'impressions':np.sum, 
+# Define functions
+def groupby_all(variable):
+    return df.groupby([variable]).agg(
+                                        {'impressions':np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
                                       'link click': np.sum, 
@@ -57,7 +31,26 @@ st.table(df.pivot_table(index='country',
                                       'spend $': np.sum, 
                                       'revenue $': np.sum, 
                                       'daily budget': np.sum,
-                                     'currency':pd.Series.mode}).reset_index())
+                                     'currency':pd.Series.mode}).reset_index()
+
+st.title('TO DECIDE WHAT I WANT TO PUT')
+# add sth into sidebar
+text = """
+    ## Welcome to my interactive dashboard ##
+    ---------------------
+    **Note:**\n
+    **The dashboard is based on a sample of 2 months facebook ads data.**\n
+    ---------------------
+    """
+st.sidebar.markdown(text)
+
+    #Checkbox
+st.sidebar.subheader("Choose your favorite view")
+    
+st.sidebar.checkbox("Performance per country")
+st.subheader("Performance per country")
+
+st.table(groupby_all('country))
 
 # Static plots in two columns
 col1, col2 = st.columns(2)
