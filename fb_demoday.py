@@ -37,7 +37,7 @@ def groupby_all(variable):
 st.title('TO DECIDE WHAT I WANT TO PUT')
 # add sth into sidebar
 text = """
-    ## Welcome to my interactive dashboard ##
+    ## To begin select how you want to play with the metrics ##
     ---------------------
     **Note:**\n
     **The dashboard is based on a sample of 2 months facebook ads data.**\n
@@ -50,7 +50,7 @@ st.sidebar.subheader("Choose your favorite view")
     
 st.table(groupby_all('country'))
 
- status = st.sidebar.selectbox("Select:",["Performance per country","Performance per target type","Daily view"])
+status = st.sidebar.selectbox("Select:",["Performance per country","Performance per target type","Daily view"])
     if status == "Performance per country":
         st.subheader("Performance per country")
         st.table(groupby_all('country'))
