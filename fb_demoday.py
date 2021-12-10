@@ -55,11 +55,11 @@ st.table(groupby_all('country'))
         st.subheader("Performance per country")
         st.table(groupby_all('country'))
 
-    elif:status == "Performance per target type":
+    elif status == "Performance per target type":
         st.subheader("Performance per target type")
         st.table(groupby_all('target type'))
         
-    elif:status == "Daily view":
+    elif status == "Daily view":
         st.subheader("Daily view")
         st.table(groupby_all('date'))
 
