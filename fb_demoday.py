@@ -63,7 +63,7 @@ elif status == "Daily view":
 
 status = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))
 if status == "Local currency":
-    groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2
+    st.write(groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2)
 
 #else:
     #groupby_all('country')['CPA $'] = round(groupby_all('country')['spend $']/groupby_all('country')['purchase'],2
