@@ -36,19 +36,18 @@ def groupby_all(variable):
 
 # Add sth into sidebar
 text = """
-    ## :bangbang: To start :bangbang:\n
-    Don't forget to select your favorite filters ##
-    ---------------------
-    **Note:**\n
-    **The dashboard is based on a sample of 2 months facebook ads data.**\n
+    :arrow_forward: To start :\n
+    Don't forget to select your favorite filters\n
+    ---------------------\n
+    **Note:The dashboard is based on a sample of 2 months facebook ads historical data.**\n
     ---------------------
     """
 st.sidebar.markdown(text)
 
     # Selectbox : View of the dataframe
-st.sidebar.subheader("Select your favorite view")
+st.sidebar.subheader("FILTERS")
 
-status = st.sidebar.selectbox('Select',["Performance per country","Performance per target type","Daily view"])
+status = st.sidebar.selectbox('Select your favorite view',["Performance per country","Performance per target type","Daily view"])
 if status == "Performance per country":
     st.subheader("Performance per country")
     st.table(groupby_all('country'))
