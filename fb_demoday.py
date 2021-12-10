@@ -123,7 +123,5 @@ def main():
 
         fig2.update_layout(barmode='group')
         st.plotly_chart(fig2)
-        
-if __name__ == "__main__":
-    main()
+
     
