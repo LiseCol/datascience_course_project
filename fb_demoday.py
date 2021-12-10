@@ -64,7 +64,7 @@ status = st.sidebar.radio("Select the prefered currency :",("Local currency","US
 if status == "Local currency":
     groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2
 
-elif status == "USD":
+else:
     groupby_all('country')['CPA $'] = round(groupby_all('country')['spend $']/groupby_all('country')['purchase'],2
     
  
