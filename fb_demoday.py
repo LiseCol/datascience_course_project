@@ -31,6 +31,25 @@ df = pd.read_csv('data_clean_2.csv', index_col=0)
 color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
 st.title('KPIs evolutions')
+# add sth into sidebar
+text = """
+    ## Note: ##
+    ---------------------
+    **This is a demo to show how to make an interactive report in an app.**\n
+    **Coding is so much fun and streamlit is cool!**\n
+    ---------------------
+    """
+st.sidebar.markdown(text)
+
+    #Checkbox
+st.sidebar.subheader("Summary")
+    
+st.sidebar.checkbox("Performance of three campaigns")
+st.subheader("Performance of three campaigns")
+
+st.sidebar.checkbox("Performance of three campaigns")
+st.subheader("Performance of three campaigns")
+
 # Static plots in two columns
 col1, col2 = st.columns(2)
 
