@@ -36,10 +36,9 @@ def groupby_all(variable):
 
 # Add sth into sidebar
 text = """
-    :arrow_forward: To start :\n
-    Don't forget to select your favorite filters\n
+    :arrow_forward: **To start** :Don't forget to select your favorite filters\n
     ---------------------\n
-    **Note:The dashboard is based on a sample of 2 months facebook ads historical data.**\n
+    `Note: This dashboard is based on a sample of 2 months facebook ads historical data.`\n
     ---------------------
     """
 st.sidebar.markdown(text)
