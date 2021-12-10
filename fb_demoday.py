@@ -35,8 +35,6 @@ def groupby_all(variable):
                                      'currency':pd.Series.mode}).reset_index()
 
 def main():
-    
-    df =load_data()
 
     # Page title                   
     st.title("Facebook ad Report :bar_chart:")
@@ -63,15 +61,18 @@ def main():
 
     if status == "Performance per country":
         if status2 == "Local currency":
+            df =load_data()
             st.subheader("Performance per country")
             groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2)
             st.dataframe(groupby_all('country'))
 
     elif status == "Performance per target type":
+        df =load_data()
         st.subheader("Performance per target type")
         st.dataframe(groupby_all('target type'))
         
     elif status == "Daily view":
+        df =load_data()
         st.subheader("Daily view")
         st.dataframe(groupby_all('date'))
 
