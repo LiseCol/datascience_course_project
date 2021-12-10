@@ -20,19 +20,43 @@ def load_data():
 #color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
 # Define functions
-def groupby_all(variable):
+def groupby_all(variable,cur):
     # one variable only
-    return load_data().groupby([variable]).agg(
+    if cur == "local":
+        return load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
                                       'link click': np.sum, 
-                                      'revenue': np.sum, 
-                                      'daily budget $': np.sum,
+                                      'revenue': np.sum,
                                       'spend $': np.sum, 
-                                      'revenue $': np.sum, 
-                                      'daily budget': np.sum,
+                                      'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
+                groupby_all([variable])['CPA'] = round(groupby_all([variable])['spend']/groupby_all([variable])['purchase'],2)
+                groupby_all([variable])['CPM'] = round(groupby_all([variable])['spend']/
+                                                           (groupby_all([variable]['impressions']/1000),2)
+                groupby_all([variable])['CPC'] = round(groupby_all([variable])['spend']/
+                                                       groupby_all([variable])['link click'],2)
+                groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
+                                                        groupby_all([variable])['impressions'])*100,3)
+    else:
+        return load_data().groupby([variable]).agg(
+                                        {'impressions':np.sum, 
+                                      'spend': np.sum, 
+                                      'purchase': np.sum, 
+                                      'link click': np.sum, 
+                                      'revenue': np.sum,
+                                      'spend $': np.sum, 
+                                      'revenue $': np.sum,
+                                     'currency':pd.Series.mode}).reset_index()
+                groupby_all([variable])['CPA $'] = round(groupby_all([variable])['spend $']/
+                                                         groupby_all([variable])['purchase'],2)
+                groupby_all([variable])['CPM $'] = round(groupby_all([variable])['spend $']/
+                                                           (groupby_all([variable]['impressions']/1000),2)
+                groupby_all([variable])['CPC $'] = round(groupby_all([variable])['spend $']/
+                                                       groupby_all([variable])['link click'],2)
+                groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
+                                                        groupby_all([variable])['impressions'])*100,3)
 
 def main():
 
@@ -62,8 +86,7 @@ def main():
     if status == "Performance per country":
         if status2 == "Local currency":
             st.subheader("Performance per country")
-            groupby_all('country')['CPA'] = round(groupby_all('country')['spend']/groupby_all('country')['purchase'],2)
-            st.dataframe(groupby_all('country'))
+            st.dataframe(groupby_all('country',))
 
     elif status == "Performance per target type":
         st.subheader("Performance per target type")
@@ -80,7 +103,7 @@ def main():
     with col1:
         # View per country
         st.subheader('Per country')
-        df_behaviour_countries = df.groupby(['country','date']).agg(
+        df_behaviour_countries = load_data().groupby(['country','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
@@ -102,7 +125,7 @@ def main():
 
     with col2:    
         st.subheader('Per target type')
-        df_behaviour_target = df.groupby(['target type','date']).agg(
+        df_behaviour_target = load_data().groupby(['target type','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
