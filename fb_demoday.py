@@ -14,8 +14,8 @@ st.set_page_config(page_title="Facebook ad Report",
 # Define functions
 @st.cache
 def load_data():
-        df = pd.read_csv('data_clean_2.csv', index_col=0)
-        return  df
+    df = pd.read_csv('data_clean_2.csv', index_col=0)
+    return  df
 
 #color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
