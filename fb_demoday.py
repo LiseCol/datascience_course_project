@@ -21,6 +21,7 @@ color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
 # Define functions
 def groupby_all(variable):
+    # one variable only
     return df.groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'spend': np.sum, 
@@ -47,10 +48,22 @@ st.sidebar.markdown(text)
     #Checkbox
 st.sidebar.subheader("Choose your favorite view")
     
-st.sidebar.checkbox("Performance per country")
-st.subheader("Performance per country")
-
 st.table(groupby_all('country'))
+
+ status = st.sidebar.selectbox("Select:",["Performance per country","Performance per target type","Daily view"])
+    if status == "Performance per country":
+        st.subheader("Performance per country")
+        st.table(groupby_all('country'))
+
+    elif:
+        status == "Performance per target type":
+        st.subheader("Performance per target type")
+        st.table(groupby_all('target type'))
+        
+    elif:
+        status == "Daily view":
+        st.subheader("Daily view")
+        st.table(groupby_all('date'))
 
 # Static plots in two columns
 col1, col2 = st.columns(2)
