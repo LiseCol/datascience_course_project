@@ -34,10 +34,10 @@ def groupby_all(variable):
                                       'daily budget': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
 
-st.title('TO DECIDE WHAT I WANT TO PUT')
-# add sth into sidebar
+# Add sth into sidebar
 text = """
-    ## To begin select how you want to play with the metrics ##
+    ## :bangbang: To start :bangbang:\n
+    Don't forget to select your favorite filters ##
     ---------------------
     **Note:**\n
     **The dashboard is based on a sample of 2 months facebook ads data.**\n
@@ -46,9 +46,9 @@ text = """
 st.sidebar.markdown(text)
 
     # Selectbox : View of the dataframe
-st.sidebar.subheader("Choose your favorite view")
+st.sidebar.subheader("Select your favorite view")
 
-status = st.sidebar.selectbox("Select:",["Performance per country","Performance per target type","Daily view"])
+status = st.sidebar.selectbox(["Performance per country","Performance per target type","Daily view"])
 if status == "Performance per country":
     st.subheader("Performance per country")
     st.table(groupby_all('country'))
