@@ -23,7 +23,7 @@ def load_data():
 def groupby_all(variable,cur):
     # one variable only
     if cur == "local":
-        return load_data().groupby([variable]).agg(
+        var_dif= load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
@@ -32,15 +32,14 @@ def groupby_all(variable,cur):
                                       'spend $': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-        groupby_all([variable])['CPA'] = round(groupby_all([variable])['spend']/groupby_all([variable])['purchase'],2)
-        groupby_all([variable])['CPM'] = round(groupby_all([variable])['spend']/
-                                                           (groupby_all([variable]['impressions']/1000),2)
-        groupby_all([variable])['CPC'] = round(groupby_all([variable])['spend']/
-                                                       groupby_all([variable])['link click'],2)
-        groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
-                                                        groupby_all([variable])['impressions'])*100,3)
+        var_dif['CPA'] = round(var_dif['spend']/var_dif['purchase'],2)
+        var_dif['CPM'] = round(var_dif['spend']/(var_dif['impressions']/1000),2)
+        var_dif['CPC'] = round(var_dif['spend']/var_dif['link click'],2)
+        var_dif['CTR'] = round((var_dif['link click']/var_dif['impressions'])*100,3)
+        return var_dif
+    
     else:
-        return load_data().groupby([variable]).agg(
+        var_dif= load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
@@ -49,14 +48,11 @@ def groupby_all(variable,cur):
                                       'spend $': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-        groupby_all([variable])['CPA $'] = round(groupby_all([variable])['spend $']/
-                                                         groupby_all([variable])['purchase'],2)
-        groupby_all([variable])['CPM $'] = round(groupby_all([variable])['spend $']/
-                                                           (groupby_all([variable]['impressions']/1000),2)
-        groupby_all([variable])['CPC $'] = round(groupby_all([variable])['spend $']/
-                                                       groupby_all([variable])['link click'],2)
-        groupby_all([variable])['CTR'] = round((groupby_all([variable])['link click']/
-                                                        groupby_all([variable])['impressions'])*100,3)
+        var_dif['CPA $'] = round(var_dif['spend $']/var_dif['purchase'],2)
+        var_dif['CPM $'] = round(var_dif['spend $']/(var_dif['impressions']/1000),2)
+        var_dif['CPC $'] = round(var_dif['spend $']/var_dif['link click'],2)
+        var_dif['CTR'] = round((var_dif['link click']/var_dif['impressions'])*100,3)
+        return var_dif
 
 def main():
 
@@ -86,15 +82,18 @@ def main():
     if status == "Performance per country":
         if status2 == "Local currency":
             st.subheader("Performance per country")
-            st.dataframe(groupby_all('country',))
+            st.dataframe(groupby_all('country','local'))
+        else:   
+            st.subheader("Performance per country")
+            st.dataframe(groupby_all('country','usd'))
 
     elif status == "Performance per target type":
         st.subheader("Performance per target type")
-        st.dataframe(groupby_all('target type'))
+        st.dataframe(groupby_all('target type','local'))
         
     elif status == "Daily view":
         st.subheader("Daily view")
-        st.dataframe(groupby_all('date'))
+        st.dataframe(groupby_all('date','local'))
 
                                                                                   
     # Static plots in two columns
