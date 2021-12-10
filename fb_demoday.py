@@ -14,10 +14,7 @@ st.set_page_config(page_title="Best facebook reporting ever ",
                    page_icon=":star:",
                    layout='wide')
                    
-st.title("Welcome to my dashboard! : :star:")
-"""
-MY TEXT MY TEXT
-"""
+st.title("Facebook ad repport :bar_chart:")
 # Page styling
 
 st.markdown("Let's make some test: ***'hello' ***")
@@ -33,10 +30,10 @@ color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 st.title('KPIs evolutions')
 # add sth into sidebar
 text = """
-    ## Note: ##
+    ## Welcome to my interactive dashboard ##
     ---------------------
-    **This is a demo to show how to make an interactive report in an app.**\n
-    **Coding is so much fun and streamlit is cool!**\n
+    **Let's have a look at the performance for a cool cosmetic brand!**\n
+    **The dashboard is based on a sample of 2 months facebook ads data.**\n
     ---------------------
     """
 st.sidebar.markdown(text)
