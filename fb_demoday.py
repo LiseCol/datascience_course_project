@@ -42,28 +42,28 @@ def decimal(df):
 def groupby_all(variable,cur):
     # one variable only
     if cur == "local":
-        df = load_data().groupby([variable]).agg(
+        df_var = load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'link click': np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
                                       'revenue': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-        custom_col(df)
-        decimal(df)
-        return df
+        custom_col(df_var)
+        decimal(df_var)
+        return df_var
     
     else:
-        df= load_data().groupby([variable]).agg(
+        df_var= load_data().groupby([variable]).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
                                          'spend $': np.sum,
                                       'purchase': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-        custom_col_USD(df)
-        decimal(df)
-        return df
+        custom_col_USD(df_var)
+        decimal(df_var)
+        return df_var
 
 def main():
 
@@ -93,7 +93,7 @@ def main():
     if status == "Performance per country":
         if status2 == "Local currency":
             st.subheader("Performance per country")
-            st.table(groupby_all('country','local').set_index('country'))
+            st.dataframe(groupby_all('country','local').set_index('country'))
         if status2 == "USD":  
             st.subheader("Performance per country")
             st.dataframe(groupby_all('country','usd').set_index('country'))
