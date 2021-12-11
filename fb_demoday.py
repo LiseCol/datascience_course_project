@@ -85,7 +85,7 @@ def main():
             st.dataframe(groupby_all('country','local'))
         if status2 == "USD":  
             st.subheader("Performance per country")
-            st.dataframe(groupby_all('country','usd').assign(hack=’’).set_index(‘hack’))
+            st.dataframe(groupby_all('country','usd').assign(hack='').set_index('hack'))
 
     elif status == "Performance per target type":
         if status2 == "Local currency":
