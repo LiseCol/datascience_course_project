@@ -33,6 +33,11 @@ def custom_col_USD(df):
     df['CPA $'] = round(df['spend $']/df['purchase'],2)
     df['CPM $'] = round(df['spend $']/(df['impressions']/1000),2)
     df['CPC $'] = round(df['spend $']/df['link click'],2)
+    
+def decimal(df):    
+    for column in df:
+        if df[column].dtype == 'float64':
+            df[column] = round(df[column],2)
             
 def groupby_all(variable,cur):
     # one variable only
@@ -45,9 +50,7 @@ def groupby_all(variable,cur):
                                       'revenue': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col(df)
-        for column in df:
-            if df[column].dtype == 'float64':
-                df[column] = round(df[column],2)
+        decimal(df)
         return df
     
     else:
@@ -59,9 +62,7 @@ def groupby_all(variable,cur):
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col_USD(df)
-        for column in df:
-            if df[column].dtype == 'float64':
-                df[column] = round(df[column],2)
+        decimal(df)
         return df
 
 def main():
