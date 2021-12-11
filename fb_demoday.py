@@ -45,24 +45,20 @@ def groupby_all(variable,cur):
     if cur == "local":
         df = load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
+                                      'link click': np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
-                                      'link click': np.sum, 
                                       'revenue': np.sum,
-                                      'spend $': np.sum, 
-                                      'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col(df)
         return df
     
     else:
         df= load_data().groupby([variable]).agg(
-                                        {'impressions':np.sum, 
-                                      'spend': np.sum, 
+                                        {'impressions':np.sum,
+                                         'link click': np.sum,
+                                         'spend $': np.sum,
                                       'purchase': np.sum, 
-                                      'link click': np.sum, 
-                                      'revenue': np.sum,
-                                      'spend $': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col_USD(df)
