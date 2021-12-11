@@ -20,10 +20,30 @@ def load_data():
 #color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
 
 # Define functions
+def custom_col(df):
+    df['CPA'] = round(df['spend']/df['purchase'],2)
+    df['CPM'] = round(df['spend']/(df['impressions']/1000),2)
+    df['CPC'] = round(df['spend']/df['link click'],2)
+    df['CTR'] = round((df['link click']/df['impressions']) ,3)
+    df['ROAS'] = round(df['revenue']/df['spend'],2)
+    for column in df:
+        if df[column].dtype == 'float64':
+            df[column] = round(df[column],2)
+
+def custom_col_USD(df):
+    df['CTR'] = round((df['link click']/df['impressions']),3)
+    df['ROAS'] = round(df['revenue $']/df['spend $'],2)
+    df['CPA $'] = round(df['spend $']/df['purchase'],2)
+    df['CPM $'] = round(df['spend $']/(df['impressions']/1000),2)
+    df['CPC $'] = round(df['spend $']/df['link click'],2)
+    for column in df:
+        if df[column].dtype == 'float64':
+            df[column] = round(df[column],2)
+            
 def groupby_all(variable,cur):
     # one variable only
     if cur == "local":
-        var_dif= load_data().groupby([variable]).agg(
+        df = load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
@@ -32,14 +52,11 @@ def groupby_all(variable,cur):
                                       'spend $': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-        var_dif['CPA'] = round(var_dif['spend']/var_dif['purchase'],2)
-        var_dif['CPM'] = round(var_dif['spend']/(var_dif['impressions']/1000),2)
-        var_dif['CPC'] = round(var_dif['spend']/var_dif['link click'],2)
-        var_dif['CTR'] = round((var_dif['link click']/var_dif['impressions'])*100,3)
-        return var_dif
+        custom_col(df)
+        return df
     
     else:
-        var_dif= load_data().groupby([variable]).agg(
+        df= load_data().groupby([variable]).agg(
                                         {'impressions':np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
@@ -48,11 +65,8 @@ def groupby_all(variable,cur):
                                       'spend $': np.sum, 
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
-        var_dif['CPA $'] = round(var_dif['spend $']/var_dif['purchase'],2)
-        var_dif['CPM $'] = round(var_dif['spend $']/(var_dif['impressions']/1000),2)
-        var_dif['CPC $'] = round(var_dif['spend $']/var_dif['link click'],2)
-        var_dif['CTR'] = round((var_dif['link click']/var_dif['impressions'])*100,3)
-        return var_dif
+        custom_col_USD(df)
+        return df
 
 def main():
 
@@ -82,7 +96,7 @@ def main():
     if status == "Performance per country":
         if status2 == "Local currency":
             st.subheader("Performance per country")
-            st.dataframe(groupby_all('country','local'))
+            st.dataframe(groupby_all('country','local').set_index('country'))
         if status2 == "USD":  
             st.subheader("Performance per country")
             st.dataframe(groupby_all('country','usd').set_index('country'))
@@ -90,18 +104,18 @@ def main():
     elif status == "Performance per target type":
         if status2 == "Local currency":
             st.subheader("Performance per target type")
-            st.dataframe(groupby_all('target type','local'))
+            st.dataframe(groupby_all('target type','local').set_index('target type'))
         if status2 == "USD":  
             st.subheader("Performance per target type")
-            st.dataframe(groupby_all('target type','usd'))
+            st.dataframe(groupby_all('target type','usd').set_index('target type'))
         
     elif status == "Daily view":
         if status2 == "Local currency":
             st.subheader("Daily view")
-            st.dataframe(groupby_all('date','local'))
+            st.dataframe(groupby_all('date','local').set_index('date'))
         if status2 == "USD":  
             st.subheader("Daily view")
-            st.dataframe(groupby_all('date','usd'))
+            st.dataframe(groupby_all('date','usd').set_index('date'))
 
                                                                                   
     # Static plots in two columns
