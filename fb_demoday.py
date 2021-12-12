@@ -40,9 +40,9 @@ def df_clean(df):
     to_change = ['spend','revenue','CPA','CPM','CPC']
     for col in to_change:
         for value in df[df.loc[:,'currency']=='USD'].loc[:,col]: 
-            df.loc[:,col].replace(value,"${:,.2f}".format(value),inplace=True)
+            df.loc[:,col].replace(value,"${:.2f}".format(value),inplace=True)
         for value in df[df.loc[:,'currency']=='EUR'].loc[:,col]: 
-            df.loc[:,col].replace(value,"€{:,.2f}".format(value),inplace=True)
+            df.loc[:,col].replace(value,"€{:.2f}".format(value),inplace=True)
     df.drop(['currency'],axis=1,inplace=True)
         
 def groupby_all(variable,cur):
