@@ -5,6 +5,7 @@ pd.options.mode.chained_assignment = None
 from PIL import Image
 import numpy as np
 import plotly.express as px
+import datetime
 
 ## Page config ##
 st.set_page_config(page_title="Facebook ad Report", 
