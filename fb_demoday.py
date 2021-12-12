@@ -115,7 +115,7 @@ def main():
         #df_daily['date']= pd.to_datetime(df_daily['date'])
         min_date = datetime.date(2021,11,1)
         max_date = datetime.date(2021,11,17)
-        a = st.date_input("Pick a date", min_value=min_date, max_value=max_date)
+        a = st.date_input("Pick a date", value=(min_date, max_date))
         st.write(a)
         #if min_date < max_date:
        #     pass
