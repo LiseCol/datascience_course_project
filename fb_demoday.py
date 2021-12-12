@@ -87,32 +87,32 @@ def main():
     # Selectbox : View of the dataframe
     st.sidebar.subheader("FILTERS")
 
-    status = st.sidebar.selectbox('Select your favorite view:',["Performance per country",
+    status = st.sidebar.selectbox('Select your favorite KPI view:',["Performance per country",
                                                             "Performance per target type",
                                                             "Daily view"])
 
     if status == "Performance per country":
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         if status2 == "Local currency":
-            st.subheader("Performance per country - Local currency")
+            st.subheader("Per country - Local currency")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
             
         elif status2 == "USD":  
-            st.subheader("Performance per country - USD")
+            st.subheader("Per country - USD")
             st.dataframe((groupby_all('country','us').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
 
     elif status == "Performance per target type": 
-        st.subheader("Performance per target type - USD")
+        st.subheader("Per target type - USD")
         st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         
     elif status == "Daily view":
-        st.subheader("Daily view - USD")
+        st.subheader("Per day - USD")
         start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
         df_daily = groupby_all('date','usd')
         mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
