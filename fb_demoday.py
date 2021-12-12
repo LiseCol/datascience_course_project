@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 pd.options.mode.chained_assignment = None
 from PIL import Image
-
 import numpy as np
 import plotly.express as px
 
@@ -24,20 +23,15 @@ def custom_col(df):
     df['CPA'] = round(df['spend']/df['purchase'],2)
     df['CPM'] = round(df['spend']/(df['impressions']/1000),2)
     df['CPC'] = round(df['spend']/df['link click'],2)
-    df['CTR'] = round((df['link click']/df['impressions']) ,3)
+    df['CTR'] = round((df['link click']/df['impressions']) ,5)
     df['ROAS'] = round(df['revenue']/df['spend'],2)
 
 def custom_col_USD(df):
-    df['CTR'] = round((df['link click']/df['impressions']),3)
+    df['CTR'] = round((df['link click']/df['impressions']),5)
     df['ROAS'] = round(df['revenue $']/df['spend $'],2)
     df['CPA $'] = round(df['spend $']/df['purchase'],2)
     df['CPM $'] = round(df['spend $']/(df['impressions']/1000),2)
     df['CPC $'] = round(df['spend $']/df['link click'],2)
-    
-def decimal(df):    
-    for column in df:
-        if df[column].dtype == 'float64':
-            df[column] = round(df[column],2)
             
 def groupby_all(variable,cur):
     # one variable only
@@ -50,7 +44,6 @@ def groupby_all(variable,cur):
                                       'revenue': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col(df_var)
-        decimal(df_var)
         return df_var
     
     else:
@@ -62,7 +55,6 @@ def groupby_all(variable,cur):
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col_USD(df_var)
-        decimal(df_var)
         return df_var
 
 def main():
@@ -94,7 +86,7 @@ def main():
         if status2 == "Local currency":
             st.subheader("Performance per country")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(
-                            subset=['spend', 'revenue','CPA','CPM','CPC','ROAS'], formatter="{:.2f}"))
+                            subset=['spend', 'revenue','CPA','CPM','CPC','ROAS'], formatter="{:,}"))
             
         if status2 == "USD":  
             st.subheader("Performance per country")
