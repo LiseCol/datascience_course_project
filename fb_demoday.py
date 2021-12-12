@@ -35,7 +35,7 @@ def custom_col_USD(df):
     df['currency'] = 'USD'
     
 def df_clean(df):
-    df.rename(columns = {'spend $':'spend','revenue $':'revenue'},inplace=True)
+    df.rename(columns = {'spend $':'spend','revenue $':'revenue','link click':'clicks'},inplace=True)
     df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
     to_change = ['spend','revenue','CPA','CPM','CPC']
     for col in to_change:
@@ -97,22 +97,24 @@ def main():
     if status == "Performance per country":
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         if status2 == "Local currency":
-            st.subheader("Performance per country")
+            st.subheader("Performance per country - Local currency")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(
                             subset=['impressions','link click','purchase','ROAS'],formatter="{:,}"))
             
         elif status2 == "USD":  
-            st.subheader("Performance per country")
+            st.subheader("Performance per country - USD")
             st.dataframe((groupby_all('country','us').set_index('country')).style.format(
                             subset=['impressions','link click','purchase','ROAS'],formatter="{:,}"))
 
     elif status == "Performance per target type": 
         st.subheader("Performance per target type - USD")
-        st.dataframe(groupby_all('target type','usd').set_index('target type'))
+        st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(
+                            subset=['impressions','link click','purchase','ROAS'],formatter="{:,}"))
         
     elif status == "Daily view":
         st.subheader("Daily view - USD")
-        st.dataframe(groupby_all('date','usd').set_index('date'))
+        st.dataframe((groupby_all('date','usd').set_index('date')).style.format(
+                            subset=['impressions','link click','purchase','ROAS'],formatter="{:,}"))
 
                                                                                   
     # Static plots in two columns
