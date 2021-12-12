@@ -139,7 +139,7 @@ def main():
                                         ).reset_index()
 
         all_target = df_behaviour_target['target type'].unique().tolist()
-        options = st.selectbox('Select', all_target)
+        options = st.selectbox(all_target)
 
         # Filter the information for this port specifically
         ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
