@@ -57,6 +57,17 @@ def groupby_all(variable,cur):
         custom_col_USD(df_var)
         return df_var
 
+def df_clean(df):
+    df.rename(columns = {'spend $':'spend','revenue $':'revenue'},inplace=True)
+    df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
+    to_change = ['spend','revenue','CPA','CPM','CPC']
+    for col in to_change:
+        for value in df[df.loc[:,'currency']=='USD'].loc[:,col]: 
+            df.loc[:,col].replace(value,"${:,.2f}".format(value),inplace=True)
+        for value in df[df.loc[:,'currency']=='EUR'].loc[:,col]: 
+            df.loc[:,col].replace(value,"€{:,.2f}".format(value),inplace=True)
+    df.drop(['currency'],axis=1,inplace=True)
+
 def main():
 
     # Page title                   
@@ -85,9 +96,9 @@ def main():
     if status == "Performance per country":
         if status2 == "Local currency":
             st.subheader("Performance per country")
-            st.dataframe((groupby_all('country','local').set_index('country')).style.format(
+            st.dataframe(df_clean((groupby_all('country','local').set_index('country')).style.format(
                             subset=['impressions','link click','spend','purchase','revenue','CPA','CPM','CPC','ROAS'], 
-                             formatter="{:,}"))
+                             formatter="{:,}")))
             
         if status2 == "USD":  
             st.subheader("Performance per country")
