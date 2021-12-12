@@ -113,7 +113,7 @@ def main():
         st.subheader("Daily view - USD")
         df_daily = groupby_all('date','usd')
         df_daily['date'] = pd.to_datetime(df_daily['date'])
-        df_daily['date'] = df_daily['date'].dt.strftime('%Y/%m/%d')
+        df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
         start_date, end_date = st.date_input('Choisir date de début, date de fin :', [])
         if start_date < end_date:
             pass
