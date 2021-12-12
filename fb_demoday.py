@@ -115,7 +115,7 @@ def main():
         df_daily['date'] = pd.to_datetime(df_daily['date'])
         df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
         start_date, end_date = st.date_input('Choose date range  :',value=[],
-                                             min_value= (df_daily['date'].min()),max_value=(df_daily['date'].max()))
+                                             min_value= datetime.date(df_daily['date'].min()),max_value=datetime.date(df_daily['date'].max()))
 
         mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
       
