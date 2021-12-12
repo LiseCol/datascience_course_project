@@ -114,9 +114,13 @@ def main():
         df_daily = groupby_all('date','usd')
         df_daily['date'] = pd.to_datetime(df_daily['date'])
         df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
-        start_date, end_date = st.date_input('Choose date range  :',[],min_value= (df_daily['date'].min()).strftime('%Y-%m-%d'),max_value=(df_daily['date'].max()).strftime('%Y-%m-%d'))
+        min_date = datetime.datetime(2020,1,1)
+        max_date = datetime.date(2022,1,1)
 
-        mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
+        st.date_input("Pick a date", min_value=min_date, max_value=max_date)
+        st.write(type(min_date))
+
+        mask = (df_daily['date'] >= (min_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (max_date).strftime('%Y-%m-%d'))
       
         st.dataframe(df_daily[mask].set_index('date').style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
