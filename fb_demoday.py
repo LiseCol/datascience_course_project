@@ -15,6 +15,8 @@ st.set_page_config(page_title="Facebook ad Report",
 @st.cache
 def load_data():
     df = pd.read_csv('data_clean_2.csv', index_col=0)
+    df['date'] = pd.to_datetime(df['date'])
+    df['date'] = df['date'].dt.strftime('%Y-%m-%d')
     return  df
 
 #color_list = ['DarkCyan', 'GreenYellow', 'Orchid']
@@ -111,10 +113,8 @@ def main():
         
     elif status == "Daily view":
         st.subheader("Daily view - USD")
+        start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
         df_daily = groupby_all('date','usd')
-        df_daily['date'] = pd.to_datetime(df_daily['date'])
-        df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
-        start_date, end_date = st.date_input('Choose date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
         mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
       
         st.dataframe(df_daily[mask].set_index('date').style.format(subset=[
