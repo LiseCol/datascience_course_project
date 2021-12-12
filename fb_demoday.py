@@ -119,6 +119,8 @@ def main():
             pass
         else:
             st.error('Error: End date must be chosen after start date')
+        st.write(start_date)
+        st.write(end_date)
         mask = (df['date'] >= start_date) & (df['date'] <= end_date)
         df_daily = df_daily.loc[mask]
         
