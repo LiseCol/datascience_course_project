@@ -115,12 +115,11 @@ def main():
         if start_date < end_date:
             pass
         else:
-            st.error('Error: Endate must be chosen after start date')
+            st.error('Error: End date must be chosen after start date')
 
         mask = (df['date'] > start_date) & (df['date'] <= end_date)
         df_daily = groupby_all('date','usd').loc[mask]
         # And display the result!
-        st.dataframe(df)
         st.dataframe((df_daily.set_index('date')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
