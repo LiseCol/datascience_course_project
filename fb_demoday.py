@@ -118,7 +118,7 @@ def main():
 
         mask = (df_daily['date'] >= start_date & (df_daily['date'] <= end_date)
       
-        st.dataframe((df_daily[mask].set_index('date')).style.format(subset=[
+        st.table((df_daily[mask].set_index('date')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
                                                                                   
