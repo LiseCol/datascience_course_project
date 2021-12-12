@@ -111,22 +111,22 @@ def main():
         
     elif status == "Daily view":
         st.subheader("Daily view - USD")
-        #df_daily = groupby_all('date','usd')
-        #df_daily['date']= pd.to_datetime(df_daily['date'])
+        df_daily = groupby_all('date','usd')
+        df_daily['date']= pd.to_datetime(df_daily['date'])
         min_date = datetime.date(2021,11,1)
         max_date = datetime.date(2021,11,17)
-        a = st.date_input("Pick a date", value=(min_date, max_date))
+        st.date_input("Pick a date", value=(min_date, max_date))
         st.write(a)
-        #if min_date < max_date:
-       #     pass
-        #else:
-        #    st.error('Error: End date must be chosen after start date')
-        #mask = (df['date'] >= min_value) & (df['date'] <= max_value)
-        #df_daily = df_daily.loc[mask]
-        # And display the result!
-        #st.dataframe((df_daily.set_index('date')).style.format(subset=[
-        #                                                'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-        #                                                formatter="{:,.2f}"))
+        if min_date < max_date:
+            pass
+        else:
+            st.error('Error: End date must be chosen after start date')
+        mask = (df['date'] >= min_date) & (df['date'] <= max_date)
+        df_daily = df_daily.loc[mask]
+        
+        st.dataframe((df_daily.set_index('date')).style.format(subset=[
+                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
+                                                        formatter="{:,.2f}"))
 
                                                                                   
     # Static plots in two columns
