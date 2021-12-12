@@ -32,7 +32,18 @@ def custom_col_USD(df):
     df['CPA $'] = round(df['spend $']/df['purchase'],2)
     df['CPM $'] = round(df['spend $']/(df['impressions']/1000),2)
     df['CPC $'] = round(df['spend $']/df['link click'],2)
-            
+    
+def df_clean(df):
+    df.rename(columns = {'spend $':'spend','revenue $':'revenue'},inplace=True)
+    df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
+    to_change = ['spend','revenue','CPA','CPM','CPC']
+    for col in to_change:
+        for value in df[df.loc[:,'currency']=='USD'].loc[:,col]: 
+            df.loc[:,col].replace(value,"${:,.2f}".format(value),inplace=True)
+        for value in df[df.loc[:,'currency']=='EUR'].loc[:,col]: 
+            df.loc[:,col].replace(value,"€{:,.2f}".format(value),inplace=True)
+    df.drop(['currency'],axis=1,inplace=True)
+        
 def groupby_all(variable,cur):
     # one variable only
     if cur == "local":
@@ -44,6 +55,7 @@ def groupby_all(variable,cur):
                                       'revenue': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col(df_var)
+        df_clean(df_var)
         return df_var
     
     else:
@@ -55,18 +67,8 @@ def groupby_all(variable,cur):
                                       'revenue $': np.sum,
                                      'currency':pd.Series.mode}).reset_index()
         custom_col_USD(df_var)
+        df_clean(df_var)
         return df_var
-
-def df_clean(df):
-    df.rename(columns = {'spend $':'spend','revenue $':'revenue'},inplace=True)
-    df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
-    to_change = ['spend','revenue','CPA','CPM','CPC']
-    for col in to_change:
-        for value in df[df.loc[:,'currency']=='USD'].loc[:,col]: 
-            df.loc[:,col].replace(value,"${:,.2f}".format(value),inplace=True)
-        for value in df[df.loc[:,'currency']=='EUR'].loc[:,col]: 
-            df.loc[:,col].replace(value,"€{:,.2f}".format(value),inplace=True)
-    df.drop(['currency'],axis=1,inplace=True)
 
 def main():
 
@@ -96,9 +98,9 @@ def main():
     if status == "Performance per country":
         if status2 == "Local currency":
             st.subheader("Performance per country")
-            st.dataframe(df_clean((groupby_all('country','local').set_index('country')).style.format(
+            st.dataframe(groupby_all('country','local').set_index('country')).style.format(
                             subset=['impressions','link click','spend','purchase','revenue','CPA','CPM','CPC','ROAS'], 
-                             formatter="{:,}")))
+                             formatter="{:,}")
             
         if status2 == "USD":  
             st.subheader("Performance per country")
