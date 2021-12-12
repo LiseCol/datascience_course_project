@@ -116,7 +116,7 @@ def main():
         df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
         min_date = datetime.datetime(2021,11,1)
         max_date = datetime.date(2021,11,18)
-        st.date_picker("Pick a date", (min_date, max_date))
+        start_date, end_date = st.date_input('Choose date range  :',[min_date,start_date])
 
         mask = (df_daily['date'] >= (min_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (max_date).strftime('%Y-%m-%d'))
       
