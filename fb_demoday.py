@@ -51,6 +51,7 @@ def groupby_all(variable,cur):
                                      'currency':pd.Series.mode}).reset_index()
         custom_col(df_var)
         df_clean(df_var)
+        df_var.style.format(subset=['spend','revenue','CPA', 'CPM', 'CPC','ROAS'],formatter="{:,.2f}")
         return df_var
     
     else:
