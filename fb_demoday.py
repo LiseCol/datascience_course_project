@@ -114,7 +114,7 @@ def main():
         df_daily = groupby_all('date','usd')
         df_daily['date'] = pd.to_datetime(df_daily['date'])
         df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
-        min_date = datetime.date(2021-11-01)
+        min_date = datetime.date(2021-11-1)
         max_date = datetime.date(2021-11-18)
         start_date, end_date = st.date_input('Choose date range  :',[min_date,max_date])
         st.write(type(start_date))
