@@ -110,7 +110,7 @@ def main():
         
     elif status == "Daily view":
         st.subheader("Daily view - USD")
-        df_daily = groupby_all('date','usd').loc[mask]
+        df_daily = groupby_all('date','usd')
         df_daily['date']= pd.to_datetime(df_daily['date']).dt.date
         start_date = st.date_input('Start date :')
         end_date = st.date_input('End date :')
@@ -119,6 +119,7 @@ def main():
         else:
             st.error('Error: End date must be chosen after start date')
         mask = (df['date'] >= start_date) & (df['date'] <= end_date)
+        df_daily = df_daily.loc[mask]
         # And display the result!
         st.dataframe((df_daily.set_index('date')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
