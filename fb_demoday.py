@@ -51,7 +51,6 @@ def groupby_all(variable,cur):
                                      'currency':pd.Series.mode}).reset_index()
         custom_col(df_var)
         df_clean(df_var)
-        df_var.style.format(subset=['spend','revenue','CPA', 'CPM', 'CPC','ROAS'],formatter="{:,.2f}")
         return df_var
     
     else:
@@ -93,7 +92,9 @@ def main():
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         if status2 == "Local currency":
             st.subheader("Performance per country - Local currency")
-            st.dataframe(groupby_all('country','local').set_index('country'))
+            df_country = groupby_all('country','local').set_index('country')
+            df_country.style.format(subset=['spend', 'revenue', 'CPA', 'CPM','CPC', 'ROAS'],formatter="{:,.2f}")
+            st.dataframe(df_country.style.format(subset=['impressions', 'clicks', 'purchase'],formatter="{:,}"))
             
         elif status2 == "USD":  
             st.subheader("Performance per country - USD")
