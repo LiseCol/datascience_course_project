@@ -131,7 +131,7 @@ def main():
         st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
-        
+        st.subheader('Per target type')
         df_behaviour_target = load_data().groupby(['target type','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
@@ -162,7 +162,7 @@ def main():
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
                                                                                       
-    st.subheader('Per target type')
+    
     
 
 main()  
