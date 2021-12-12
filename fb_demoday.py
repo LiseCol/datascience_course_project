@@ -116,7 +116,7 @@ def main():
         df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
         start_date, end_date = st.date_input('Choose date range  :', [])
 
-        mask = (df_daily['date'] >= (start_date) & (df_daily['date'] <= (end_date))
+        mask = (df_daily['date'] >= start_date & (df_daily['date'] <= end_date)
       
         st.dataframe((df_daily[mask].set_index('date')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
