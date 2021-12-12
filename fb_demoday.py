@@ -103,7 +103,7 @@ def main():
                           #  subset=['impressions','link click','spend','purchase','revenue','CPA','CPM','CPC','ROAS'], 
                            #  formatter="{:,}"))
             
-        if status2 == "USD":  
+        elif status2 == "USD":  
             st.subheader("Performance per country")
             st.dataframe(groupby_all('country','usd').set_index('country'))
 
@@ -111,7 +111,7 @@ def main():
         if status2 == "Local currency":
             st.subheader("Performance per target type")
             st.dataframe(groupby_all('target type','local').set_index('target type'))
-        if status2 == "USD":  
+        elif status2 == "USD":  
             st.subheader("Performance per target type")
             st.dataframe(groupby_all('target type','usd').set_index('target type'))
         
@@ -119,7 +119,7 @@ def main():
         if status2 == "Local currency":
             st.subheader("Daily view")
             st.dataframe(groupby_all('date','local').set_index('date'))
-        if status2 == "USD":  
+        elif status2 == "USD":  
             st.subheader("Daily view")
             st.dataframe(groupby_all('date','usd').set_index('date'))
 
