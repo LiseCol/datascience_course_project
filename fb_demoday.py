@@ -27,11 +27,11 @@ def custom_col(df):
     df['ROAS'] = round(df['revenue']/df['spend'],2)
 
 def custom_col_USD(df):
-    df['CTR'] = round((df['link click']/df['impressions']),5)
-    df['ROAS'] = round(df['revenue $']/df['spend $'],2)
     df['CPA'] = round(df['spend $']/df['purchase'],2)
     df['CPM'] = round(df['spend $']/(df['impressions']/1000),2)
-    df['CPC'] = round(df['spend $']/df['link click'],2)
+    df['CPC'] = round(df['spend $']/df['link click'],2) 
+    df['CTR'] = round((df['link click']/df['impressions']),5)
+    df['ROAS'] = round(df['revenue $']/df['spend $'],2)
     df['currency'] = 'USD'
     
 def df_clean(df):
