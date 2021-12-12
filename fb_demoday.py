@@ -121,7 +121,7 @@ def main():
             st.error('Error: End date must be chosen after start date')
         st.write(type(start_date))
         st.write(end_date)
-        mask = (df['date'] >= start_date) & (df['date'] <= end_date)
+        mask = (df_daily['date'] >= start_date) & (df_daily['date'] <= end_date)
         df_daily = df_daily.loc[mask]
         
         st.dataframe((df_daily.set_index('date')).style.format(subset=[
