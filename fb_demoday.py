@@ -118,7 +118,7 @@ def main():
         #max_date = datetime.date(2021,11,18)
         start_date, end_date = st.date_input('Choose date range  :',[])
         st.write(type(start_date))
-        st.write((start_date)
+        st.write((start_date))
         
         mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
       
