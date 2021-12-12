@@ -93,22 +93,22 @@ def main():
         if status2 == "Local currency":
             st.subheader("Performance per country - Local currency")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(
-                            subset=['clicks','purchase','ROAS'],formatter="{:,.2f}"))
+                            subset=['spend','revenue','CPA', 'CPM', 'CPC'],formatter="{:,.2f}"))
             
         elif status2 == "USD":  
             st.subheader("Performance per country - USD")
             st.dataframe((groupby_all('country','us').set_index('country')).style.format(
-                            subset=['impressions','clicks','purchase','ROAS'],formatter="{:,.2f}"))
+                            subset=['spend','revenue','CPA', 'CPM', 'CPC'],formatter="{:,.2f}"))
 
     elif status == "Performance per target type": 
         st.subheader("Performance per target type - USD")
         st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(
-                            subset=['impressions','clicks','purchase','ROAS'],formatter="{:,.2f}"))
+                            subset=['spend','revenue','CPA', 'CPM', 'CPC'],formatter="{:,.2f}"))
         
     elif status == "Daily view":
         st.subheader("Daily view - USD")
         st.dataframe((groupby_all('date','usd').set_index('date')).style.format(
-                            subset=['impressions','clicks','purchase','ROAS'],formatter="{:,.2f}"))
+                            subset=['spend','revenue','CPA', 'CPM', 'CPC'],formatter="{:,.2f}"))
 
                                                                                   
     # Static plots in two columns
