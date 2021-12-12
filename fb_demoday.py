@@ -120,7 +120,7 @@ def main():
         st.write(type(start_date))
         st.write((start_date)
         
-        mask = (df_daily['date'] >= (min_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (max_date).strftime('%Y-%m-%d'))
+        mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
       
         st.dataframe(df_daily[mask].set_index('date').style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
