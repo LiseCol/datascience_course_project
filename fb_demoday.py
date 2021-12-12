@@ -92,8 +92,7 @@ def main():
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         if status2 == "Local currency":
             st.subheader("Performance per country - Local currency")
-            st.dataframe((groupby_all('country','local').set_index('country')).style.format(
-                            subset=['spend','revenue','CPA', 'CPM', 'CPC','ROAS'],formatter="{:,.2f}"))
+            st.dataframe(groupby_all('country','local').set_index('country'))
             
         elif status2 == "USD":  
             st.subheader("Performance per country - USD")
