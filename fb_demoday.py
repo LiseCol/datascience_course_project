@@ -1,6 +1,7 @@
 #Import common modules
 import streamlit as st
 import pandas as pd
+pd.options.mode.chained_assignment = None
 from PIL import Image
 import numpy as np
 import plotly.express as px
@@ -162,4 +163,4 @@ def main():
         fig2.update_layout(barmode='group')
         st.plotly_chart(fig2)
 
-st.write(main())   
+main()  
