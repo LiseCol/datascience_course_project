@@ -86,7 +86,7 @@ def main():
         if status2 == "Local currency":
             st.subheader("Performance per country")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(
-                            subset=['impressions','spend', 'revenue','CPA','CPM','CPC','ROAS'], formatter="{:,}"))
+                            subset=(groupby_all('country','local').set_index('country').columns, formatter="{:,}"))
             
         if status2 == "USD":  
             st.subheader("Performance per country")
