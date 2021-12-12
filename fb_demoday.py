@@ -106,21 +106,13 @@ def main():
             st.dataframe((groupby_all('country','us').set_index('country')).style.format(
                             subset=['impressions','link click','purchase','ROAS'],formatter="{:,}"))
 
-    elif status == "Performance per target type":
-        if status2 == "Local currency":
-            st.subheader("Performance per target type")
-            st.dataframe(groupby_all('target type','local').set_index('target type'))
-        elif status2 == "USD":  
-            st.subheader("Performance per target type")
-            st.dataframe(groupby_all('target type','usd').set_index('target type'))
+    elif status == "Performance per target type": 
+        st.subheader("Performance per target type - USD")
+        st.dataframe(groupby_all('target type','usd').set_index('target type'))
         
     elif status == "Daily view":
-        if status2 == "Local currency":
-            st.subheader("Daily view")
-            st.dataframe(groupby_all('date','local').set_index('date'))
-        elif status2 == "USD":  
-            st.subheader("Daily view")
-            st.dataframe(groupby_all('date','usd').set_index('date'))
+        st.subheader("Daily view - USD")
+        st.dataframe(groupby_all('date','usd').set_index('date'))
 
                                                                                   
     # Static plots in two columns
