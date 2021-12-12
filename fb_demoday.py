@@ -114,7 +114,7 @@ def main():
         df_daily = groupby_all('date','usd')
         df_daily['date'] = pd.to_datetime(df_daily['date'])
         df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
-        start_date, end_date = st.date_input('Choose date range  :', [df_daily['date'].min(),df_daily['date'].max()])
+        start_date, end_date = st.date_input('Choose date range  :', df_daily['date'].min(),df_daily['date'].max())
 
         mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
       
