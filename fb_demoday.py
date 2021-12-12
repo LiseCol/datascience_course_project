@@ -125,8 +125,8 @@ def main():
     #    df_daily = df_daily.loc[mask]
         
      #   st.dataframe((df_daily.set_index('date')).style.format(subset=[
-                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-                                                        formatter="{:,.2f}"))
+        #                                                'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
+           #                                             formatter="{:,.2f}"))
 
                                                                                   
     # Static plots in two columns
