@@ -94,9 +94,8 @@ def main():
                                                             "Performance per target type",
                                                             "Daily view"])
 
-    status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))
-
     if status == "Performance per country":
+    status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         if status2 == "Local currency":
             st.subheader("Performance per country")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(
