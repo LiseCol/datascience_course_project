@@ -32,6 +32,7 @@ def custom_col_USD(df):
     df['CPA $'] = round(df['spend $']/df['purchase'],2)
     df['CPM $'] = round(df['spend $']/(df['impressions']/1000),2)
     df['CPC $'] = round(df['spend $']/df['link click'],2)
+    df['currency'] = 'USD'
     
 def df_clean(df):
     df.rename(columns = {'spend $':'spend','revenue $':'revenue'},inplace=True)
