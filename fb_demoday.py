@@ -87,11 +87,11 @@ def main():
     # Selectbox : View of the dataframe
     st.sidebar.subheader("FILTERS")
 
-    status = st.sidebar.selectbox('Select your favorite KPI view:',["Performance per country",
-                                                            "Performance per target type",
-                                                            "Daily view"])
+    status = st.sidebar.selectbox('Select your favorite KPI view:',["Per country",
+                                                            "Per target type",
+                                                            "Per day"])
 
-    if status == "Performance per country":
+    if status == "Per country":
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         if status2 == "Local currency":
             st.subheader("Per country - Local currency")
@@ -105,13 +105,13 @@ def main():
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
 
-    elif status == "Performance per target type": 
+    elif status == "Per target type": 
         st.subheader("Per target type - USD")
         st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         
-    elif status == "Daily view":
+    elif status == "Per day":
         st.subheader("Per day - USD")
         start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
         df_daily = groupby_all('date','usd')
