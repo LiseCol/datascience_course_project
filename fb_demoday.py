@@ -104,7 +104,7 @@ def main():
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         # View per country
-        st.subheader('Per country')
+        st.subheader('Which country are you interested in diving in?')
         df_behaviour_countries = load_data().groupby(['country','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
@@ -112,7 +112,7 @@ def main():
                                         ).reset_index()
 
         all_countries = df_behaviour_countries['country'].unique().tolist()
-        options = st.selectbox('Which country are you interested in diving in?', all_countries)
+        options = st.selectbox('Select', all_countries)
 
         # Filter the information for this port specifically
         ind_country = df_behaviour_countries[df_behaviour_countries['country']== options]
@@ -131,7 +131,7 @@ def main():
         st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
-        st.subheader('Per target type')
+        st.subheader('Which target type are you interested in diving in?')
         df_behaviour_target = load_data().groupby(['target type','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
@@ -139,7 +139,7 @@ def main():
                                         ).reset_index()
 
         all_target = df_behaviour_target['target type'].unique().tolist()
-        options = st.selectbox('Which target type are you interested in diving in?', all_target)
+        options = st.selectbox('Select', all_target)
 
         # Filter the information for this port specifically
         ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
