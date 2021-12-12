@@ -104,27 +104,6 @@ def main():
             st.dataframe((groupby_all('country','us').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
-
-    elif status == "Per target type": 
-        st.subheader("Per target type - USD")
-        st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
-                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-                                                        formatter="{:,.2f}"))
-        
-    elif status == "Per day":
-        st.subheader("Per day - USD")
-        start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
-        df_daily = groupby_all('date','usd')
-        mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
-      
-        st.dataframe(df_daily[mask].set_index('date').style.format(subset=[
-                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-                                                        formatter="{:,.2f}"))
-                                                                                  
-    # Static plots in two columns
-    col1, col2 = st.columns(2)
-
-    with col1:
         # View per country
         st.subheader('Per country')
         df_behaviour_countries = load_data().groupby(['country','date']).agg(
@@ -147,26 +126,42 @@ def main():
         fig1.update_layout(barmode='group')
         st.plotly_chart(fig1)
 
-    with col2:    
-        st.subheader('Per target type')
-        df_behaviour_target = load_data().groupby(['target type','date']).agg(
+
+        elif status == "Per target type": 
+        st.subheader("Per target type - USD")
+        st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
+                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
+                                                        formatter="{:,.2f}"))
+        
+    elif status == "Per day":
+        st.subheader("Per day - USD")
+        start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+        df_daily = groupby_all('date','usd')
+        mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
+      
+        st.dataframe(df_daily[mask].set_index('date').style.format(subset=[
+                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
+                                                        formatter="{:,.2f}"))
+                                                                                      
+    st.subheader('Per target type')
+    df_behaviour_target = load_data().groupby(['target type','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
                                         ).reset_index()
 
-        all_target = df_behaviour_target['target type'].unique().tolist()
-        options = st.selectbox('Which target type are you interested in diving in?', all_target)
+    all_target = df_behaviour_target['target type'].unique().tolist()
+    options = st.selectbox('Which target type are you interested in diving in?', all_target)
 
-        # Filter the information for this port specifically
-        ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
+    # Filter the information for this port specifically
+    ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
 
-        fig2 = px.bar(ind_target, 
+    fig2 = px.bar(ind_target, 
                  x = "date", 
                  y = ["spend $","revenue $"])
-        fig2.update_yaxes(visible=False, fixedrange=True)
+    fig2.update_yaxes(visible=False, fixedrange=True)
 
-        fig2.update_layout(barmode='group')
-        st.plotly_chart(fig2)
+    fig2.update_layout(barmode='group')
+    st.plotly_chart(fig2)
 
 main()  
