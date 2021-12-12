@@ -36,14 +36,8 @@ def custom_col_USD(df):
     
 def df_clean(df):
     df.rename(columns = {'spend $':'spend','revenue $':'revenue','link click':'clicks'},inplace=True)
-    df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
-    to_change = ['spend','revenue','CPA','CPM','CPC']
-    for col in to_change:
-        for value in df[df.loc[:,'currency']=='USD'].loc[:,col]: 
-            df.loc[:,col].replace(value,"$ {:.2f}".format(value),inplace=True)
-        for value in df[df.loc[:,'currency']=='EUR'].loc[:,col]: 
-            df.loc[:,col].replace(value,"€ {:.2f}".format(value),inplace=True)
     df.drop(['currency'],axis=1,inplace=True)
+    df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
         
 def groupby_all(variable,cur):
     # one variable only
@@ -99,7 +93,7 @@ def main():
         if status2 == "Local currency":
             st.subheader("Performance per country - Local currency")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(
-                            subset=['impressions','clicks','purchase','ROAS'],formatter="{:,.2f}"))
+                            subset=['clicks','purchase','ROAS'],formatter="{:,.2f}"))
             
         elif status2 == "USD":  
             st.subheader("Performance per country - USD")
