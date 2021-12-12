@@ -96,14 +96,14 @@ def main():
 
     if status == "Performance per country":
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
-            if status2 == "Local currency":
-                st.subheader("Performance per country")
-                st.dataframe((groupby_all('country','local').set_index('country')).style.format(
+        if status2 == "Local currency":
+            st.subheader("Performance per country")
+            st.dataframe((groupby_all('country','local').set_index('country')).style.format(
                             subset=['impressions','link click','purchase','ROAS'],formatter="{:,}"))
             
-            elif status2 == "USD":  
-                st.subheader("Performance per country")
-                st.dataframe((groupby_all('country','us').set_index('country')).style.format(
+        elif status2 == "USD":  
+            st.subheader("Performance per country")
+            st.dataframe((groupby_all('country','us').set_index('country')).style.format(
                             subset=['impressions','link click','purchase','ROAS'],formatter="{:,}"))
 
     elif status == "Performance per target type":
