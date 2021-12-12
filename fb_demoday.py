@@ -113,17 +113,18 @@ def main():
         st.subheader("Daily view - USD")
         df_daily = groupby_all('date','usd')
         df_daily['date']= pd.to_datetime(df_daily['date'])
-        min_date = datetime.date#(2021,11,1)
-        max_date = datetime.date#(2021,11,17)
+        min_date = datetime.date(2021,11,1)
+        max_date = datetime.date(2021,11,17)
+        start_date, end_date = st.date_input('Choisir date de début, date de fin :', [])
         st.date_input("Pick a date", value=(min_date, max_date))
-        if min_date < max_date:
-            pass
-        else:
-            st.error('Error: End date must be chosen after start date')
-        mask = (df['date'] >= min_date) & (df['date'] <= max_date)
-        df_daily = df_daily.loc[mask]
+  #      if min_date < max_date:
+    #        pass
+      #  else:
+     #       st.error('Error: End date must be chosen after start date')
+     #   mask = (df['date'] >= min_date) & (df['date'] <= max_date)
+    #    df_daily = df_daily.loc[mask]
         
-        st.dataframe((df_daily.set_index('date')).style.format(subset=[
+     #   st.dataframe((df_daily.set_index('date')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
 
