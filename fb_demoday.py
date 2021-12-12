@@ -97,8 +97,7 @@ def main():
             st.subheader("Per country - Local currency")
             st.dataframe((groupby_all('country','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-                                                        formatter="{:,.2f}"))
-            
+                                                        formatter="{:,.2f}"))   
         elif status2 == "USD":  
             st.subheader("Per country - USD")
             st.dataframe((groupby_all('country','us').set_index('country')).style.format(subset=[
@@ -127,7 +126,7 @@ def main():
         st.plotly_chart(fig1)
 
 
-        elif status == "Per target type": 
+    elif status == "Per target type": 
         st.subheader("Per target type - USD")
         st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
