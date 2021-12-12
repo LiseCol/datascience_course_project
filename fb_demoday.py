@@ -118,12 +118,12 @@ def main():
             pass
         else:
             st.error('Error: End date must be chosen after start date')
-     #   mask = (df['date'] >= min_date) & (df['date'] <= max_date)
-    #    df_daily = df_daily.loc[mask]
+        mask = (df['date'] >= start_date) & (df['date'] <= end_date)
+        df_daily = df_daily.loc[mask]
         
-     #   st.dataframe((df_daily.set_index('date')).style.format(subset=[
-        #                                                'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-           #                                             formatter="{:,.2f}"))
+        st.dataframe((df_daily.set_index('date')).style.format(subset=[
+                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
+                                                        formatter="{:,.2f}"))
 
                                                                                   
     # Static plots in two columns
