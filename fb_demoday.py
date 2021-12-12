@@ -115,16 +115,12 @@ def main():
         df_daily['date'] = pd.to_datetime(df_daily['date'])
         df_daily['date'] = df_daily['date'].dt.strftime('%Y-%m-%d')
         start_date, end_date = st.date_input('Choose date range  :', [])
-        if start_date < end_date:
-            pass
-        else:
-            st.error('Error: End date must be chosen after start date')
-        mask = (df_daily['date'] >= st.write(start_date)) & (df_daily['date'] <= st.write(end_date))
+
+        #mask = (df_daily['date'] >= st.write(start_date)) & (df_daily['date'] <= st.write(end_date))
       
-        st.dataframe((df_daily.loc[mask].set_index('date')).style.format(subset=[
+        st.dataframe((df_daily.loc[(df_daily['date'] >= st.write(start_date)) & (df_daily['date'] <= st.write(end_date))].set_index('date')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
-
                                                                                   
     # Static plots in two columns
     col1, col2 = st.columns(2)
