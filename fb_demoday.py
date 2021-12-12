@@ -132,6 +132,26 @@ def main():
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         
+        df_behaviour_target = load_data().groupby(['target type','date']).agg(
+                                        {'spend $': np.sum,
+                                         'revenue $': np.sum,
+                                        'purchase': np.sum}
+                                        ).reset_index()
+
+        all_target = df_behaviour_target['target type'].unique().tolist()
+        options = st.selectbox('Which target type are you interested in diving in?', all_target)
+
+        # Filter the information for this port specifically
+        ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
+
+        fig2 = px.bar(ind_target, 
+                 x = "date", 
+                 y = ["spend $","revenue $"])
+        fig2.update_yaxes(visible=False, fixedrange=True)
+
+        fig2.update_layout(barmode='group')
+        st.plotly_chart(fig2)    
+        
     elif status == "Per day":
         st.subheader("Per day - USD")
         start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
@@ -143,24 +163,6 @@ def main():
                                                         formatter="{:,.2f}"))
                                                                                       
     st.subheader('Per target type')
-    df_behaviour_target = load_data().groupby(['target type','date']).agg(
-                                        {'spend $': np.sum,
-                                         'revenue $': np.sum,
-                                        'purchase': np.sum}
-                                        ).reset_index()
-
-    all_target = df_behaviour_target['target type'].unique().tolist()
-    options = st.selectbox('Which target type are you interested in diving in?', all_target)
-
-    # Filter the information for this port specifically
-    ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
-
-    fig2 = px.bar(ind_target, 
-                 x = "date", 
-                 y = ["spend $","revenue $"])
-    fig2.update_yaxes(visible=False, fixedrange=True)
-
-    fig2.update_layout(barmode='group')
-    st.plotly_chart(fig2)
+    
 
 main()  
