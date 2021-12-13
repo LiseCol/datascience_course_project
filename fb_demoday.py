@@ -110,9 +110,9 @@ def main():
         st.write("## ... and here's a row of them")
         metric_row(
         {
-        ("Metric 1": 100, "1.2 °F"),
-        ("Metric 2": 200, "-8%"),
-        ("Metric 3": 300,"4%")
+        {"Metric 1": 100, "1.2 °F"},
+        {"Metric 2": 200, "-8%"},
+        {"Metric 3": 300,"4%"}
         },
         )
         
