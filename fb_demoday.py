@@ -105,7 +105,7 @@ def main():
                                                         formatter="{:,.2f}"))
         # Metrics highlight
         st.write("## Here's a single figure")
-        metric("Metric 0", '3')
+        metric("Metric 0", '3', "1.2 °F")
 
         st.write("## ... and here's a row of them")
         metric_row(
