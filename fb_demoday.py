@@ -104,22 +104,13 @@ def main():
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         # Metrics highlight
-        st.write("## Here's a single figure")
+        st.write("## Metrics to highlight??")
         st.metric("Metric 0", '3', "1.2 °F")
 
-        st.write("## ... and here's a row of them")
-        st.metric_row(
-        {
-        "Metric 1": '100',
-        "Metric 2": '200',
-        "Metric 3": '300',
-        },
-        )
-        
-        #col1, col2, col3 = st.columns(3)
-        #col1.metric("Top spender", "70 °F", "1.2 °F")
-        #col2.metric("Top CPA", "9 mph", "-8%")
-        #col3.metric("Top ROAS", "86%", "4%")
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Top spender", "70 °F", "1.2 °F")
+        col2.metric("Top CPA", "9 mph", "-8%")
+        col3.metric("Top ROAS", "86%", "4%")
         
         # Country per day
         st.subheader('Which country are you interested in diving in?')
