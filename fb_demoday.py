@@ -1,5 +1,6 @@
 #Import common modules
 import streamlit as st
+from streamlit_metrics import metric, metric_row
 import pandas as pd
 pd.options.mode.chained_assignment = None
 from PIL import Image
@@ -105,7 +106,7 @@ def main():
                                                         formatter="{:,.2f}"))
         # Metrics highlight
         st.write("## Here's a single figure")
-        metric("Metric 0", 0)
+        metric("Metric 0", 3)
 
         st.write("## ... and here's a row of them")
         metric_row(
