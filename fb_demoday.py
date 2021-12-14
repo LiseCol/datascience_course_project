@@ -117,8 +117,10 @@ def main():
             all_countries = df_behaviour_country['country'].unique().tolist()
             options = st.selectbox('Select', all_countries)
             
-            KPI= ['purchase','revenue','CTR','ROAS','CPA','CPM','CPC']
-            selected_KPI = st.radio("Which KPI would you like to see?",KPI)
+            col1, col2 = st.columns(2)
+            with col2:
+                KPI= ['purchase','revenue','CTR','ROAS','CPA','CPM','CPC']
+                selected_KPI = st.radio("Which KPI would you like to see?",KPI)
             
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
             mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
@@ -149,8 +151,8 @@ def main():
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
             fig1.update_yaxes(title_text="CPA", secondary_y=True)
-        
-            st.plotly_chart(fig1)
+            with col1:
+                st.plotly_chart(fig1)
 
         ## In USD
         elif status2 == "USD":  
