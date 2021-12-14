@@ -125,8 +125,6 @@ def main():
         
         #Date selector
         start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
-        df_daily = groupby_all('date','usd')
-        mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
         
         # Get dataframe grouped by
         df_behaviour_country = load_data().groupby(['country','date']).agg(
@@ -139,6 +137,9 @@ def main():
         all_countries = df_behaviour_country['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
         ind_country = df_behaviour_country[df_behaviour_country['country']== options][mask]
+        mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & 
+                (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
+        ind_country = ind_country [mask]
 
         # Create plot
         fig1 = make_subplots(specs=[[{"secondary_y": True}]])
