@@ -50,28 +50,26 @@ def df_clean(df):
     df.drop(['currency'],axis=1,inplace=True)
     df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
         
-def groupby_all(variable,cur):
+def groupby_all(variable1,variable2,cur):
     # one variable only
     if cur == "local":
-        df_var = load_data().groupby([variable]).agg(
+        df_var= df.groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum, 
                                       'link click': np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
-                                      'revenue': np.sum,
-                                     'currency':pd.Series.mode}).reset_index()
+                                      'revenue': np.sum
+                                     }).reset_index()
         custom_col(df_var)
         df_clean(df_var)
         return df_var
-    
     else:
-        df_var= load_data().groupby([variable]).agg(
+        df_var= df.groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
                                          'spend $': np.sum,
                                       'purchase': np.sum, 
-                                      'revenue $': np.sum,
-                                     'currency':pd.Series.mode}).reset_index()
+                                      'revenue $': np.sum}).reset_index()
         custom_col_USD(df_var)
         df_clean(df_var)
         return df_var
@@ -96,20 +94,63 @@ def main():
     status = st.sidebar.selectbox('Select your favorite KPI view:',["Per country",
                                                             "Per target type",
                                                             "Per day"])
-    # Reporting per country
+    ## Reporting per country
     if status == "Per country":
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
-        # In local currency
+        ## In local currency
         if status2 == "Local currency":
             st.subheader("Per country - Local currency")
-            #df_country_loc = groupby_all('country','local').set_index('country')
-            st.dataframe((groupby_all('country','local').set_index('country')).style.format(subset=[
+            st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-                                                        formatter="{:,.2f}"))   
-        # In USD
+                                                        formatter="{:,.2f}"))  
+            
+        ## Country per day
+        st.subheader('Which country are you interested in diving in?')
+        
+        #Date selector
+        start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+        
+        # Get dataframe grouped by
+        df_behaviour_country = groupby_all('country','date','local')
+
+        all_countries = df_behaviour_country['country'].unique().tolist()
+        options = st.selectbox('Select', all_countries)
+        ind_country = df_behaviour_country[df_behaviour_country['country']== options]
+        mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
+        ind_country = ind_country [mask]
+
+        # Create plot
+        fig1 = make_subplots(specs=[[{"secondary_y": True}]])
+    
+        fig1.add_trace(
+                    go.Bar(x=ind_country['date'],
+                    y=ind_country['spend'],
+                    name="Spend"),
+                    secondary_y=False,
+                )
+        
+        fig1.add_trace(
+                    go.Scatter(x=ind_country['date'],
+                    y=ind_country['CPA'], name= 'CPA',
+                    line_color='black'),
+                    secondary_y=True,
+                )
+        
+        fig1.update_layout(
+                        title_text="Evolution over time"
+                    )
+        
+        fig1.update_xaxes(title_text="Days")
+        
+        fig1.update_yaxes(title_text="Spend", secondary_y=False)
+        fig1.update_yaxes(title_text="CPA", secondary_y=True)
+        
+        st.plotly_chart(fig1)
+
+        ## In USD
         elif status2 == "USD":  
             st.subheader("Per country - USD")
-            st.dataframe((groupby_all('country','us').set_index('country')).style.format(subset=[
+            st.dataframe((groupby_all('country','currency','us').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         # Metrics highlight
@@ -120,19 +161,14 @@ def main():
         #col2.metric("Top CPA", "9 mph", "-8%")
         #col3.metric("Top ROAS", "86%", "4%")
         
-        # Country per day
+        ## Country per day
         st.subheader('Which country are you interested in diving in?')
         
         #Date selector
         start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
         
-        # Get dataframe grouped by
-        df_behaviour_country = load_data().groupby(['country','date']).agg(
-                                        {'spend $': np.sum,
-                                         'revenue $': np.sum,
-                                        'purchase': np.sum}
-                                        ).reset_index()
-        CPA_col(df_behaviour_country) 
+        ## Get dataframe grouped by
+        df_behaviour_country = groupby_all('country','date','us')
 
         all_countries = df_behaviour_country['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
@@ -168,16 +204,16 @@ def main():
         
         st.plotly_chart(fig1)
 
-    # Reporting per country
+    ## Reporting per target type
     elif status == "Per target type": 
-        # In USD
+        ## In USD
         st.subheader("Per target type - USD")
-        st.dataframe((groupby_all('target type','usd').set_index('target type')).style.format(subset=[
+        st.dataframe((groupby_all('target type','currency','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         # Metrics highlight
         
-        # Target type per day
+        ## Target type per day
         st.subheader('Which target type are you interested in diving in?')
         df_behaviour_target = load_data().groupby(['target type','date']).agg(
                                         {'spend $': np.sum,
@@ -218,13 +254,13 @@ def main():
         
         st.plotly_chart(fig2)    
     
-    # Reporting per day
+    ## Reporting per day
     elif status == "Per day":
         # In USD
         st.subheader("Per day - USD")
         # Add date selector
         start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
-        df_daily = groupby_all('date','usd')
+        df_daily = groupby_all('date','currency','usd')
         mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
         
         # Display DF
