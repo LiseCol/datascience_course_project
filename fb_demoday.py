@@ -23,7 +23,6 @@ st.markdown( """ <style> .css-1d391kg
                 </style> """, unsafe_allow_html=True, )
 st.markdown( """
 <nav>
-
         <label for="check" class="checkbtn">
             <i class="fas fa-bars"></i>
         </label>
