@@ -228,7 +228,7 @@ def main():
         ## Target type per day
         st.subheader("Let's dive in:")
             
-            col1, col2, col3 = st.columns(3)
+        col1, col2, col3 = st.columns(3)
             with col1: # Select date
                 start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
