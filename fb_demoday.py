@@ -165,7 +165,7 @@ def main():
                     line_color='black'),
                     secondary_y=True,
                 )
-            fig1.update_traces(marker_color='lemonchiffon', selector=dict(type='bar'))
+            fig1.update_traces(marker_color='lightyellow', selector=dict(type='bar'))
             fig1.update_xaxes(title_text="Days")
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
