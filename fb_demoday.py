@@ -54,7 +54,17 @@ def df_clean(df):
         
 def groupby_all(variable1,variable2,cur):
     # one variable only
-    if variable1 == "country":
+    if variable2== 'None'
+        df_var= load_data().groupby(variable1).agg(
+                                        {'impressions':np.sum,
+                                         'link click': np.sum,
+                                         'spend $': np.sum,
+                                      'purchase': np.sum, 
+                                      'revenue $': np.sum}).reset_index()
+        custom_col_USD(df_var)
+        df_clean(df_var)
+        return df_var
+    else:
         if cur == "local":
             df_var= load_data().groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum, 
@@ -76,16 +86,6 @@ def groupby_all(variable1,variable2,cur):
             custom_col_USD(df_var)
             df_clean(df_var)
             return df_var
-    else:
-        df_var= load_data().groupby(variable1).agg(
-                                        {'impressions':np.sum,
-                                         'link click': np.sum,
-                                         'spend $': np.sum,
-                                      'purchase': np.sum, 
-                                      'revenue $': np.sum}).reset_index()
-        custom_col_USD(df_var)
-        df_clean(df_var)
-        return df_var
 
 def main():
     # Page title                   
@@ -224,7 +224,7 @@ def main():
     elif status == "Per target type": 
         st.subheader("View: Grouped by target type in local currency")
         with st.expander("See the data"):
-            st.dataframe(groupby_all('target type','currency','usd').set_index('target type').style.format(subset=[
+            st.dataframe(groupby_all('target type','None','usd').set_index('target type').style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         # Metrics highlight
