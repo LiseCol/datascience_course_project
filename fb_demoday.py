@@ -100,7 +100,8 @@ def main():
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         ## In local currency
         if status2 == "Local currency":
-            with st.expander("See the data grouped by country in local currency"):
+            st.subheader("View: Grouped by country in local currency")
+            with st.expander("See the data"):
                 st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))  
@@ -150,11 +151,11 @@ def main():
 
         ## In USD
         elif status2 == "USD":  
-            st.subheader("Per country - USD")
-            st.dataframe((groupby_all('country','currency','us').set_index('country')).style.format(subset=[
+            st.subheader("View: Grouped by country in US dollar")
+            with st.expander("See the data"):
+                st.dataframe((groupby_all('country','currency','us').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
-            st.markdown('---------------------\n')
             # Metrics highlight
 
             #col1, col2, col3 = st.columns(3)
@@ -210,12 +211,11 @@ def main():
 
     ## Reporting per target type
     elif status == "Per target type": 
-        ## In USD
-        st.subheader("Per target type - USD")
-        st.dataframe((groupby_all('target type','currency','usd').set_index('target type')).style.format(subset=[
+        st.subheader("View: Grouped by target type in US dollar")
+        with st.expander("See the data"):
+            st.dataframe((groupby_all('target type','currency','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
-        st.markdown('---------------------\n')
         # Metrics highlight
         
         ## Target type per day
