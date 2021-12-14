@@ -108,7 +108,7 @@ def main():
     # Different pages
     menu =st.sidebar.radio("",("Main","KPI per country","KPI per target type"))
     
-    if menu == 'Home Page':
+    if menu == 'Main':
         st.subheader(':arrow_left: To start: Select a page on the side bar')
         
     ## Reporting per country
