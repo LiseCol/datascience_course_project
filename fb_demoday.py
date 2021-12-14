@@ -17,8 +17,9 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',)
 
-st.markdown( """ <style> .sidebar .sidebar-content 
-                { background-image: linear-gradient(#2e7bcf,#2e7bcf); color: white; } 
+st.markdown( """ <style> .css-1d391kg  
+                { background-color: rgb(237, 171, 173)
+                } 
                 </style> """, unsafe_allow_html=True, )
 
 # Define functions
