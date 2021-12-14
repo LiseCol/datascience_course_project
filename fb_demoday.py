@@ -273,5 +273,7 @@ def main():
         
         st.plotly_chart(fig3)
     
- 
+    else:
+        st.subheader(':arrow_left: To start:\n
+                    :arrow_left: Select a page on the side bar')
 main()  
