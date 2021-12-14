@@ -103,6 +103,7 @@ def main():
     st.sidebar.subheader("FILTERS")
     
     # Selectbox : View of the dataframe
+    country = st.sidebar.button('KPI per country')
     status = st.sidebar.selectbox('Select your favorite KPI view:',["Per country",
                                                             "Per target type"])
     ## Reporting per country
@@ -156,8 +157,7 @@ def main():
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
             fig1.update_yaxes(title_text=selected_KPI, secondary_y=True)
-            with st.container():
-                st.plotly_chart(fig1)
+            st.plotly_chart(fig1)
 
         ## In USD
         elif status2 == "USD":  
