@@ -22,65 +22,125 @@ st.markdown( """ <style> .css-1d391kg
                 } 
                 </style> """, unsafe_allow_html=True, )
 st.markdown( """
-<head>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="#"><i class="fa fa-home"></i></a></li>
-        <li><a href="#"><i class="fa fa-binoculars"></i></a></li>
-        <li><a href="#"><i class="fa fa-shopping-basket"></i></a></li>
-        <li><a href="#"><i class="fa fa-cog"></i></a></li>
-      </ul>
-    </nav>
-  </body>
+    <div class="nav">
+<div class="nav__brandbar">Outcome.io</div>
+  <ul>
+    <li class="nav__links"><a href="#">Contextual Help</a></li>
+    <li class="nav__links"><a href="#">All Resources</a></li>
+    <li class="nav__links"><a href="#">Users</a></li>
+    <li class="nav__links"><a href="#">Reports</a></li>
+  </ul>
+</div>
+<div class="main-content">
+  <div class="search-bar">Search</div>
+  <div class="channel-list">
+    <table class="channel-list__table">
+      <thead>
+        <tr class="channel-list__table-row">
+          <th colspan="2">Channels</th>
+          <th>Resources</th>
+          <th class="channel-list__table-header--last">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="channel-list__table-row">
+            <td colspan="2">Channel 1</td>
+            <td>Resource 1</td>
+            <td class="channel-list__table-data--last">Edit/Delete</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
     """, unsafe_allow_html=True, )
 
 st.markdown( """ <style>
-    body {
-  height: 100%;
-  width: 100%;
-    }
-        a {
+
+$primary-blue: #257391;
+$dk-blue: #14465e;
+$almost-white: #f3f6f7;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $almost-white;
+  font-family: sans-serif; 
+}
+
+a {
   text-decoration: none;
-  color: black;
-  transition: 0.5s all ease;
-}
-a:hover {
-  color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: block;
 }
 
-p {
-  max-width: 50%;
-  margin: 20px auto;
-}
-p:nth-last-of-type(2) {
-  margin: 20px auto 120px;
+.nav {
+  background-color: $primary-blue;
+  color: #fff;
+  float: left;
+  height: 100%;
+  position: fixed;
+  width: 225px;
 }
 
-nav {
-  width: 100%;
-  text-align: center;
-  font-size: 48px;
-  padding: 20px 0;
-  background: rgb(240, 204, 205);
-  max-height: 100px;
+.nav__brandbar {
+  background-color: $dk-blue;
+  padding: 1.5rem;
 }
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  text-align: center;
+
+.nav__links {
+  text-transform: uppercase;
+  
+  &:hover {
+    background-color: darken($primary-blue, 6%);
+  }
+  
+  a {
+    padding: 1.5rem;
+  }
 }
-nav ul li {
-  display: inline-block;
-  width: 22%;
-  border-right: 1px solid black;
+
+.search-bar {
+  background-color: #fff;
+  padding: 1.5rem;
 }
-nav ul li:nth-child(1) {
-  border-left: 1px solid black;
+
+.main-content {
+  float: right;
+  width: calc(100% - 225px);
+  clear: none;
+}
+
+.channel-list {
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6rem;
+  max-width: 800px;
+}
+
+.channel-list__table {
+  background: #fff;
+  box-shadow: 0px 1px 4px 0px rgba(12, 57, 78, .20);
+  width: 800px;
+  
+    thead {
+    border-bottom: 1px solid rgba(37, 115, 145, .10);
+    }
+
+  th, td {
+      padding: 1em;
+    }
+
+  th {
+    text-transform: uppercase;
+    font-weight: bold;
+    }
+}
+
+.channel-list__table-row {
+  text-align: left;
 }
         </style> """, unsafe_allow_html=True, )
 
