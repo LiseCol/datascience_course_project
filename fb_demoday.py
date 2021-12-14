@@ -27,9 +27,9 @@ st.markdown('''<style src=".highlight {
   padding-left: 1rem;
   font-weight: 700;
 }
-.blue {
-  background-color: lightcoral;
-}
+.sidebar .sidebar-content {
+        background: #e3989b;
+    }
 .red {
   background-color: lightblue;
 }"></style>''', unsafe_allow_html=True)
