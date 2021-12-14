@@ -99,9 +99,6 @@ def groupby_all(variable1,variable2,cur):
 
 def main():
     
-    # Page title                   
-    st.title("Facebook ad Report :bar_chart:")
-
     ## Sidebar
     st.sidebar.title("Let's start:")
     
@@ -109,6 +106,8 @@ def main():
     menu =st.sidebar.radio("",("Main","KPI per country","KPI per target type"))
     
     if menu == 'Main':
+        # Page title                   
+        st.title("Facebook ad Report :bar_chart:")
         st.subheader(':arrow_left: To start: Select a page on the side bar')
         
     ## Reporting per country
@@ -116,8 +115,10 @@ def main():
         status2 = st.radio("Select the prefered currency :",("Local","USD")) 
         ## In local currency
         if status2 == "Local":
-            st.subheader("Grouped by country in local currency")
-            with st.expander("See the data"):
+            # Page title                   
+            st.title("Report - Grouped by country in local currency :eu:")
+            st.subheader("View dataset")
+            with st.expander("Click to display"):
                 st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))  
@@ -166,8 +167,9 @@ def main():
 
         ## In USD
         elif status2 == "USD":  
-            st.subheader("Grouped by country in US dollar")
-            with st.expander("See the data"):
+            st.title("Report - Grouped by country in US dollar :eu:")
+            st.subheader("View dataset")
+            with st.expander("Click to display"):
                 st.dataframe((groupby_all('country','currency','usd').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
@@ -226,9 +228,9 @@ def main():
 
     ## Reporting per target type
     if menu == 'KPI per target type':
-    
-        st.subheader("View: Grouped by target type in local currency")
-        with st.expander("See the data"):
+        st.title("Report - Grouped by target type in local currency :dart:")
+            st.subheader("View dataset")
+            with st.expander("Click to display"):
             st.dataframe(groupby_all('target type','None','usd').set_index('target type').style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
