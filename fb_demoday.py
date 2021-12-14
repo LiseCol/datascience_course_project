@@ -17,7 +17,7 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',)
 
-local_css(https://raw.githubusercontent.com/LiseCol/datascience_demo/main/style.css)
+local_css('https://raw.githubusercontent.com/LiseCol/datascience_demo/main/style.css')
  
 t = "<div>Hello there my <span class='highlight blue'>name <span class='bold'>yo</span> </span> is <span class='highlight red'>Fanilo <span class='bold'>Name</span></span></div>"
 
