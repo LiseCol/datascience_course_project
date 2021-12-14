@@ -54,7 +54,7 @@ def df_clean(df):
         
 def groupby_all(variable1,variable2,cur):
     # one variable only
-    if variable2== 'None'
+    if variable2== 'None':
         df_var= load_data().groupby(variable1).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
