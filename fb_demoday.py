@@ -114,11 +114,11 @@ def main():
                                                         formatter="{:,.2f}"))
         # Metrics highlight
 
-        col1, col2, col3 = st.columns(3)
+        #col1, col2, col3 = st.columns(3)
         #country = df_country_us[df_country_us['ROAS']==df_country_us['ROAS'].max()].index[0]
-        col1.metric("Top spender", '2', "1.2 °F")
-        col2.metric("Top CPA", "9 mph", "-8%")
-        col3.metric("Top ROAS", "86%", "4%")
+        #col1.metric("Top spender", '2', "1.2 °F")
+        #col2.metric("Top CPA", "9 mph", "-8%")
+        #col3.metric("Top ROAS", "86%", "4%")
         
         # Country per day
         st.subheader('Which country are you interested in diving in?')
