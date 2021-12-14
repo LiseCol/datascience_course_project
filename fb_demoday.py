@@ -22,7 +22,7 @@ st.markdown( """ <style> .css-1d391kg
                 } 
                 </style> """, unsafe_allow_html=True, )
 st.markdown( """
-<nav class="body_nav">
+<nav>
 
         <label for="check" class="checkbtn">
             <i class="fas fa-bars"></i>
@@ -53,7 +53,7 @@ st.markdown( """ <style>
     list-style: none;
     box-sizing: border-box;
     }
-        .body_nav { 
+        nav { 
         background: #0082e6; 
         height: 80px; 
         width: 100%; 
