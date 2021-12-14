@@ -91,18 +91,10 @@ def main():
     # Page title                   
     st.title("Facebook ad Report :bar_chart:")
 
-    # Add sth into sidebar
-    text = """
-    :arrow_forward: **To start**: \n
-    Don't forget to select your favorite filters\n
-    ---------------------\n
-    `This dashboard is based on a sample of 2 months facebook historical data.`\n
-    ---------------------
-    """
-    st.sidebar.markdown(text)
-    st.sidebar.subheader("FILTERS")
+    ## Sidebar
+    st.sidebar.title("PAGES")
     
-    # Selectbox : View of the dataframe
+    # Different pages
     country_report = st.sidebar.button('KPI per country')
     target_report = st.sidebar.button('KPI per target type')
     
