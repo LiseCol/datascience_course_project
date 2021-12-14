@@ -47,8 +47,10 @@ def CPA_col(df):
     
 def df_clean(df):
     df.rename(columns = {'spend $':'spend','revenue $':'revenue','link click':'clicks'},inplace=True)
-    df.drop(['currency'],axis=1,inplace=True)
     df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
+    for col in df.columns:
+        if col == 'currency':
+            df.drop(['currency'],axis=1,inplace=True)
         
 def groupby_all(variable1,variable2,cur):
     # one variable only
