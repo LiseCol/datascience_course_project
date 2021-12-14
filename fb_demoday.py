@@ -92,7 +92,7 @@ def main():
     st.title("Facebook ad Report :bar_chart:")
 
     ## Sidebar
-    st.sidebar.title("PAGES")
+    st.sidebar.title("MENU")
     
     # Different pages
     country_report = st.sidebar.button('KPI per country')
