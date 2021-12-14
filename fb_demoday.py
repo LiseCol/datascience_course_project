@@ -104,7 +104,7 @@ def main():
             st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))  
-            
+            st.markdown('---------------------\n')
             ## Country per day
             st.subheader("Let's dive in:")
             col1, col2, col3 = st.columns(3)
@@ -184,11 +184,11 @@ def main():
                 KPI= ['CPA','revenue','ROAS']
                 selected_KPI = st.selectbox("KPI",KPI)
             
-            ind_country = df_behaviour_country[df_behaviour_country['country']== options]
-            mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
-            ind_country = ind_country[mask]
+    ind_country = df_behaviour_country[df_behaviour_country['country']== options]
+    mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
+    ind_country = ind_country[mask]
 
-            # Create plot
+    # Create plot
             fig2 = make_subplots(specs=[[{"secondary_y": True}]])
     
             fig2.add_trace(
