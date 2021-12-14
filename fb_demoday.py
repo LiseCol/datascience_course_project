@@ -75,7 +75,7 @@ def groupby_all(variable1,variable2,cur):
         return df_var
 
 def main():
-
+    df = load_data()
     # Page title                   
     st.title("Facebook ad Report :bar_chart:")
 
