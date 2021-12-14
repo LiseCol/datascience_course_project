@@ -131,9 +131,9 @@ def main():
                                         ).reset_index()
         CPA_col(df_behaviour_country) 
 
-        all_countries = df_behaviour_countries['country'].unique().tolist()
+        all_countries = df_behaviour_country['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
-        ind_country = df_behaviour_countries[df_behaviour_countries['country']== options]
+        ind_country = df_behaviour_country[df_behaviour_country['country']== options]
 
         # Create figure with secondary y-axis
         fig1 = make_subplots(specs=[[{"secondary_y": True}]])
