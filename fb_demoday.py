@@ -40,10 +40,6 @@ menu_id = hc.nav_bar(
 #get the id of the menu item clicked
 st.info(f"{menu_id}")
 
-#Display a message while it loadas
-with hc.HyLoader('Now doing loading',hc.Loaders.pulse_bars,):
-    time.sleep(5)
-
 # Define functions
 @st.cache
 def load_data():
