@@ -39,11 +39,6 @@ st.markdown( """
     """, unsafe_allow_html=True, )
 
 st.markdown( """ <style>
-    nav { 
-        background: #0082e6; 
-        height: 80px; 
-        width: 100%; 
-    }
         * {
     vertical-align: baseline;
     font-weight: inherit;
