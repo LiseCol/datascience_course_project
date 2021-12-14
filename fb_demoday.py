@@ -156,7 +156,7 @@ def main():
                     go.Bar(x=ind_country['date'],
                     y=ind_country['spend'],
                     name="Spend"),
-                    colors='#c3b7eb',
+                    colors='lightsteelblue',
                     secondary_y=False,
                 )
         
