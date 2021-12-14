@@ -85,9 +85,6 @@ nav ul li:nth-child(1) {
         </style> """, unsafe_allow_html=True, )
 
 
-container1 = st.container('display this')
-
-
 # Define functions
 @st.cache
 
