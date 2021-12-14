@@ -26,7 +26,6 @@ st.markdown( """
         <label for="check" class="checkbtn">
             <i class="fas fa-bars"></i>
         </label>
-        <label class="logo">Logo</label>
         <ul>
             <li><a class="active" href="#">Home</a></li>
             <li><a href="">About</a></li>
@@ -56,16 +55,9 @@ st.markdown( """ <style>
         background: #0082e6; 
         height: 80px; 
         width: 100%; 
-    }
-        label.logo{ 
-            color: white; 
-            font-size: 35px; 
-            line-height: 80px; 
-            padding:0 100px; 
-            font-weight: bold; 
-        }
+            }
         nav ul{ 
-            float: right; 
+            float: left; 
             margin-right:20px; 
         }
             nav ul li{ 
