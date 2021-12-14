@@ -156,7 +156,6 @@ def main():
                     go.Bar(x=ind_country['date'],
                     y=ind_country['spend'],
                     name="Spend"),
-                    marker=dict(color='lightsteelblue'),
                     secondary_y=False,
                 )
         
@@ -166,7 +165,7 @@ def main():
                     line_color='black'),
                     secondary_y=True,
                 )
-
+            fig1.update_traces(marker_color='lightsteelblue', selector=dict(type='bar'))
             fig1.update_xaxes(title_text="Days")
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
