@@ -27,7 +27,7 @@ st.markdown( """
             <i class="fas fa-bars"></i>
         </label>
         <ul>
-            <li><a class="active" href="#">Home</a></li>
+            <li><a class="active" href="container1">Home</a></li>
             <li><a href="">About</a></li>
             <li><a href="">Services</a></li>
             <li><a href="">Contact</a></li>
@@ -89,6 +89,10 @@ st.markdown( """ <style>
         }
         
         </style> """, unsafe_allow_html=True, )
+
+
+container1 = st.container('display this')
+
 
 # Define functions
 @st.cache
