@@ -115,7 +115,7 @@ def main():
         # Metrics highlight
 
         col1, col2, col3 = st.columns(3)
-        col1.metric("Top spender", "70 °F", "1.2 °F")
+        col1.metric("Top spender", df_country_loc[df_country_loc['ROAS']==df_country_loc['ROAS'].max()].index[0], "1.2 °F")
         col2.metric("Top CPA", "9 mph", "-8%")
         col3.metric("Top ROAS", "86%", "4%")
         
