@@ -141,11 +141,7 @@ def main():
                     line_color='black'),
                     secondary_y=True,
                 )
-        
-            fig1.update_layout(
-                        title_text="Evolution over time"
-                    )
-        
+
             fig1.update_xaxes(title_text="Days")
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
@@ -204,11 +200,7 @@ def main():
                     line_color='black'),
                     secondary_y=True,
                 )
-        
-            fig2.update_layout(
-                        title_text="Evolution over time"
-                    )
-        
+
             fig2.update_xaxes(title_text="Days")
         
             fig2.update_yaxes(title_text="Spend", secondary_y=False)
@@ -262,10 +254,6 @@ def main():
                     line_color='black'),
                     secondary_y=True,
                 )
-        
-        fig3.update_layout(
-                        title_text="Evolution over time"
-                    )
         
         fig3.update_xaxes(title_text="Days")
         
