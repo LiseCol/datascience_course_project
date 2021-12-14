@@ -112,11 +112,12 @@ def main():
         
     ## Reporting per country
     if menu == 'KPI per country':
-        status2 = st.radio("Select the prefered currency :",("Local","USD")) 
+        status2 = st.select_slider("Select the prefered currency :",("Local","USD"))
+        #status2 = st.radio("Select the prefered currency :",("Local","USD")) 
         ## In local currency
         if status2 == "Local":
             # Page title                   
-            st.title("Report - Grouped by country in local currency :eu:")
+            st.title("Report - Grouped by country in local currency :earth_africa:")
             st.subheader("View dataset")
             with st.expander("Click to display"):
                 st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
