@@ -108,10 +108,10 @@ def main():
     
     ## Reporting per country
     if country_report:
-        status2 = st.radio("Select the prefered currency :",("Local currency","USD")) 
+        status2 = st.radio("Select the prefered currency :",("Local","USD")) 
         ## In local currency
-        if status2 == "Local currency":
-            st.subheader("View: Grouped by country in local currency")
+        if status2 == "Local":
+            st.subheader("Grouped by country in local currency")
             with st.expander("See the data"):
                 st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
@@ -161,7 +161,7 @@ def main():
 
         ## In USD
         elif status2 == "USD":  
-            st.subheader("View: Grouped by country in US dollar")
+            st.subheader("Grouped by country in US dollar")
             with st.expander("See the data"):
                 st.dataframe((groupby_all('country','currency','usd').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
@@ -175,7 +175,7 @@ def main():
             #col3.metric("Top ROAS", "86%", "4%")
         
             ## Country per day
-            st.subheader("Let's dive in:")
+            st.subheader("Daily view:")
             
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
@@ -229,7 +229,7 @@ def main():
         # Metrics highlight
         
         ## Target type per day
-        st.subheader("Let's dive in:")
+        st.subheader("Daily view:")
             
         col1, col2, col3 = st.columns(3)
         with col1: # Select date
