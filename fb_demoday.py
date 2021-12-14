@@ -5,6 +5,8 @@ pd.options.mode.chained_assignment = None
 from PIL import Image
 import numpy as np
 import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 import datetime
 
 ## Page config ##
@@ -28,6 +30,9 @@ def custom_col(df):
     df['CPC'] = round(df['spend']/df['link click'],2)
     df['CTR'] = round((df['link click']/df['impressions']) ,5)
     df['ROAS'] = round(df['revenue']/df['spend'],2)
+    
+def ROAS_col(df):   
+    df['ROAS'] = round(df['revenue $']/df['spend $'],2)
 
 def custom_col_USD(df):
     df['CPA'] = round(df['spend $']/df['purchase'],2)
@@ -37,10 +42,16 @@ def custom_col_USD(df):
     df['ROAS'] = round(df['revenue $']/df['spend $'],2)
     df['currency'] = 'USD'
     
+def CPA_col(df):   
+    df['CPA $'] = round(df['spend $']/df['purchase'],2)    
+    
 def df_clean(df):
     df.rename(columns = {'spend $':'spend','revenue $':'revenue','link click':'clicks'},inplace=True)
     df.drop(['currency'],axis=1,inplace=True)
     df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
+    
+def split(df,col,var):
+    return df[df[col]==var]
         
 def groupby_all(variable,cur):
     # one variable only
@@ -104,8 +115,6 @@ def main():
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
         # Metrics highlight
-        st.write("## Metrics to highlight??")
-        st.metric("Metric 0", '3', "1.2 °F")
 
         col1, col2, col3 = st.columns(3)
         col1.metric("Top spender", "70 °F", "1.2 °F")
@@ -120,16 +129,38 @@ def main():
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
                                         ).reset_index()
+        CPA_col(df_behaviour_country) 
 
         all_countries = df_behaviour_countries['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
         ind_country = df_behaviour_countries[df_behaviour_countries['country']== options]
 
-        fig1 = px.bar(ind_country, 
-                      x = "date", 
-                      y = ["spend $","revenue $"])
-        fig1.update_yaxes(visible=False, fixedrange=True)
-        fig1.update_layout(barmode='group')
+        # Create figure with secondary y-axis
+        fig1 = make_subplots(specs=[[{"secondary_y": True}]])
+    
+        fig1.add_trace(
+                    go.Bar(x=split(df_behaviour_country,'country',ind_country)['date'],
+                    y=split(df_behaviour_country,'country',ind_country)['spend $'],
+                    name="Spend"),
+                    secondary_y=False,
+                )
+        
+        fig1.add_trace(
+                    go.Scatter(x=split(df_behaviour_country,'country',ind_country)['date'],
+                    y=split(df_behaviour_country,'country',ind_country)['CPA $'], name= 'CPA',
+                    line_color='black'),
+                    secondary_y=True,
+                )
+        
+        fig1.update_layout(
+                        title_text="Evolution over time"
+                    )
+        
+        fig1.update_xaxes(title_text="Days")
+        
+        fig1.update_yaxes(title_text="Spend", secondary_y=False)
+        fig1.update_yaxes(title_text="CPA", secondary_y=True)
+        
         st.plotly_chart(fig1)
 
     # Reporting per country
