@@ -16,13 +16,8 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',initial_sidebar_state='collapsed',)
 
-st.markdown(""" <style> .nav { 
-        background: #0082e6; 
-        height: 80px; 
-        width: 100%; 
-    } 
-</style> """, unsafe_allow_html=True)
-#<link rel="stylesheet" href="https://raw.githubusercontent.com/LiseCol/datascience_demo/main/css_bar_nav.css"/>
+utl.remote_css('https://raw.githubusercontent.com/LiseCol/datascience_demo/main/css_bar_nav.css')
+
 st.markdown("""
 <nav>
         <input type="checkbox" id="check">
