@@ -123,6 +123,12 @@ def main():
         # Country per day
         st.subheader('Which country are you interested in diving in?')
         
+        #Date selector
+        start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+        df_daily = groupby_all('date','usd')
+        mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
+        
+        # Get dataframe grouped by
         df_behaviour_country = load_data().groupby(['country','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
@@ -132,7 +138,7 @@ def main():
 
         all_countries = df_behaviour_country['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
-        ind_country = df_behaviour_country[df_behaviour_country['country']== options]
+        ind_country = df_behaviour_country[mask][df_behaviour_country['country']== options]
 
         # Create plot
         fig1 = make_subplots(specs=[[{"secondary_y": True}]])
