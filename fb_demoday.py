@@ -216,7 +216,7 @@ def main():
         
         ## Target type per day
         st.subheader('Which target type are you interested in diving in?')
-        df_behaviour_target = (groupby_all('target type','date','usd')
+        df_behaviour_target = groupby_all('target type','date','usd')
         
         all_target = df_behaviour_target['target type'].unique().tolist()
         options = st.selectbox('Select', all_target)
