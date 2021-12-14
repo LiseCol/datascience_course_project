@@ -103,11 +103,11 @@ def main():
     st.sidebar.subheader("FILTERS")
     
     # Selectbox : View of the dataframe
-    country = st.sidebar.button('KPI per country')
-    status = st.sidebar.selectbox('Select your favorite KPI view:',["Per country",
-                                                            "Per target type"])
+    country_report = st.sidebar.button('KPI per country')
+    target_report = st.sidebar.button('KPI per country')
+    
     ## Reporting per country
-    if status == "Per country":
+    if country_report:
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         ## In local currency
         if status2 == "Local currency":
@@ -220,7 +220,7 @@ def main():
             st.plotly_chart(fig2)
 
     ## Reporting per target type
-    elif status == "Per target type": 
+    elif target_report:
         st.subheader("View: Grouped by target type in local currency")
         with st.expander("See the data"):
             st.dataframe(groupby_all('target type','None','usd').set_index('target type').style.format(subset=[
