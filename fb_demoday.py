@@ -17,13 +17,14 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',)
 
+
+
+# Define functions
+@st.cache
 st.markdown( """ <style> .css-1d391kg  
                 { background-color: rgb(240, 204, 205)
                 } 
                 </style> """, unsafe_allow_html=True, )
-
-# Define functions
-@st.cache
 
 def load_data():
     df = pd.read_csv('data_clean_3.csv', index_col=0)
