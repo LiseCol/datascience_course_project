@@ -22,71 +22,128 @@ st.markdown( """ <style> .css-1d391kg
                 } 
                 </style> """, unsafe_allow_html=True, )
 st.markdown( """
-<nav>
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <ul>
-            <li><a class="active" href="#">Home</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Services</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Feedback</a></li>
-        </ul>
-    </nav>
+<nav role='navigation' class="main-nav" id="main-nav">
+  <ul id="main-nav-list">
+    <li>
+      <a href="#">
+        <svg viewBox="0 0 100 100" class="icon">
+          <use xlink:href="#leaf">
+        </svg>
+        <div>
+          Home
+          <span>is where the heart is</span>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <svg viewBox="0 0 100 100" class="icon">
+          <use xlink:href="#maple-leaf">
+        </svg>
+        <div>
+          About
+          <span>to blow this popcicle stand</span>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <svg viewBox="0 0 100 100" class="icon">
+          <use xlink:href="#clover">
+        </svg>
+        <div>
+          Clients
+          <span>are beautiful people</span>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <svg viewBox="0 0 100 100" class="icon">
+          <use xlink:href="#tomato">
+        </svg>
+        <div>
+          Contact
+          <span>your mom she misses you</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</nav>
     """, unsafe_allow_html=True, )
 
 st.markdown( """ <style>
         * {
-    vertical-align: baseline;
-    font-weight: inherit;
-    font-family: inherit;
-    font-style: inherit;
-    font-size: 100%;
-    border: 0 none;
-    outline: 0;
-    padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 12px;
+}
+
+.dont-render-dawg {
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+
+.main-nav {
+  background: #eee;
+  ul {
     margin: 0;
-    text-decoration: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     list-style: none;
-    box-sizing: border-box;
+  }
+  a {
+    padding: 1.25rem 0.5rem;
+    font-size: 1.6rem;
+    max-width: 140px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-start;
+    color: #333;
+    &:hover, &:focus {
+      background: #ccc;
+      color: black;
+      svg {
+        fill: green; 
+      }
+      span {
+        color: black; 
+      }
     }
-        nav { 
-        background: rgb(237, 171, 173); 
-        height: 80px; 
-        width: 100%; 
-            }
-        nav ul{ 
-            float: left; 
-            margin-right:20px; 
-        }
-        nav ul li{ 
-            display: inline-block; 
-            line-height:80px;
-            margin: 0 5px; 
-        }
-        nav ul li a{
-            color: white;
-            font-size: 17px;
-            padding: 7px 13px;
-            border-radius: 3px;
-        }
-        a.active,a:hover{
-            background-color: rgb(237, 171, 173);
-            transition: .5s;
-        }
-    .checkbtn{
-        font-size: 30px;
-        color: white;
-        float: right;
-        line-height: 80px;
-        margin-right: 40px;
-        cursor: pointer;
-        display: none; 
+  }
+  span {
+    display: block;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #888;
+    margin: 0.25rem 0 0 0;
+  }
+  .icon {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 1rem;
+    fill: #999;
+  }
+  &.outlines {
+    * {
+      outline: 1px solid rgba(red, 0.5); 
     }
-        check{
-           display: none; 
-        }
+  }
+}
+
+.options {
+  text-align: center;
+  padding: 2rem 0;
+  select {
+    margin-right: 2rem;
+  }
+}
         
         </style> """, unsafe_allow_html=True, )
 
