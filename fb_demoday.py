@@ -102,8 +102,8 @@ def main():
         # In local currency
         if status2 == "Local currency":
             st.subheader("Per country - Local currency")
-            df_country_loc = groupby_all('country','local').set_index('country')
-            st.dataframe(df_country_loc.style.format(subset=[
+            #df_country_loc = groupby_all('country','local').set_index('country')
+            st.dataframe((groupby_all('country','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))   
         # In USD
@@ -115,8 +115,8 @@ def main():
         # Metrics highlight
 
         col1, col2, col3 = st.columns(3)
-        country = df_country_us[df_country_us['ROAS']==df_country_us['ROAS'].max()].index[0]
-        col1.metric("Top spender", country, "1.2 °F")
+        #country = df_country_us[df_country_us['ROAS']==df_country_us['ROAS'].max()].index[0]
+        col1.metric("Top spender", '2', "1.2 °F")
         col2.metric("Top CPA", "9 mph", "-8%")
         col3.metric("Top ROAS", "86%", "4%")
         
