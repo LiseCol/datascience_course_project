@@ -19,7 +19,7 @@ st.set_page_config(page_title="Facebook ad Report",
 
 st.markdown('''<style>
         .sidebar .sidebar-content {
-                                background-color: #e3989b;
+                                background: #e3989b;
                                      }
             </style>'''
             , unsafe_allow_html=True)
