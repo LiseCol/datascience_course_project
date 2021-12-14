@@ -162,7 +162,7 @@ def main():
             fig1.add_trace(
                     go.Scatter(x=ind_country['date'],
                     y=ind_country[selected_KPI], name= selected_KPI,
-                    line_color='slategrey'),
+                    line_color='darkslategray'),
                     secondary_y=True,
                 )
             fig1.update_traces(marker_color='cadetblue', selector=dict(type='bar'))
