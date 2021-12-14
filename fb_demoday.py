@@ -118,11 +118,11 @@ def main():
             options = st.selectbox('Select', all_countries)
             
             col1, col2 = st.columns(2)
-            with col2:
+            with col1:
                 KPI= ['purchase','revenue','CTR','ROAS','CPA','CPM','CPC']
                 selected_KPI = st.radio("Which KPI would you like to see?",KPI)
             
-            with col1:
+            with col2:
                 ind_country = df_behaviour_country[df_behaviour_country['country']== options]
                 mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
                 ind_country = ind_country [mask]
