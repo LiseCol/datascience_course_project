@@ -109,7 +109,7 @@ def main():
             st.subheader('Which country are you interested in diving in?')
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
-            start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+                start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
             
             with col2: # Selectbox country
