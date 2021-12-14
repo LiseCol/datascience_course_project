@@ -200,7 +200,7 @@ def main():
         
             fig2.add_trace(
                     go.Scatter(x=ind_country['date'],
-                    y=ind_country['CPA'], name= 'CPA',
+                    y=ind_country[selected_KPI], name= selected_KPI,
                     line_color='black'),
                     secondary_y=True,
                 )
@@ -258,7 +258,7 @@ def main():
         
             fig3.add_trace(
                     go.Scatter(x=ind_target['date'],
-                    y=ind_target['CPA'], name= 'CPA',
+                    y=ind_target[selected_KPI], name= selected_KPI,
                     line_color='black'),
                     secondary_y=True,
                 )
