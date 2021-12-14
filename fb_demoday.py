@@ -38,6 +38,50 @@ st.markdown( """
     </nav>
     """, unsafe_allow_html=True, )
 
+st.markdown( """ <style>.nav { 
+        background: #0082e6; 
+        height: 80px; 
+        width: 100%; 
+    }
+        label.logo{ 
+            color: white; 
+            font-size: 35px; 
+            line-height: 80px; 
+            padding:0 100px; 
+            font-weight: bold; 
+        }
+        nav ul{ 
+            float: right; 
+            margin-right:20px; 
+        }
+            nav ul li{ 
+                display: inline-block; 
+                line-height:80px;
+                margin: 0 5px; 
+            }
+                nav ul li a{
+                    color: white;
+                    font-size: 17px;
+                    padding: 7px 13px;
+                    border-radius: 3px;
+                }
+                    a.active,a:hover{
+                        background-color: #1b9bff;
+                        transition: .5s;
+                    }
+    .checkbtn{
+        font-size: 30px;
+        color: white;
+        float: right;
+        line-height: 80px;
+        margin-right: 40px;
+        cursor: pointer;
+        display: none; 
+    }
+        check{
+           display: none; 
+        }</style> """, unsafe_allow_html=True, )
+
 # Define functions
 @st.cache
 
