@@ -117,7 +117,7 @@ def main():
         ## In local currency
         if status2 == "Local":
             # Page title                   
-            st.title("Report - Grouped by country in local currency :earth_africa:")
+            st.title("Grouped by country in local currency :earth_africa:")
             st.subheader("View dataset")
             with st.expander("Click to display"):
                 st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
@@ -168,7 +168,7 @@ def main():
 
         ## In USD
         elif status2 == "USD":  
-            st.title("Report - Grouped by country in US dollar :eu:")
+            st.title("Grouped by country in US dollar :dollar:")
             st.subheader("View dataset")
             with st.expander("Click to display"):
                 st.dataframe((groupby_all('country','currency','usd').set_index('country')).style.format(subset=[
@@ -229,7 +229,7 @@ def main():
 
     ## Reporting per target type
     if menu == 'KPI per target type':
-        st.title("Report - Grouped by target type in local currency :dart:")
+        st.title("Grouped by target type in local currency :dart:")
         st.subheader("View dataset")
         with st.expander("Click to display"):
             st.dataframe(groupby_all('target type','None','usd').set_index('target type').style.format(subset=[
