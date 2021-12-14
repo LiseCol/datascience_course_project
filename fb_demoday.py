@@ -104,8 +104,7 @@ def main():
     
     # Selectbox : View of the dataframe
     status = st.sidebar.selectbox('Select your favorite KPI view:',["Per country",
-                                                            "Per target type",
-                                                            "Per day"])
+                                                            "Per target type"])
     ## Reporting per country
     if status == "Per country":
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
@@ -120,7 +119,7 @@ def main():
             st.subheader("Let's dive in:")
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
-                start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+                start_date, end_date = st.date_input('Date range:',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
             
             with col2: # Selectbox country
@@ -274,18 +273,5 @@ def main():
         
         st.plotly_chart(fig3)
     
-    ## Reporting per day
-    elif status == "Per day":
-        # In USD
-        st.subheader("Per day - USD")
-        # Add date selector
-        start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
-        df_daily = groupby_all('date','currency','usd')
-        mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
-        
-        # Display DF
-        st.dataframe(df_daily[mask].set_index('date').style.format(subset=[
-                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-                                                        formatter="{:,.2f}"))
  
 main()  
