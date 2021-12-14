@@ -21,63 +21,6 @@ st.markdown( """ <style> .css-1d391kg
                 { background-color: rgb(240, 204, 205)
                 } 
                 </style> """, unsafe_allow_html=True, )
-st.markdown( """
-    <div class="nav">
-<div class="nav__brandbar">Outcome.io</div>
-  <ul>
-    <li class="nav__links"><a href="#">Contextual Help</a></li>
-    <li class="nav__links"><a href="#">All Resources</a></li>
-    <li class="nav__links"><a href="#">Users</a></li>
-    <li class="nav__links"><a href="#">Reports</a></li>
-  </ul>
-</div>
-    """, unsafe_allow_html=True, )
-
-st.markdown( """ <style>
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #f3f6f7;
-  font-family: sans-serif; 
-}
-
-a {
-  text-decoration: none;
-  color: #fff;
-  display: block;
-}
-
-.nav {
-  background-color: #257391;
-  color: #fff;
-  float: left;
-  height: 100%;
-  position: fixed;
-  width: 225px;
-}
-
-.nav__brandbar {
-  background-color: #14465e;
-  //font-size: 1.25rem;
-  padding: 1.5rem;
-  // height: 75px;
-}
-
-.nav__links {
-  text-transform: uppercase;
-  
-  &:hover {
-    background-color: darken(#14465e, 6%);
-  }
-  
-  a {
-    padding: 1.5rem;
-  }
-        </style> """, unsafe_allow_html=True, )
-
 
 # Define functions
 @st.cache
