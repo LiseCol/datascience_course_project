@@ -211,6 +211,9 @@ def main():
 
     ## Reporting per target type
     elif status == "Per target type": 
+        st.dataframe(groupby_all('target type','currency','usd').set_index('target type').style.format(subset=[
+                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
+                                                        formatter="{:,.2f}"))
         st.subheader("View: Grouped by target type in local currency")
         with st.expander("See the data"):
             st.dataframe(groupby_all('target type','currency','usd').set_index('target type').style.format(subset=[
