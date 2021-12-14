@@ -9,24 +9,19 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 import time
-import streamlit.components.v1 as components
+from load_css import local_css
+
 
 ## Page config ##
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
                    layout='wide',)
 
-st.markdown(
-    """
-    <style>
-    .sidebar.sidebar-content {
-    background-image: linear-gradient(#2e7bcf,#2e7bcf);
-    color: #7396c9;
-        }
-        </style>
-     """,
-    unsafe_allow_html=True,
-    )
+local_css("style.css")
+ 
+t = "<div>Hello there my <span class='highlight blue'>name <span class='bold'>yo</span> </span> is <span class='highlight red'>Fanilo <span class='bold'>Name</span></span></div>"
+
+st.markdown(t, unsafe_allow_html=True)
 
 # Define functions
 @st.cache
