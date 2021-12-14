@@ -216,12 +216,7 @@ def main():
         
         ## Target type per day
         st.subheader('Which target type are you interested in diving in?')
-        df_behaviour_target = load_data().groupby(['target type','date']).agg(
-                                        {'spend $': np.sum,
-                                         'revenue $': np.sum,
-                                        'purchase': np.sum}
-                                        ).reset_index()
-        CPA_col(df_behaviour_target)
+        df_behaviour_target = (groupby_all('target type','date','usd')
         
         all_target = df_behaviour_target['target type'].unique().tolist()
         options = st.selectbox('Select', all_target)
