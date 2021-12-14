@@ -54,28 +54,29 @@ def df_clean(df):
         
 def groupby_all(variable1,variable2,cur):
     # one variable only
-    if cur == "local":
-        df_var= load_data().groupby([variable1,variable2]).agg(
+    elif variable1 == "country":
+        if cur == "local":
+            df_var= load_data().groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum, 
                                       'link click': np.sum, 
                                       'spend': np.sum, 
                                       'purchase': np.sum, 
                                       'revenue': np.sum
                                      }).reset_index()
-        custom_col(df_var)
-        df_clean(df_var)
-        return df_var
-    elif cur == "usd":
-        df_var= load_data().groupby([variable1,variable2]).agg(
+            custom_col(df_var)
+            df_clean(df_var)
+            return df_var
+        else:
+            df_var= load_data().groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
                                          'spend $': np.sum,
                                       'purchase': np.sum, 
                                       'revenue $': np.sum}).reset_index()
-        custom_col_USD(df_var)
-        df_clean(df_var)
-        return df_var
-    elif variable1 != "country":
+            custom_col_USD(df_var)
+            df_clean(df_var)
+            return df_var
+    else:
         df_var= load_data().groupby(variable1).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
