@@ -19,7 +19,7 @@ st.set_page_config(page_title="Facebook ad Report",
 menu_data = [
     {'icon': "far fa-copy", 'label':"Left End"},
     {'id':'Copy','icon':"🐙",'label':"Copy"},
-    {'icon': "fa-solid fa-radar",'label':"Dropdown1",
+    {'icon': "fa-solid fa-radar",'label':"Dropdown1"},
     {'id':'subid12','icon': "💀", 'label':"Sub-item 2"},
     {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
     {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
