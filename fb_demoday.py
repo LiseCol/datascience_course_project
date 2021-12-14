@@ -100,11 +100,11 @@ def main():
         status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
         ## In local currency
         if status2 == "Local currency":
-            st.subheader("Per country - Local currency")
-            st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
+            with st.expander("See the data grouped by country in local currency"):
+                st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))  
-            st.markdown('---------------------\n')
+                st.markdown('---------------------\n')
             ## Country per day
             st.subheader("Let's dive in:")
             col1, col2, col3 = st.columns(3)
