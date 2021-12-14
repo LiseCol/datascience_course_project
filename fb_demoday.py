@@ -216,7 +216,7 @@ def main():
             st.plotly_chart(fig2)
 
     ## Reporting per target type
-    if menu == 'KPI per target type'
+    if menu == 'KPI per target type':
     
         st.subheader("View: Grouped by target type in local currency")
         with st.expander("See the data"):
@@ -270,6 +270,6 @@ def main():
         
         st.plotly_chart(fig3)
     
-    if menu == 'KPI per target type|KPI per country'
+    if menu == 'KPI per target type|KPI per country':
         st.subheader(':arrow_left: To start: Select a page on the side bar')
 main()  
