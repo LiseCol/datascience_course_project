@@ -65,8 +65,18 @@ def groupby_all(variable1,variable2,cur):
         custom_col(df_var)
         df_clean(df_var)
         return df_var
-    else:
+    elif cur == "usd":
         df_var= load_data().groupby([variable1,variable2]).agg(
+                                        {'impressions':np.sum,
+                                         'link click': np.sum,
+                                         'spend $': np.sum,
+                                      'purchase': np.sum, 
+                                      'revenue $': np.sum}).reset_index()
+        custom_col_USD(df_var)
+        df_clean(df_var)
+        return df_var
+    elif variable1 != "country":
+        df_var= load_data().groupby(variable1).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
                                          'spend $': np.sum,
@@ -153,7 +163,7 @@ def main():
         elif status2 == "USD":  
             st.subheader("View: Grouped by country in US dollar")
             with st.expander("See the data"):
-                st.dataframe((groupby_all('country','currency','us').set_index('country')).style.format(subset=[
+                st.dataframe((groupby_all('country','currency','usd').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
             # Metrics highlight
@@ -211,9 +221,6 @@ def main():
 
     ## Reporting per target type
     elif status == "Per target type": 
-        st.dataframe(groupby_all('target type','currency','usd').set_index('target type').style.format(subset=[
-                                                        'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
-                                                        formatter="{:,.2f}"))
         st.subheader("View: Grouped by target type in local currency")
         with st.expander("See the data"):
             st.dataframe(groupby_all('target type','currency','usd').set_index('target type').style.format(subset=[
