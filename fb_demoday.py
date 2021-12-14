@@ -38,6 +38,10 @@ st.markdown( """
     """, unsafe_allow_html=True, )
 
 st.markdown( """ <style>
+    body {
+  height: 100%;
+  width: 100%;
+    }
         a {
   text-decoration: none;
   color: black;
