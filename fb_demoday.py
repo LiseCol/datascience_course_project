@@ -19,10 +19,9 @@ st.set_page_config(page_title="Facebook ad Report",
 
 st.markdown('''<style>
         .sidebar .sidebar-content {
-                                background: #e3989b;
+                                background-color: #e3989b;
                                      }
-            </style>'''
-            , unsafe_allow_html=True)
+            </style>''', unsafe_allow_html=True)
 
 # Define functions
 @st.cache
