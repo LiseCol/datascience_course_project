@@ -109,17 +109,17 @@ def main():
             st.subheader('Which country are you interested in diving in?')
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
-                start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+                start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
             
             with col2: # Selectbox country
                 df_behaviour_country = groupby_all('country','date','local')
                 all_countries = df_behaviour_country['country'].unique().tolist()
-                options = st.selectbox('Select', all_countries)
+                options = st.selectbox('Country', all_countries)
             
             with col3: # Select KPI
-                KPI= ['purchase','revenue','CTR','ROAS','CPA','CPM','CPC']
-                selected_KPI = st.radio("Which KPI would you like to see?",KPI)
+                KPI= ['purchase','revenue','ROAS','CPA']
+                selected_KPI = st.radio("KPI",KPI)
             
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
             mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
