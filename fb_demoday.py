@@ -49,9 +49,6 @@ def df_clean(df):
     df.rename(columns = {'spend $':'spend','revenue $':'revenue','link click':'clicks'},inplace=True)
     df.drop(['currency'],axis=1,inplace=True)
     df['CTR'] = df['CTR'].apply(lambda x: '{:.2%}'.format(x))
-    
-def split(df,col,var):
-    return df[df[col]==var]
         
 def groupby_all(variable,cur):
     # one variable only
@@ -139,15 +136,15 @@ def main():
         fig1 = make_subplots(specs=[[{"secondary_y": True}]])
     
         fig1.add_trace(
-                    go.Bar(x=split(df_behaviour_country,'country',ind_country)['date'],
-                    y=split(df_behaviour_country,'country',ind_country)['spend $'],
+                    go.Bar(x=ind_country['date'],
+                    y=ind_country['spend $'],
                     name="Spend"),
                     secondary_y=False,
                 )
         
         fig1.add_trace(
-                    go.Scatter(x=split(df_behaviour_country,'country',ind_country)['date'],
-                    y=split(df_behaviour_country,'country',ind_country)['CPA $'], name= 'CPA',
+                    go.Scatter(x=ind_country['date'],
+                    y=ind_country['CPA $'], name= 'CPA',
                     line_color='black'),
                     secondary_y=True,
                 )
