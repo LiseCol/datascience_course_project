@@ -106,7 +106,7 @@ def main():
                                                         formatter="{:,.2f}"))  
             
             ## Country per day
-            st.subheader('Which country are you interested in diving in?')
+            st.subheader("Let's dive in")
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
                 start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
@@ -119,7 +119,7 @@ def main():
             
             with col3: # Select KPI
                 KPI= ['revenue','ROAS','CPA']
-                selected_KPI = st.radio("KPI",KPI)
+                selected_KPI = st.selectbox("KPI",KPI)
             
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
             mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
