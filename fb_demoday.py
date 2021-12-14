@@ -156,7 +156,7 @@ def main():
                     go.Bar(x=ind_country['date'],
                     y=ind_country['spend'],
                     name="Spend"),
-                    color='#373636',
+                    color_discrete_sequence=px.colors.qualitative.Pastel2[0],
                     secondary_y=False,
                 )
         
