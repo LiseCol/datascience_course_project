@@ -104,11 +104,11 @@ def main():
     
     # Selectbox : View of the dataframe
     country_report = st.sidebar.button('KPI per country')
-    status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD"))    
     target_report = st.sidebar.button('KPI per target type')
     
     ## Reporting per country
     if country_report:
+        status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD")) 
         ## In local currency
         if status2 == "Local currency":
             st.subheader("View: Grouped by country in local currency")
