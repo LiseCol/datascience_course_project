@@ -108,7 +108,7 @@ def main():
     
     ## Reporting per country
     if country_report:
-        status2 = st.sidebar.radio("Select the prefered currency :",("Local currency","USD")) 
+        status2 = st.radio("Select the prefered currency :",("Local currency","USD")) 
         ## In local currency
         if status2 == "Local currency":
             st.subheader("View: Grouped by country in local currency")
