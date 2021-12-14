@@ -103,15 +103,15 @@ def main():
     st.sidebar.title("Let's start:")
     
     # Different pages
-    menu =st.sidebar.radio("",("Main","KPI per country","KPI per target type"))
+    menu =st.sidebar.radio("",("Introduction","Country Analysis","Target type Analysis"))
     
-    if menu == 'Main':
+    if menu == 'Introduction':
         # Page title                   
         st.title("Facebook ad Report :bar_chart:")
         st.subheader(':arrow_left: To start: Select a page on the side bar')
         
     ## Reporting per country
-    if menu == 'KPI per country':
+    if menu == 'Country Analysis':
         status2 = st.select_slider("Select the prefered currency :",("Local","USD"))
         #status2 = st.radio("Select the prefered currency :",("Local","USD")) 
         ## In local currency
@@ -124,7 +124,7 @@ def main():
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))  
             ## Country per day
-            st.subheader("Let's dive in:")
+            st.subheader("Daily view:")
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
                 start_date, end_date = st.date_input('Date range:',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
@@ -228,7 +228,7 @@ def main():
             st.plotly_chart(fig2)
 
     ## Reporting per target type
-    if menu == 'KPI per target type':
+    if menu == 'Target type Analysis':
         st.title("Grouped by target type in local currency :dart:")
         st.subheader("View dataset")
         with st.expander("Click to display"):
