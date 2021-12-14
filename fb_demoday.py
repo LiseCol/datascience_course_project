@@ -64,7 +64,7 @@ nav {
   text-align: center;
   font-size: 48px;
   padding: 20px 0;
-  background: rgb(237, 171, 173)
+  background: rgb(237, 171, 173);
   max-height: 100px;
 }
 nav ul {
