@@ -53,7 +53,7 @@ def df_clean(df):
 def groupby_all(variable1,variable2,cur):
     # one variable only
     if cur == "local":
-        df_var= df.groupby([variable1,variable2]).agg(
+        df_var= load_data().groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum, 
                                       'link click': np.sum, 
                                       'spend': np.sum, 
@@ -64,7 +64,7 @@ def groupby_all(variable1,variable2,cur):
         df_clean(df_var)
         return df_var
     else:
-        df_var= df.groupby([variable1,variable2]).agg(
+        df_var= load_data().groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
                                          'spend $': np.sum,
@@ -75,7 +75,6 @@ def groupby_all(variable1,variable2,cur):
         return df_var
 
 def main():
-    df = load_data()
     # Page title                   
     st.title("Facebook ad Report :bar_chart:")
 
