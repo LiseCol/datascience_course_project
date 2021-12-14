@@ -79,7 +79,50 @@ st.markdown( """ <style>.nav {
     }
         check{
            display: none; 
-        }</style> """, unsafe_allow_html=True, )
+        }
+        @media (max-width: 952px){
+    label.logo{
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    nav ul li a{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 858px){
+    .checkbtn{
+        display: block; 
+    }
+    ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 80px;
+        left: -100%;
+        top: 80px;
+        transition: all .5s;
+        text-align: center;
+        background-color: #2c3e50;
+    }
+        nav ul li{
+            display: block;
+            margin: 50px 0;
+            line-height: 30px;
+        }
+            nav ul li a{
+                font-size: 20px;
+            }
+                a:hover,a.active{
+                    background: none;
+                    color: #0082e6;
+                }
+
+        #check:checked ~ ul{
+            left: 0;
+        }
+}
+        </style> """, unsafe_allow_html=True, )
 
 # Define functions
 @st.cache
