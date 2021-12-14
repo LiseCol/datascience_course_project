@@ -5,3 +5,4 @@ streamlit
 pandas
 wordcloud
 pillow
+hydralit_components
