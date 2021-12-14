@@ -17,22 +17,12 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',)
 
-st.markdown('''<style src=".highlight {
-  border-radius: 0.4rem;
-  color: white;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-}
-.bold {
-  padding-left: 1rem;
-  font-weight: 700;
-}
-.sidebar .sidebar-content {
-        background: #e3989b;
-    }
-.red {
-  background-color: lightblue;
-}"></style>''', unsafe_allow_html=True)
+st.markdown('''<style>
+        .sidebar .sidebar-content {
+                                background-color: #e3989b;
+                                     }
+            </style>'''
+            , unsafe_allow_html=True)
 
 # Define functions
 @st.cache
