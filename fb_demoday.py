@@ -110,12 +110,16 @@ def main():
         
             #Date selector
             start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
-        
+            
             # Get dataframe grouped by
             df_behaviour_country = groupby_all('country','date','local')
 
             all_countries = df_behaviour_country['country'].unique().tolist()
             options = st.selectbox('Select', all_countries)
+            
+            KPI= ['purchase','revenue','CTR','ROAS','CPA','CPM','CPC']
+            selected_KPI = st.radio("Which KPI would you like to see?",KPI)
+            
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
             mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
             ind_country = ind_country [mask]
@@ -132,7 +136,7 @@ def main():
         
             fig1.add_trace(
                     go.Scatter(x=ind_country['date'],
-                    y=ind_country['CPA'], name= 'CPA',
+                    y=ind_country[selected_KPI], name= selected_KPI,
                     line_color='black'),
                     secondary_y=True,
                 )
