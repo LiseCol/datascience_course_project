@@ -115,11 +115,11 @@ def main():
             with col2: # Selectbox country
                 df_behaviour_country = groupby_all('country','date','local')
                 all_countries = df_behaviour_country['country'].unique().tolist()
-                options = st.selectbox('Country', all_countries)
+                options = st.selectbox('Country:', all_countries)
             
             with col3: # Select KPI
                 KPI= ['CPA','revenue','ROAS']
-                selected_KPI = st.selectbox("KPI",KPI)
+                selected_KPI = st.selectbox("KPI:",KPI)
             
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
             mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
@@ -172,17 +172,17 @@ def main():
             
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
-                start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+                start_date, end_date = st.date_input('Date range:',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
             
             with col2: # Selectbox country
                 df_behaviour_country = groupby_all('country','date','us')
                 all_country = df_behaviour_country['country'].unique().tolist()
-                options = st.selectbox('country', all_country)
+                options = st.selectbox('Country:', all_country)
             
             with col3: # Select KPI
                 KPI= ['CPA','revenue','ROAS']
-                selected_KPI = st.selectbox("KPI",KPI)
+                selected_KPI = st.selectbox("KPI:",KPI)
             
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
             mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
@@ -230,17 +230,17 @@ def main():
             
         col1, col2, col3 = st.columns(3)
         with col1: # Select date
-            start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+            start_date, end_date = st.date_input('Date range:',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
             
         with col2: # Selectbox country
             df_behaviour_target = groupby_all('target type','date','local')
             all_target = df_behaviour_target['target type'].unique().tolist()
-            options = st.selectbox('target type', all_target)
+            options = st.selectbox('Target type:', all_target)
             
         with col3: # Select KPI
             KPI= ['CPA','revenue','ROAS']
-            selected_KPI = st.selectbox("KPI",KPI)
+            selected_KPI = st.selectbox("KPI:",KPI)
             
         ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
         mask = (ind_target['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_target['date'] <= (end_date).strftime('%Y-%m-%d'))
