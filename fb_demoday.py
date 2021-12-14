@@ -100,7 +100,7 @@ def main():
     st.sidebar.title("MENU")
     
     # Different pages
-    menu =st.sidebar.radio(("KPI per country","KPI per target type"))
+    menu =st.sidebar.radio('Start to navigate:',("KPI per country","KPI per target type"))
     
     ## Reporting per country
     if menu == 'KPI per country':
