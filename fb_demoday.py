@@ -106,7 +106,7 @@ def main():
                                                         formatter="{:,.2f}"))  
             
             ## Country per day
-            st.subheader("Let's dive in")
+            st.subheader("Let's dive in:")
             col1, col2, col3 = st.columns(3)
             with col1: # Select date
                 start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
@@ -118,7 +118,7 @@ def main():
                 options = st.selectbox('Country', all_countries)
             
             with col3: # Select KPI
-                KPI= ['revenue','ROAS','CPA']
+                KPI= ['CPA','revenue','ROAS']
                 selected_KPI = st.selectbox("KPI",KPI)
             
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
@@ -168,19 +168,25 @@ def main():
             #col3.metric("Top ROAS", "86%", "4%")
         
             ## Country per day
-            st.subheader('Which country are you interested in diving in?')
-        
-            #Date selector
-            start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
-        
-            ## Get dataframe grouped by
-            df_behaviour_country = groupby_all('country','date','us')
-
-            all_countries = df_behaviour_country['country'].unique().tolist()
-            options = st.selectbox('Select', all_countries)
+            st.subheader("Let's dive in:")
+            
+            col1, col2, col3 = st.columns(3)
+            with col1: # Select date
+                start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+            
+            
+            with col2: # Selectbox country
+                df_behaviour_country = groupby_all('country','date','us')
+                all_country = df_behaviour_country['country'].unique().tolist()
+                options = st.selectbox('country', all_country)
+            
+            with col3: # Select KPI
+                KPI= ['CPA','revenue','ROAS']
+                selected_KPI = st.selectbox("KPI",KPI)
+            
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
             mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
-            ind_country = ind_country [mask]
+            ind_country = ind_country[mask]
 
             # Create plot
             fig2 = make_subplots(specs=[[{"secondary_y": True}]])
@@ -220,40 +226,53 @@ def main():
         # Metrics highlight
         
         ## Target type per day
-        st.subheader('Which target type are you interested in diving in?')
-        df_behaviour_target = groupby_all('target type','date','usd')
-        
-        all_target = df_behaviour_target['target type'].unique().tolist()
-        options = st.selectbox('Select', all_target)
-        ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
+        st.subheader("Let's dive in:")
+            
+            col1, col2, col3 = st.columns(3)
+            with col1: # Select date
+                start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+            
+            
+            with col2: # Selectbox country
+                df_behaviour_target = groupby_all('target type','date','local')
+                all_target = df_behaviour_target['target type'].unique().tolist()
+                options = st.selectbox('target type', all_target)
+            
+            with col3: # Select KPI
+                KPI= ['CPA','revenue','ROAS']
+                selected_KPI = st.selectbox("KPI",KPI)
+            
+            ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
+            mask = (ind_target['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_target['date'] <= (end_date).strftime('%Y-%m-%d'))
+            ind_target = ind_target[mask]
 
-        # Create plot
-        fig3 = make_subplots(specs=[[{"secondary_y": True}]])
+            # Create plot
+            fig3 = make_subplots(specs=[[{"secondary_y": True}]])
     
-        fig3.add_trace(
+            fig3.add_trace(
                     go.Bar(x=ind_target['date'],
                     y=ind_target['spend'],
                     name="Spend"),
                     secondary_y=False,
                 )
         
-        fig3.add_trace(
+            fig3.add_trace(
                     go.Scatter(x=ind_target['date'],
                     y=ind_target['CPA'], name= 'CPA',
                     line_color='black'),
                     secondary_y=True,
                 )
         
-        fig3.update_layout(
+            fig3.update_layout(
                         title_text="Evolution over time"
                     )
         
-        fig3.update_xaxes(title_text="Days")
+            fig3.update_xaxes(title_text="Days")
         
-        fig3.update_yaxes(title_text="Spend", secondary_y=False)
-        fig3.update_yaxes(title_text="CPA", secondary_y=True)
+            fig3.update_yaxes(title_text="Spend", secondary_y=False)
+            fig32.update_yaxes(title_text="CPA", secondary_y=True)
         
-        st.plotly_chart(fig3)    
+            st.plotly_chart(fig3)
     
     ## Reporting per day
     elif status == "Per day":
