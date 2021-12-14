@@ -1,6 +1,5 @@
 #Import common modules
 import streamlit as st
-import hydralit_components as hc
 import pandas as pd
 pd.options.mode.chained_assignment = None
 from PIL import Image
@@ -18,7 +17,7 @@ st.set_page_config(page_title="Facebook ad Report",
 
 # Define functions
 @st.cache
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+st.markdown(<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +52,7 @@ st.set_page_config(page_title="Facebook ad Report",
       </form>
     </div>
   </div>
-</nav>
+</nav>)
 
 def load_data():
     df = pd.read_csv('data_clean_3.csv', index_col=0)
