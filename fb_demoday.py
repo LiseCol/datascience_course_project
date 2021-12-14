@@ -60,21 +60,21 @@ st.markdown( """ <style>
             float: left; 
             margin-right:20px; 
         }
-            nav ul li{ 
-                display: inline-block; 
-                line-height:80px;
-                margin: 0 5px; 
-            }
-                nav ul li a{
-                    color: white;
-                    font-size: 17px;
-                    padding: 7px 13px;
-                    border-radius: 3px;
-                }
-                    a.active,a:hover{
-                        background-color: #1b9bff;
-                        transition: .5s;
-                    }
+        nav ul li{ 
+            display: inline-block; 
+            line-height:80px;
+            margin: 0 5px; 
+        }
+        nav ul li a{
+            color: white;
+            font-size: 17px;
+            padding: 7px 13px;
+            border-radius: 3px;
+        }
+        a.active,a:hover{
+            background-color: rgb(237, 171, 173);
+            transition: .5s;
+        }
     .checkbtn{
         font-size: 30px;
         color: white;
