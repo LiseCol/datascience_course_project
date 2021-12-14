@@ -248,7 +248,7 @@ def main():
         fig3.update_yaxes(title_text="Spend", secondary_y=False)
         fig3.update_yaxes(title_text="CPA", secondary_y=True)
         
-        st.plotly_chart(fig2)    
+        st.plotly_chart(fig3)    
     
     ## Reporting per day
     elif status == "Per day":
