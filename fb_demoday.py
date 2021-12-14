@@ -14,7 +14,7 @@ import streamlit.components.v1 as components
 ## Page config ##
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
-                   layout='wide',initial_sidebar_state='collapsed',)
+                   layout='wide',)
 
 # Define functions
 @st.cache
@@ -100,11 +100,10 @@ def main():
     st.sidebar.title("MENU")
     
     # Different pages
-    country_report = st.sidebar.button('KPI per country')
-    target_report = st.sidebar.button('KPI per target type')
+    menu =st.sidebar.radio(("KPI per country","KPI per target type"))
     
     ## Reporting per country
-    if country_report:
+    if menu == 'KPI per country':
         status2 = st.radio("Select the prefered currency :",("Local","USD")) 
         ## In local currency
         if status2 == "Local":
@@ -217,7 +216,8 @@ def main():
             st.plotly_chart(fig2)
 
     ## Reporting per target type
-    elif target_report:
+    if menu == 'KPI per target type'
+    
         st.subheader("View: Grouped by target type in local currency")
         with st.expander("See the data"):
             st.dataframe(groupby_all('target type','None','usd').set_index('target type').style.format(subset=[
@@ -270,6 +270,6 @@ def main():
         
         st.plotly_chart(fig3)
     
-    else:
+    if menu == 'KPI per target type|KPI per country'
         st.subheader(':arrow_left: To start: Select a page on the side bar')
 main()  
