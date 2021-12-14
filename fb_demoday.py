@@ -149,7 +149,7 @@ def main():
             fig1.update_xaxes(title_text="Days")
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
-            fig1.update_yaxes(title_text="CPA", secondary_y=True)
+            fig1.update_yaxes(title_text=selected_KPI, secondary_y=True)
             
             st.plotly_chart(fig1)
 
@@ -212,7 +212,7 @@ def main():
             fig2.update_xaxes(title_text="Days")
         
             fig2.update_yaxes(title_text="Spend", secondary_y=False)
-            fig2.update_yaxes(title_text="CPA", secondary_y=True)
+            fig2.update_yaxes(title_text=selected_KPI, secondary_y=True)
         
             st.plotly_chart(fig2)
 
@@ -270,7 +270,7 @@ def main():
             fig3.update_xaxes(title_text="Days")
         
             fig3.update_yaxes(title_text="Spend", secondary_y=False)
-            fig32.update_yaxes(title_text="CPA", secondary_y=True)
+            fig3.update_yaxes(title_text=selected_KPI, secondary_y=True)
         
             st.plotly_chart(fig3)
     
