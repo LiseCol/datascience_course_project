@@ -52,7 +52,7 @@ st.markdown( """ <style>
     box-sizing: border-box;
     }
         nav { 
-        background: #0082e6; 
+        background: rgb(237, 171, 173); 
         height: 80px; 
         width: 100%; 
             }
