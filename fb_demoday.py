@@ -9,16 +9,17 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 import time
+import streamlit.components.v1 as components
 
 ## Page config ##
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
                    layout='wide',initial_sidebar_state='collapsed',)
 
-
+#<link rel="stylesheet" href="https://raw.githubusercontent.com/LiseCol/datascience_demo/main/css_bar_nav.css"/>
 st.markdown("""
-<link rel="stylesheet" href="https://raw.githubusercontent.com/LiseCol/datascience_demo/main/css_bar_nav.css"/>
-    <nav>
+
+    <nav class="navbar navbar-dark bg-dark">
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
             <i class="fas fa-bars"></i>
