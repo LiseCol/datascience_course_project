@@ -155,6 +155,7 @@ def main():
             st.dataframe((groupby_all('country','currency','us').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
+            st.markdown('---------------------\n')
             # Metrics highlight
 
             #col1, col2, col3 = st.columns(3)
@@ -215,6 +216,7 @@ def main():
         st.dataframe((groupby_all('target type','currency','usd').set_index('target type')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
+        st.markdown('---------------------\n')
         # Metrics highlight
         
         ## Target type per day
