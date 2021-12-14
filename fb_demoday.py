@@ -114,7 +114,7 @@ def main():
         st.title(":arrow_left: Select a page on the side bar")
         #st.subheader(':arrow_left: Select a page on the side bar')
         image = Image.open('facebook-ads.png')
-        st.image(image,width=800)
+        st.image(image,width=600)
         
     ## Reporting per country
     if menu == 'Country Analysis':
