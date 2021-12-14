@@ -118,7 +118,7 @@ def main():
             options = st.selectbox('Select', all_countries)
             
             col1, col2 = st.columns(2)
-            with col2:
+            with col1:
                 KPI= ['purchase','revenue','CTR','ROAS','CPA','CPM','CPC']
                 selected_KPI = st.radio("Which KPI would you like to see?",KPI)
             
@@ -151,7 +151,7 @@ def main():
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
             fig1.update_yaxes(title_text="CPA", secondary_y=True)
-            with col1:
+            with col2:
                 st.plotly_chart(fig1)
 
         ## In USD
