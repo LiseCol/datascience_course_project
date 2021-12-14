@@ -9,6 +9,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
+import time
 
 ## Page config ##
 st.set_page_config(page_title="Facebook ad Report", 
@@ -40,6 +41,8 @@ menu_id = hc.nav_bar(
 #get the id of the menu item clicked
 st.info(f"{menu_id}")
 
+with hc.HyLoader('Now doing loading',hc.Loaders.pulse_bars,):
+    time.sleep(5)
 
 # Define functions
 @st.cache
