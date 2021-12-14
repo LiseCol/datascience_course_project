@@ -277,10 +277,10 @@ def main():
         fig3.add_trace(
                     go.Scatter(x=ind_target['date'],
                     y=ind_target[selected_KPI], name= selected_KPI,
-                    line_color='darkslategray'),
+                    line_color='indigo'),
                     secondary_y=True,
                 )
-        fig3.update_traces(marker_color='slateblue', selector=dict(type='bar'))
+        fig3.update_traces(marker_color='mediumslateblue', selector=dict(type='bar'))
         fig3.update_xaxes(title_text="Days")
         
         fig3.update_yaxes(title_text="Spend", secondary_y=False)
