@@ -15,19 +15,8 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',initial_sidebar_state='collapsed',)
 st.markdown("""
- <!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classi Responsive Navbar</title>
-    <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="https://raw.githubusercontent.com/LiseCol/datascience_demo/main/css_bar_nav.css">
-    <!-- Fontawesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-</head>
-<body>
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
@@ -42,9 +31,6 @@ st.markdown("""
             <li><a href="">Feedback</a></li>
         </ul>
     </nav>
-    
-</body>
-</html>
 """,unsafe_allow_html=True)
 # Define functions
 @st.cache
