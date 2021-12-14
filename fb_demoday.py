@@ -132,7 +132,7 @@ def main():
         options = st.selectbox('Select', all_countries)
         ind_country = df_behaviour_country[df_behaviour_country['country']== options]
 
-        # Create figure with secondary y-axis
+        # Create plot
         fig1 = make_subplots(specs=[[{"secondary_y": True}]])
     
         fig1.add_trace(
@@ -181,11 +181,32 @@ def main():
         options = st.selectbox('Select', all_target)
         ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
 
-        fig2 = px.bar(ind_target, 
-                      x = "date", 
-                      y = ["spend $","revenue $"])
-        fig2.update_yaxes(visible=False, fixedrange=True)
-        fig2.update_layout(barmode='group')
+        # Create plot
+        fig2 = make_subplots(specs=[[{"secondary_y": True}]])
+    
+        fig2.add_trace(
+                    go.Bar(x=ind_target['date'],
+                    y=ind_target['spend $'],
+                    name="Spend"),
+                    secondary_y=False,
+                )
+        
+        fig2.add_trace(
+                    go.Scatter(x=ind_target['date'],
+                    y=ind_target['CPA $'], name= 'CPA',
+                    line_color='black'),
+                    secondary_y=True,
+                )
+        
+        fig2.update_layout(
+                        title_text="Evolution over time"
+                    )
+        
+        fig2.update_xaxes(title_text="Days")
+        
+        fig2.update_yaxes(title_text="Spend", secondary_y=False)
+        fig2.update_yaxes(title_text="CPA", secondary_y=True)
+        
         st.plotly_chart(fig2)    
     
     # Reporting per day
