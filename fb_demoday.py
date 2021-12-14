@@ -22,7 +22,8 @@ st.markdown( """ <style> .css-1d391kg
                 } 
                 </style> """, unsafe_allow_html=True, )
 st.markdown( """
-<nav>
+<nav class="body_nav">
+
         <label for="check" class="checkbtn">
             <i class="fas fa-bars"></i>
         </label>
@@ -38,6 +39,12 @@ st.markdown( """
     """, unsafe_allow_html=True, )
 
 st.markdown( """ <style>
+        .body_nav { font-family:Arial, Helvetica, sans-serif }
+    nav { 
+        background: #0082e6; 
+        height: 80px; 
+        width: 100%; 
+    }
         * {
     vertical-align: baseline;
     font-weight: inherit;
