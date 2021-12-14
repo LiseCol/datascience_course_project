@@ -20,6 +20,10 @@ st.set_page_config(page_title="Facebook ad Report",
 st.markdown( """ <style> .css-1d391kg  
                 { background-color: rgb(240, 204, 205)
                 } 
+                .css-1d391kg h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
                 </style> """, unsafe_allow_html=True, )
 
 # Define functions
