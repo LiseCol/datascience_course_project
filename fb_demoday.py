@@ -54,7 +54,7 @@ def df_clean(df):
         
 def groupby_all(variable1,variable2,cur):
     # one variable only
-    elif variable1 == "country":
+    if variable1 == "country":
         if cur == "local":
             df_var= load_data().groupby([variable1,variable2]).agg(
                                         {'impressions':np.sum, 
