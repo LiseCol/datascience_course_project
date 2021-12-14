@@ -229,8 +229,8 @@ def main():
     ## Reporting per target type
     if menu == 'KPI per target type':
         st.title("Report - Grouped by target type in local currency :dart:")
-            st.subheader("View dataset")
-            with st.expander("Click to display"):
+        st.subheader("View dataset")
+        with st.expander("Click to display"):
             st.dataframe(groupby_all('target type','None','usd').set_index('target type').style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))
