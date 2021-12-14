@@ -112,7 +112,7 @@ def main():
     if menu == 'Introduction':
         # Page title                   
         st.title("Facebook ad Report :bar_chart:")
-        st.subheader(':arrow_left: To start: Select a page on the side bar')
+        st.subheader(':arrow_left: Select a page on the side bar')
         
     ## Reporting per country
     if menu == 'Country Analysis':
