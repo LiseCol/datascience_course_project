@@ -104,7 +104,7 @@ def main():
     
     # Selectbox : View of the dataframe
     country_report = st.sidebar.button('KPI per country')
-    target_report = st.sidebar.button('KPI per country')
+    target_report = st.sidebar.button('KPI per target type')
     
     ## Reporting per country
     if country_report:
