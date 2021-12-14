@@ -182,14 +182,14 @@ def main():
     
             fig2.add_trace(
                     go.Bar(x=ind_country['date'],
-                    y=ind_country['spend $'],
+                    y=ind_country['spend'],
                     name="Spend"),
                     secondary_y=False,
                 )
         
             fig2.add_trace(
                     go.Scatter(x=ind_country['date'],
-                    y=ind_country['CPA $'], name= 'CPA',
+                    y=ind_country['CPA'], name= 'CPA',
                     line_color='black'),
                     secondary_y=True,
                 )
@@ -232,14 +232,14 @@ def main():
     
         fig3.add_trace(
                     go.Bar(x=ind_target['date'],
-                    y=ind_target['spend $'],
+                    y=ind_target['spend'],
                     name="Spend"),
                     secondary_y=False,
                 )
         
         fig3.add_trace(
                     go.Scatter(x=ind_target['date'],
-                    y=ind_target['CPA $'], name= 'CPA',
+                    y=ind_target['CPA'], name= 'CPA',
                     line_color='black'),
                     secondary_y=True,
                 )
