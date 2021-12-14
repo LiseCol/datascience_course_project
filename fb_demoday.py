@@ -28,7 +28,6 @@ st.markdown("""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
 <body>
-
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
