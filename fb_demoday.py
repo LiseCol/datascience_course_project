@@ -31,41 +31,16 @@ st.markdown( """
     <li class="nav__links"><a href="#">Reports</a></li>
   </ul>
 </div>
-<div class="main-content">
-  <div class="search-bar">Search</div>
-  <div class="channel-list">
-    <table class="channel-list__table">
-      <thead>
-        <tr class="channel-list__table-row">
-          <th colspan="2">Channels</th>
-          <th>Resources</th>
-          <th class="channel-list__table-header--last">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="channel-list__table-row">
-            <td colspan="2">Channel 1</td>
-            <td>Resource 1</td>
-            <td class="channel-list__table-data--last">Edit/Delete</td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
     """, unsafe_allow_html=True, )
 
 st.markdown( """ <style>
-
-$primary-blue: #257391;
-$dk-blue: #14465e;
-$almost-white: #f3f6f7;
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: $almost-white;
+  background-color: #f3f6f7;
   font-family: sans-serif; 
 }
 
@@ -76,7 +51,7 @@ a {
 }
 
 .nav {
-  background-color: $primary-blue;
+  background-color: #257391;
   color: #fff;
   float: left;
   height: 100%;
@@ -85,63 +60,22 @@ a {
 }
 
 .nav__brandbar {
-  background-color: $dk-blue;
+  background-color: #14465e;
+  //font-size: 1.25rem;
   padding: 1.5rem;
+  // height: 75px;
 }
 
 .nav__links {
   text-transform: uppercase;
   
   &:hover {
-    background-color: darken($primary-blue, 6%);
+    background-color: darken(#14465e, 6%);
   }
   
   a {
     padding: 1.5rem;
   }
-}
-
-.search-bar {
-  background-color: #fff;
-  padding: 1.5rem;
-}
-
-.main-content {
-  float: right;
-  width: calc(100% - 225px);
-  clear: none;
-}
-
-.channel-list {
-  padding: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 6rem;
-  max-width: 800px;
-}
-
-.channel-list__table {
-  background: #fff;
-  box-shadow: 0px 1px 4px 0px rgba(12, 57, 78, .20);
-  width: 800px;
-  
-    thead {
-    border-bottom: 1px solid rgba(37, 115, 145, .10);
-    }
-
-  th, td {
-      padding: 1em;
-    }
-
-  th {
-    text-transform: uppercase;
-    font-weight: bold;
-    }
-}
-
-.channel-list__table-row {
-  text-align: left;
-}
         </style> """, unsafe_allow_html=True, )
 
 
