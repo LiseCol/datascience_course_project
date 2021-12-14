@@ -184,11 +184,11 @@ def main():
                 KPI= ['CPA','revenue','ROAS']
                 selected_KPI = st.selectbox("KPI",KPI)
             
-    ind_country = df_behaviour_country[df_behaviour_country['country']== options]
-    mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
-    ind_country = ind_country[mask]
+            ind_country = df_behaviour_country[df_behaviour_country['country']== options]
+            mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
+            ind_country = ind_country[mask]
 
-    # Create plot
+            # Create plot
             fig2 = make_subplots(specs=[[{"secondary_y": True}]])
     
             fig2.add_trace(
@@ -242,37 +242,37 @@ def main():
             KPI= ['CPA','revenue','ROAS']
             selected_KPI = st.selectbox("KPI",KPI)
             
-            ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
-            mask = (ind_target['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_target['date'] <= (end_date).strftime('%Y-%m-%d'))
-            ind_target = ind_target[mask]
+        ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
+        mask = (ind_target['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_target['date'] <= (end_date).strftime('%Y-%m-%d'))
+        ind_target = ind_target[mask]
 
-            # Create plot
-            fig3 = make_subplots(specs=[[{"secondary_y": True}]])
+        # Create plot
+        fig3 = make_subplots(specs=[[{"secondary_y": True}]])
     
-            fig3.add_trace(
+        fig3.add_trace(
                     go.Bar(x=ind_target['date'],
                     y=ind_target['spend'],
                     name="Spend"),
                     secondary_y=False,
                 )
         
-            fig3.add_trace(
+        fig3.add_trace(
                     go.Scatter(x=ind_target['date'],
                     y=ind_target[selected_KPI], name= selected_KPI,
                     line_color='black'),
                     secondary_y=True,
                 )
         
-            fig3.update_layout(
+        fig3.update_layout(
                         title_text="Evolution over time"
                     )
         
-            fig3.update_xaxes(title_text="Days")
+        fig3.update_xaxes(title_text="Days")
         
-            fig3.update_yaxes(title_text="Spend", secondary_y=False)
-            fig3.update_yaxes(title_text=selected_KPI, secondary_y=True)
+        fig3.update_yaxes(title_text="Spend", secondary_y=False)
+        fig3.update_yaxes(title_text=selected_KPI, secondary_y=True)
         
-            st.plotly_chart(fig3)
+        st.plotly_chart(fig3)
     
     ## Reporting per day
     elif status == "Per day":
