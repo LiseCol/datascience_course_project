@@ -113,7 +113,7 @@ def main():
         # Page title                   
         st.title("Facebook ad Report")
         st.subheader(':arrow_left: Select a page on the side bar')
-        image = Image.open('https://github.com/LiseCol/datascience_demo/raw/main/facebook-ads.png')
+        image = Image.open(https://github.com/LiseCol/datascience_demo/raw/main/facebook-ads.png)
         st.image(image, caption='Sunrise by the mountains')
         
     ## Reporting per country
