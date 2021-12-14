@@ -107,53 +107,51 @@ def main():
             
             ## Country per day
             st.subheader('Which country are you interested in diving in?')
-        
-            #Date selector
+            col1, col2, col3 = st.columns(3)
+            with col1: # Select date
             start_date, end_date = st.date_input('Choose your date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
-            # Get dataframe grouped by
-            df_behaviour_country = groupby_all('country','date','local')
-
-            all_countries = df_behaviour_country['country'].unique().tolist()
-            options = st.selectbox('Select', all_countries)
             
-            col1, col2 = st.columns(2)
-            with col1:
+            with col2: # Selectbox country
+                df_behaviour_country = groupby_all('country','date','local')
+                all_countries = df_behaviour_country['country'].unique().tolist()
+                options = st.selectbox('Select', all_countries)
+            
+            with col3: # Select KPI
                 KPI= ['purchase','revenue','CTR','ROAS','CPA','CPM','CPC']
                 selected_KPI = st.radio("Which KPI would you like to see?",KPI)
             
-            with col2:
-                ind_country = df_behaviour_country[df_behaviour_country['country']== options]
-                mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
-                ind_country = ind_country [mask]
+            ind_country = df_behaviour_country[df_behaviour_country['country']== options]
+            mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
+            ind_country = ind_country [mask]
 
-                # Create plot
-                fig1 = make_subplots(specs=[[{"secondary_y": True}]])
+            # Create plot
+            fig1 = make_subplots(specs=[[{"secondary_y": True}]])
     
-                fig1.add_trace(
+            fig1.add_trace(
                     go.Bar(x=ind_country['date'],
                     y=ind_country['spend'],
                     name="Spend"),
                     secondary_y=False,
                 )
         
-                fig1.add_trace(
+            fig1.add_trace(
                     go.Scatter(x=ind_country['date'],
                     y=ind_country[selected_KPI], name= selected_KPI,
                     line_color='black'),
                     secondary_y=True,
                 )
         
-                fig1.update_layout(
+            fig1.update_layout(
                         title_text="Evolution over time"
                     )
         
-                fig1.update_xaxes(title_text="Days")
+            fig1.update_xaxes(title_text="Days")
         
-                fig1.update_yaxes(title_text="Spend", secondary_y=False)
-                fig1.update_yaxes(title_text="CPA", secondary_y=True)
+            fig1.update_yaxes(title_text="Spend", secondary_y=False)
+            fig1.update_yaxes(title_text="CPA", secondary_y=True)
             
-                st.plotly_chart(fig1)
+            st.plotly_chart(fig1)
 
         ## In USD
         elif status2 == "USD":  
