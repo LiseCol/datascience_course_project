@@ -106,7 +106,7 @@ def main():
     st.sidebar.title("Let's start:")
     
     # Different pages
-    menu =st.sidebar.radio("-------------",("Main","KPI per country","KPI per target type"))
+    menu =st.sidebar.radio("",("Main","KPI per country","KPI per target type"))
     
     if menu == 'Home Page':
         st.subheader(':arrow_left: To start: Select a page on the side bar')
