@@ -102,7 +102,7 @@ def main():
         # In local currency
         if status2 == "Local currency":
             st.subheader("Per country - Local currency")
-            st.dataframe((groupby_all('country','local').set_index('country')).style.format(subset=[
+            st.dataframe(test=(groupby_all('country','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))   
         # In USD
