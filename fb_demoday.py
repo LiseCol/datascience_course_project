@@ -18,7 +18,7 @@ st.set_page_config(page_title="Facebook ad Report",
                    layout='wide',)
 
 st.markdown( """ <style> .css-1d391kg  
-                { background-color: rgb(237, 171, 173)
+                { background-color: rgb(240, 204, 205)
                 } 
                 </style> """, unsafe_allow_html=True, )
 st.markdown( """
@@ -64,7 +64,7 @@ nav {
   text-align: center;
   font-size: 48px;
   padding: 20px 0;
-  background: rgb(237, 171, 173);
+  background: rgb(240, 204, 205);
   max-height: 100px;
 }
 nav ul {
