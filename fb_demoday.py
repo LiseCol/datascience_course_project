@@ -13,7 +13,7 @@ import datetime
 ## Page config ##
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
-                   layout='wide',layout='wide',initial_sidebar_state='collapsed')
+                   layout='wideinitial_sidebar_state='collapsed',
 
 
 
