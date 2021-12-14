@@ -156,8 +156,8 @@ def main():
         
             fig1.update_yaxes(title_text="Spend", secondary_y=False)
             fig1.update_yaxes(title_text=selected_KPI, secondary_y=True)
-            
-            st.plotly_chart(fig1)
+            with st.container():
+                st.plotly_chart(fig1)
 
         ## In USD
         elif status2 == "USD":  
@@ -216,7 +216,7 @@ def main():
         
             fig2.update_yaxes(title_text="Spend", secondary_y=False)
             fig2.update_yaxes(title_text=selected_KPI, secondary_y=True)
-        
+            
             st.plotly_chart(fig2)
 
     ## Reporting per target type
