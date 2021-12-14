@@ -176,7 +176,8 @@ def main():
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
                                         ).reset_index()
-
+        CPA_col(df_behaviour_target)
+        
         all_target = df_behaviour_target['target type'].unique().tolist()
         options = st.selectbox('Select', all_target)
         ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
