@@ -138,7 +138,7 @@ def main():
 
         all_countries = df_behaviour_country['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
-        ind_country = df_behaviour_country[mask][df_behaviour_country['country']== options]
+        ind_country = df_behaviour_country[mask][df_behaviour_country[mask]['country']== options]
 
         # Create plot
         fig1 = make_subplots(specs=[[{"secondary_y": True}]])
