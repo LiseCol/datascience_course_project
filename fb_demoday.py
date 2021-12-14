@@ -104,7 +104,6 @@ def main():
                 st.dataframe((groupby_all('country','currency','local').set_index('country')).style.format(subset=[
                                                         'spend', 'revenue', 'CPA','CPM','CPC', 'ROAS'],
                                                         formatter="{:,.2f}"))  
-            st.markdown('---------------------\n')
             ## Country per day
             st.subheader("Let's dive in:")
             col1, col2, col3 = st.columns(3)
