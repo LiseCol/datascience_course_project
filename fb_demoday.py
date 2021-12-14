@@ -14,7 +14,8 @@ import time
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
                    layout='wide',initial_sidebar_state='collapsed',)
-st.markdown("""<nav class="navbar navbar-expand-lg navbar-light bg-light">
+st.markdown("""
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,17 +40,10 @@ st.markdown("""<nav class="navbar navbar-expand-lg navbar-light bg-light">
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>)""",unsafe_allow_html=True)
+        </ul>
+         </div>
+</nav>
+""",unsafe_allow_html=True)
 # Define functions
 @st.cache
 
