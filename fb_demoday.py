@@ -136,7 +136,7 @@ def main():
 
         all_countries = df_behaviour_country['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
-        ind_country = df_behaviour_country[df_behaviour_country['country']== options][mask]
+        ind_country = df_behaviour_country[df_behaviour_country['country']== options]
         mask = (ind_country['date'] >= (start_date).strftime('%Y-%m-%d')) & 
                 (ind_country['date'] <= (end_date).strftime('%Y-%m-%d'))
         ind_country = ind_country [mask]
