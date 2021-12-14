@@ -124,7 +124,7 @@ def main():
         # Country per day
         st.subheader('Which country are you interested in diving in?')
         
-        df_behaviour_countries = load_data().groupby(['country','date']).agg(
+        df_behaviour_country = load_data().groupby(['country','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
