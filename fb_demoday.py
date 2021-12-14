@@ -15,6 +15,17 @@ import streamlit.components.v1 as components
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
                    layout='wide',)
+st.markdown(
+    """
+    <style>
+    .sidebar .sidebar-content {
+    background-image: linear-gradient(#2e7bcf,#2e7bcf);
+    color: white;
+        }
+        </style>
+     """,
+    unsafe_allow_html=True,
+    )
 
 # Define functions
 @st.cache
@@ -92,18 +103,6 @@ def groupby_all(variable1,variable2,cur):
             return df_var
 
 def main():
-
-    st.markdown(
-    """
-    <style>
-    .sidebar .sidebar-content {
-    background-image: linear-gradient(#2e7bcf,#2e7bcf);
-    color: white;
-        }
-        </style>
-     """,
-    unsafe_allow_html=True,
-    )
     
     # Page title                   
     st.title("Facebook ad Report :bar_chart:")
