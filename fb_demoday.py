@@ -15,9 +15,8 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',initial_sidebar_state='collapsed',)
 
-st.markdown("""<link rel="stylesheet" href="https://raw.githubusercontent.com/LiseCol/datascience_demo/main/css_bar_nav.css">""")
-
 st.markdown("""
+<link rel="stylesheet" href="https://raw.githubusercontent.com/LiseCol/datascience_demo/main/css_bar_nav.css">
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
