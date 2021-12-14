@@ -111,10 +111,10 @@ def main():
     
     if menu == 'Introduction':
         # Page title                   
-        st.title(":arrow_left: Select a page on the side bar/n")
+        st.title(":arrow_left: Select a page on the side bar")
         #st.subheader(':arrow_left: Select a page on the side bar')
         image = Image.open('digital-facebook.png')
-        st.image(image, caption='Sunrise by the mountains')
+        st.image(image, caption='Sunrise by the mountains',width=600)
         
     ## Reporting per country
     if menu == 'Country Analysis':
