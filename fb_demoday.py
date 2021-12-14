@@ -100,7 +100,7 @@ def main():
     st.sidebar.title("NAVIGATION")
     
     # Different pages
-    menu =st.sidebar.radio("Let's start":',("KPI per country","KPI per target type"))
+    menu =st.sidebar.radio("Let's start":,("KPI per country","KPI per target type"))
     
     if menu != 'KPI per target type|KPI per country':
         st.subheader(':arrow_left: To start: Select a page on the side bar')
