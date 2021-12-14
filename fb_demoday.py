@@ -97,11 +97,14 @@ def main():
     st.title("Facebook ad Report :bar_chart:")
 
     ## Sidebar
-    st.sidebar.title("MENU")
+    st.sidebar.title("NAVIGATION")
     
     # Different pages
-    menu =st.sidebar.radio('Start to navigate:',("KPI per country","KPI per target type"))
+    menu =st.sidebar.radio("Let's start":',("KPI per country","KPI per target type"))
     
+    if menu != 'KPI per target type|KPI per country':
+        st.subheader(':arrow_left: To start: Select a page on the side bar')
+        
     ## Reporting per country
     if menu == 'KPI per country':
         status2 = st.radio("Select the prefered currency :",("Local","USD")) 
@@ -270,6 +273,4 @@ def main():
         
         st.plotly_chart(fig3)
     
-    if menu == 'KPI per target type|KPI per country':
-        st.subheader(':arrow_left: To start: Select a page on the side bar')
 main()  
