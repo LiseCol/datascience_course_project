@@ -118,7 +118,7 @@ def main():
                 options = st.selectbox('Country', all_countries)
             
             with col3: # Select KPI
-                KPI= ['purchase','revenue','ROAS','CPA']
+                KPI= ['revenue','ROAS','CPA']
                 selected_KPI = st.radio("KPI",KPI)
             
             ind_country = df_behaviour_country[df_behaviour_country['country']== options]
