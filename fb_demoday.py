@@ -229,18 +229,18 @@ def main():
         st.subheader("Let's dive in:")
             
         col1, col2, col3 = st.columns(3)
-            with col1: # Select date
-                start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
+        with col1: # Select date
+            start_date, end_date = st.date_input('Date range  :',[datetime.date(2021,11,1),datetime.date(2021,11,18)])
             
             
-            with col2: # Selectbox country
-                df_behaviour_target = groupby_all('target type','date','local')
-                all_target = df_behaviour_target['target type'].unique().tolist()
-                options = st.selectbox('target type', all_target)
+        with col2: # Selectbox country
+            df_behaviour_target = groupby_all('target type','date','local')
+            all_target = df_behaviour_target['target type'].unique().tolist()
+            options = st.selectbox('target type', all_target)
             
-            with col3: # Select KPI
-                KPI= ['CPA','revenue','ROAS']
-                selected_KPI = st.selectbox("KPI",KPI)
+        with col3: # Select KPI
+            KPI= ['CPA','revenue','ROAS']
+            selected_KPI = st.selectbox("KPI",KPI)
             
             ind_target = df_behaviour_target[df_behaviour_target['target type']== options]
             mask = (ind_target['date'] >= (start_date).strftime('%Y-%m-%d')) & (ind_target['date'] <= (end_date).strftime('%Y-%m-%d'))
