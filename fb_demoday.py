@@ -93,6 +93,18 @@ def groupby_all(variable1,variable2,cur):
 
 def main():
 
+    st.markdown(
+    """
+    <style>
+    .sidebar .sidebar-content {
+    background-image: linear-gradient(#2e7bcf,#2e7bcf);
+    color: white;
+        }
+        </style>
+     """,
+    unsafe_allow_html=True,
+    )
+    
     # Page title                   
     st.title("Facebook ad Report :bar_chart:")
 
