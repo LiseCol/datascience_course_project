@@ -15,31 +15,14 @@ import time
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
                    layout='wide',initial_sidebar_state='collapsed',)
-# specify the primary menu definition
-menu_data = [
-    {'icon': "far fa-copy", 'label':"Left End"},
-    {'id':'Copy','icon':"🐙",'label':"Copy"},
-    {'icon': "fa-solid fa-radar",'label':"Dropdown1"},
-    {'id':'subid12','icon': "💀", 'label':"Sub-item 2"},
-    {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
-    {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
-    {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
-    {'icon': "far fa-copy", 'label':"Right End"}
-]
 
-over_theme = {'txc_inactive': '#FFFFFF'}
-menu_id = hc.nav_bar(
-    menu_definition=menu_data,
-    override_theme=over_theme,
-    home_name='Home',
-    login_name='Logout',
-    hide_streamlit_markers=True, #will hide st hamburger 
-    sticky_nav=True, #at the top or not
-    sticky_mode='pinned', #jumpy or not-jumpy, but sticky or pinned
-)
-
-#get the id of the menu item clicked
-st.info(f"{menu_id}")
+def navigation():
+    try:
+        path = st.experimental_get_query_params()['p'][0]
+    except Exception as e:
+        st.error('Please use the main app.')
+        return None
+    return path
 
 # Define functions
 @st.cache
