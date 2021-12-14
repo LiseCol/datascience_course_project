@@ -22,129 +22,62 @@ st.markdown( """ <style> .css-1d391kg
                 } 
                 </style> """, unsafe_allow_html=True, )
 st.markdown( """
-<nav role='navigation' class="main-nav" id="main-nav">
-  <ul id="main-nav-list">
-    <li>
-      <a href="#">
-        <svg viewBox="0 0 100 100" class="icon">
-          <use xlink:href="#leaf">
-        </svg>
-        <div>
-          Home
-          <span>is where the heart is</span>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <svg viewBox="0 0 100 100" class="icon">
-          <use xlink:href="#maple-leaf">
-        </svg>
-        <div>
-          About
-          <span>to blow this popcicle stand</span>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <svg viewBox="0 0 100 100" class="icon">
-          <use xlink:href="#clover">
-        </svg>
-        <div>
-          Clients
-          <span>are beautiful people</span>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <svg viewBox="0 0 100 100" class="icon">
-          <use xlink:href="#tomato">
-        </svg>
-        <div>
-          Contact
-          <span>your mom she misses you</span>
-        </div>
-      </a>
-    </li>
-  </ul>
-</nav>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#"><i class="fa fa-binoculars"></i></a></li>
+        <li><a href="#"><i class="fa fa-shopping-basket"></i></a></li>
+        <li><a href="#"><i class="fa fa-cog"></i></a></li>
+      </ul>
+    </nav>
+  </body>
     """, unsafe_allow_html=True, )
 
 st.markdown( """ <style>
-        * {
-  box-sizing: border-box;
+        a {
+  text-decoration: none;
+  color: black;
+  transition: 0.5s all ease;
 }
-html {
-  font-size: 12px;
-}
-
-.dont-render-dawg {
-  position: absolute;
-  height: 0;
-  width: 0;
+a:hover {
+  color: rgba(0, 0, 0, 0.5);
 }
 
-.main-nav {
-  background: #eee;
-  ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style: none;
-  }
-  a {
-    padding: 1.25rem 0.5rem;
-    font-size: 1.6rem;
-    max-width: 140px;
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: flex-start;
-    color: #333;
-    &:hover, &:focus {
-      background: #ccc;
-      color: black;
-      svg {
-        fill: green; 
-      }
-      span {
-        color: black; 
-      }
-    }
-  }
-  span {
-    display: block;
-    font-size: 1rem;
-    font-weight: normal;
-    color: #888;
-    margin: 0.25rem 0 0 0;
-  }
-  .icon {
-    width: 40px;
-    height: 40px;
-    float: left;
-    margin-right: 1rem;
-    fill: #999;
-  }
-  &.outlines {
-    * {
-      outline: 1px solid rgba(red, 0.5); 
-    }
-  }
+p {
+  max-width: 50%;
+  margin: 20px auto;
+}
+p:nth-last-of-type(2) {
+  margin: 20px auto 120px;
 }
 
-.options {
+nav {
+  width: 100%;
   text-align: center;
-  padding: 2rem 0;
-  select {
-    margin-right: 2rem;
-  }
+  font-size: 48px;
+  padding: 20px 0;
+  background: #55FE9D;
+  max-height: 100px;
 }
-        
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+nav ul li {
+  display: inline-block;
+  width: 22%;
+  border-right: 1px solid black;
+}
+nav ul li:nth-child(1) {
+  border-left: 1px solid black;
+}
         </style> """, unsafe_allow_html=True, )
 
 
