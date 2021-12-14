@@ -17,11 +17,22 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',)
 
-remote_css(https://raw.githubusercontent.com/LiseCol/datascience_demo/main/style.css)
- 
-t = "<div>Hello there my <span class='highlight blue'>name <span class='bold'>yo</span> </span> is <span class='highlight red'>Fanilo <span class='bold'>Name</span></span></div>"
-
-st.markdown(t, unsafe_allow_html=True)
+st.markdown('''<style src=".highlight {
+  border-radius: 0.4rem;
+  color: white;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+.bold {
+  padding-left: 1rem;
+  font-weight: 700;
+}
+.blue {
+  background-color: lightcoral;
+}
+.red {
+  background-color: lightblue;
+}"></style>''', unsafe_allow_html=True)
 
 # Define functions
 @st.cache
