@@ -280,7 +280,7 @@ def main():
                     line_color='darkslategray'),
                     secondary_y=True,
                 )
-        fig3.update_traces(marker_color='mediumslateblue', selector=dict(type='bar'))
+        fig3.update_traces(marker_color='slateblue', selector=dict(type='bar'))
         fig3.update_xaxes(title_text="Days")
         
         fig3.update_yaxes(title_text="Spend", secondary_y=False)
