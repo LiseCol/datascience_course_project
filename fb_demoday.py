@@ -129,7 +129,7 @@ def main():
         mask = (df_daily['date'] >= (start_date).strftime('%Y-%m-%d')) & (df_daily['date'] <= (end_date).strftime('%Y-%m-%d'))
         
         # Get dataframe grouped by
-        df_behaviour_country = load_data()[mask].groupby(['country','date']).agg(
+        df_behaviour_country = load_data().groupby(['country','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
@@ -138,7 +138,7 @@ def main():
 
         all_countries = df_behaviour_country['country'].unique().tolist()
         options = st.selectbox('Select', all_countries)
-        ind_country = df_behaviour_country[df_behaviour_country['country']== options]
+        ind_country = df_behaviour_country[df_behaviour_country['country']== options][mask]
 
         # Create plot
         fig1 = make_subplots(specs=[[{"secondary_y": True}]])
