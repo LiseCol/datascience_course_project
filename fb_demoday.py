@@ -357,7 +357,7 @@ def main():
             <div class="rad-info-box rad-txt-primary">
               <i class="fa fa-facebook"></i>
               <span class="heading">Facebook</span>
-              <span class="value"><span>23K</span></span>
+              <span class="value"><span>value=round(spend,2)</span></span>
             </div>
           </div>''', unsafe_allow_html=True, )
             
