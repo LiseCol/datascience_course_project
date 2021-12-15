@@ -343,7 +343,6 @@ def main():
             ## Maximum budget per country to get a CPA below 35
         
             CPA = st.number_input('Enter your CPA goal:')
-            st.write(CPA)
             #spend = (CPA-df_coeff.loc[0])/df_coeff.loc[1]
             #st.write('Your optimal daily budget per adset is:',round(spend[0],2))
                                          
