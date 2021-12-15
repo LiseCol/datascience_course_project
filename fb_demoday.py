@@ -355,8 +355,8 @@ def main():
             spend = (CPA-intercept)/coef
             st.subheader("Your Facebook daily budget per adset should be:")
             
-            container = st.container()
-            container.write(st.metric(label="Test test test", value=round(spend,2), delta="TEST TEST "))
+            container_cpa = st.container()
+            container_cpa.write(st.metric(label="Test test test", value=round(spend,2), delta="TEST TEST "))
             
             st.write('----------------')
             
