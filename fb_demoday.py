@@ -326,7 +326,7 @@ def main():
                  x = "spend", 
                  y = "CPA",
                  color='target type',
-                 trendline="ols", 
+                 #trendline="ols", 
                  #trendline_scope="overall",
                  #trendline_color_override="black"
                              )
