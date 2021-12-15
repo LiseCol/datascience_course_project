@@ -316,6 +316,7 @@ def main():
         if status3 == "Local":
             df_behaviour = groupby_all_4('country','adset name','target type','date','local')
             
+            st.dataframe(df_behaviour)
             # Select country
             all_countries = df_behaviour['country'].unique().tolist()
             options = st.selectbox('Country:', all_countries)
