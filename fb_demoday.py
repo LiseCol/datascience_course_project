@@ -355,7 +355,7 @@ def main():
             spend = (CPA-intercept)/coef
             st.subheader("Your Facebook daily budget per adset should be:")
             
-            st.metric(label="", value=math.ceil(spend), delta="Use it to create your new adset")
+            st.metric(label="", value=round(spend), delta="Use it to create your new adset")
             
             st.write('----------------')
             
