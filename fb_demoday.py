@@ -335,8 +335,6 @@ def main():
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
             fig4.add_traces(go.Scatter(x=x_range, y=y_range,line_color="black", name='Regression Fit'))
             fig4.show()
-            
-            st.write(fig4)
         
             #Get coeff
             coef = float(model.coef_)
@@ -347,6 +345,10 @@ def main():
             CPA = st.number_input('Enter your CPA goal:')
             spend = (CPA-intercept)/coef
             st.write('Your optimal daily budget per adset is:',round(spend,2))
+            
+            st.write('----------------')
+            
+            st.write(fig4)
                                          
         if status3 == "USD":
             st.write('TO DO')
