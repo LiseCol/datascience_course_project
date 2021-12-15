@@ -320,7 +320,9 @@ def main():
         
     if menu == 'Budget decision':
         st.title('Optimal budget :ok_hand:')
-        status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
+        col1, col2= st.columns(2)
+            with col1:
+                status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
         ## In local currency
         if status3 == "Local":
             df_behaviour = groupby_all_4('country','adset name','target type','date','local')
@@ -328,7 +330,8 @@ def main():
             
             # Select country
             all_countries = df_behaviour['country'].unique().tolist()
-            options = st.selectbox('Country:', all_countries)
+            with col2:
+                options = st.selectbox('Country:', all_countries)
             ind_country = df_behaviour[df_behaviour['country']== options]
             
             # Model
