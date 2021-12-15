@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 import time
+from sklearn import linear_model
 
 
 ## Page config ##
@@ -315,36 +316,38 @@ def main():
         ## In local currency
         if status3 == "Local":
             df_behaviour = groupby_all_4('country','adset name','target type','date','local')
+            df_behaviour = df_behaviour[(df_behaviour['purchase'])>1&(df_behaviour['spend']>5)]
             
             # Select country
             all_countries = df_behaviour['country'].unique().tolist()
             options = st.selectbox('Country:', all_countries)
             ind_country = df_behaviour[df_behaviour['country']== options]
-        
+            
+            # Model
+            model = LinearRegression()
+            X = np.array(ind_country['spend']).reshape(-1, 1)
+            y = np.array(ind_country['CPA'])
+            model.fit(X, y)
+            x_range = np.linspace(ind_country["spend"].min(), ind_country["spend"].max(), ind_country.shape[0])
+            y_range = model.predict(x_range.reshape(-1, 1))
+   
             # Plot curves
-            fig4 = px.scatter(ind_country, 
-                 x = "spend", 
-                 y = "CPA",
-                 color='target type',
-                 #trendline="ols", 
-                 #trendline_scope="overall",
-                 #trendline_color_override="black"
-                             )
-
+            fig4 = px.scatter(ind_country, x="spend", y='CPA',color='target type', opacity=0.65)
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
+            fig4.add_traces(go.Scatter(x=x_range, y=y_range,line_color="black", name='Regression Fit'))
+            fig4.show()
             
             st.write(fig4)
         
             #Get coeff
-            #results = px.get_trendline_results(fig)
-            #results = results.iloc[0]["px_fit_results"].params.tolist()
-            #df_coeff = (pd.DataFrame(results))
+            coef = float(model.coef_)
+            intercept = model.intercept_
         
             ## Maximum budget per country to get a CPA below 35
         
             CPA = st.number_input('Enter your CPA goal:')
-            #spend = (CPA-df_coeff.loc[0])/df_coeff.loc[1]
-            #st.write('Your optimal daily budget per adset is:',round(spend[0],2))
+            spend = (CPA-intercept)/coef
+            st.write('Your optimal daily budget per adset is:',round(spend,2))
                                          
         if status3 == "USD":
             st.write('TO DO')
