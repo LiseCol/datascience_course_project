@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 import time
-from sklearn import linear_model
+from sklearn.linear_model import LinearRegression
 
 
 ## Page config ##
