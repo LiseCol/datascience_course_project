@@ -107,7 +107,7 @@ def main():
     st.sidebar.title("Let's start:")
     
     # Different pages
-    menu =st.sidebar.radio("",("Introduction","Country Analysis","Target type Analysis"))
+    menu =st.sidebar.radio("",("Introduction","Country Analysis","Target type Analysis","Budget decision"))
     
     if menu == 'Introduction':
         # Page title                   
@@ -287,5 +287,47 @@ def main():
         fig3.update_yaxes(title_text=selected_KPI, secondary_y=True)
         
         st.plotly_chart(fig3)
-    
+        
+    if menu == 'Budget decision':
+        df_behaviour = df.groupby(['country','adset name',
+                           'target type',
+                           'date'
+                          ]).agg(
+                                        {'spend $': np.sum,
+                                         'revenue $': np.sum,
+                                        'purchase': np.sum}
+                                        ).reset_index()
+        ROAS_col(df_behaviour) 
+        CPA_col(df_behaviour) 
+        
+        # Select country
+        all_countries = df_behaviour['country'].unique().tolist()
+        options = st.selectbox('Country:', all_countries)
+        ind_country = df_behaviour[df_behaviour['country']== options]
+        
+        # Plot curves
+        fig4 = px.scatter(ind_country, 
+                 x = "spend $", 
+                 y = "CPA $",
+                 color='target type', 
+                 trendline="ols", 
+                 trendline_scope="overall",
+                 trendline_color_override="lightcoral")
+
+        fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
+        st.plotly_chart(fig4)
+        
+        #Get coeff
+        results = px.get_trendline_results(fig)
+        results = results.iloc[0]["px_fit_results"].params.tolist()
+        df_coeff = (pd.DataFrame(results))
+        
+        ## Maximum budget per country to get a CPA below 35
+        
+        CPA = st.number_input('Enter your CPA goal:')
+        spend = (CPA-df_coeff.loc[0])/df_coeff.loc[1]
+        st.write('Your optimal daily budget per adset is:',round(spend[0],2))
+               
+        
+       
 main()  
