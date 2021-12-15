@@ -102,7 +102,7 @@ def groupby_all(variable1,variable2,cur):
 
 def groupby_all_4(variable1,variable2,variable3,variable4,cur):
     if cur == "local":
-        df_var= load_data().groupby([variable1,variable2,variable3,variable4variable1,variable2]).agg(
+        df_var= load_data().groupby([variable1,variable2,variable3,variable4]).agg(
                                         {'impressions':np.sum, 
                                       'link click': np.sum, 
                                       'spend': np.sum, 
