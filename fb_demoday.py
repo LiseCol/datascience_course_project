@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 import time
-from remote_css import remote_css
+from sklearn.linear_model import LinearRegression
 
 
 ## Page config ##
@@ -327,11 +327,12 @@ def main():
                  x = "spend $", 
                  y = "CPA $",
                  color='target type', 
-                 trendline="ols", 
-                 trendline_scope="overall",)
+                 #trendline="ols", 
+                 #trendline_scope="overall",)
                  #trendline_color_override="black")
 
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
+            
             st.plotly_chart(fig4)
         
             #Get coeff
