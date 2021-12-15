@@ -316,7 +316,6 @@ def main():
         if status3 == "Local":
             df_behaviour = groupby_all_4('country','adset name','target type','date','local')
             
-            st.dataframe(df_behaviour)
             # Select country
             all_countries = df_behaviour['country'].unique().tolist()
             options = st.selectbox('Country:', all_countries)
@@ -327,9 +326,9 @@ def main():
                  x = "spend", 
                  y = "CPA",
                  color='target type',
-                 trendline="ols", 
-                 trendline_scope="overall",
-                 trendline_color_override="black"
+                 #trendline="ols", 
+                 #trendline_scope="overall",
+                 #trendline_color_override="black"
                              )
 
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
