@@ -351,7 +351,7 @@ def main():
         
             ## Maximum budget per country to get a CPA below 35
         
-            CPA = st.number_input('Enter your CPA goal:')
+            CPA = st.number_input('Enter your CPA goal:',value=20)
             spend = (CPA-intercept)/coef
             st.subheader("Your Facebook daily budget per adset should be:")
             
