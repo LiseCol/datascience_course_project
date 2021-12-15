@@ -29,7 +29,7 @@ st.markdown( """ <style> .css-1d391kg
 @st.cache
 
 def load_data():
-    df = pd.read_csv('data_clean_3.csv', index_col=0)
+    df = pd.read_csv('data_clean_2.csv', index_col=0)
     df['date'] = pd.to_datetime(df['date'])
     df['date'] = df['date'].dt.strftime('%Y-%m-%d')
     return  df
