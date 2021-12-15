@@ -148,7 +148,7 @@ def main():
         
     ## Reporting per country
     if menu == 'Country Analysis':
-        status2 = st.select_slider("Select the prefered currency :",("Local","USD"))
+        status2 = st.sidebar.select_slider("Select the prefered currency :",("Local","USD"))
         ## In local currency
         if status2 == "Local":
             # Page title                   
@@ -322,7 +322,7 @@ def main():
         st.title('Optimal budget :ok_hand:')
         col1, col2, col3= st.columns(3)
         with col3:
-            status3 = st.radio("Select the prefered currency :",("Local","USD"))
+            status3 = st.radio("Currency :",("Local","USD"))
         ## In local currency
         if status3 == "Local":
             df_behaviour = groupby_all_4('country','adset name','target type','date','local')
