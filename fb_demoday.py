@@ -311,6 +311,7 @@ def main():
         
         
     if menu == 'Budget decision':
+        st.title('Optimal budget')
         status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
         ## In local currency
         if status3 == "Local":
