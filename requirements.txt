@@ -5,4 +5,4 @@ streamlit
 pandas
 wordcloud
 pillow
-hydralit_components
+sklearn.linear_model
