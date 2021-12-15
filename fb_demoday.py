@@ -315,7 +315,7 @@ def main():
         status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
         ## In local currency
         if status3 == "Local":
-            df_behaviour = groupby_all_4('country','adset name','target type','date','local)
+            df_behaviour = groupby_all_4('country','adset name','target type','date','local')
             
             # Select country
             all_countries = df_behaviour['country'].unique().tolist()
