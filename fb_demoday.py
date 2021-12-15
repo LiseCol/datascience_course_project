@@ -16,21 +16,12 @@ st.set_page_config(page_title="Facebook ad Report",
                    page_icon=":bar_chart:",
                    layout='wide',)
 
-st.markdown( """ <style> .css-1d391kg  
-                { background-color: rgb(240, 204, 205)
-                } 
-                .css-1d391kg h1 {
-    font-size: 2rem;
-    font-weight: 600;
-}
-                </style> """, unsafe_allow_html=True, )
-#.css-1ht1j8u {}
 st.markdown( """ <style> 
-            .body {
-    color: #373637;
-    background-color: #4F8BF9;
-}
-                
+                .css-1d391kg  
+                { background-color: rgb(240, 204, 205);
+                  font-size: 2rem;
+                  font-weight: 600;
+                }
                 </style> """, unsafe_allow_html=True, )
 
 # Define functions
@@ -362,13 +353,50 @@ def main():
             
             st.write('----------------')
             
+            st.subheader("Visualization of the model:")
+            
             st.write(fig4)
-            
-    
-            
-             
-                                         
+                                          
         if status3 == "USD":
-            st.write('TO DO')
-      
+            df_behaviour = groupby_all_4('country','adset name','target type','date','usd')
+            df_behaviour = df_behaviour[(df_behaviour['purchase'])>1&(df_behaviour['spend']>5)]
+            
+            # Select country
+            all_countries = df_behaviour['country'].unique().tolist()
+            with col1:
+                options = st.selectbox('Country:', all_countries)
+            ind_country = df_behaviour[df_behaviour['country']== options]
+            
+            # Model
+            model = LinearRegression()
+            X = np.array(ind_country['spend']).reshape(-1, 1)
+            y = np.array(ind_country['CPA'])
+            model.fit(X, y)
+            x_range = np.linspace(ind_country["spend"].min(), ind_country["spend"].max(), ind_country.shape[0])
+            y_range = model.predict(x_range.reshape(-1, 1))
+   
+            # Plot CPA curves
+            fig5 = px.scatter(ind_country, x="spend", y='CPA',color='target type', opacity=0.65)
+            fig5.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
+            fig5.add_traces(go.Scatter(x=x_range, y=y_range,line_color="black", name='Regression Fit'))
+            fig5.show()
+        
+            #Get coeff
+            coef = float(model.coef_)
+            intercept = model.intercept_
+        
+            ## Maximum budget per country to get a CPA below 35
+            with col2:
+                CPA = st.number_input('Enter your CPA goal:',value=25)
+            spend = (CPA-intercept)/coef
+            st.subheader("Your Facebook daily budget per adset should be:")
+            
+            st.metric(label="", value=round(spend), delta="Use it to create your new adset")
+            
+            st.write('----------------')
+            
+            st.subheader("Visualization of the model:")
+            
+            st.write(fig5)
+                
 main()  
