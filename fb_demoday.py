@@ -101,6 +101,29 @@ def groupby_all(variable1,variable2,cur):
             df_clean(df_var)
             return df_var
 
+def groupby_all_4(variable1,variable2,variable3,variable4,cur):
+    if cur == "local":
+        df_var= load_data().groupby([variable1,variable2]).agg(
+                                        {'impressions':np.sum, 
+                                      'link click': np.sum, 
+                                      'spend': np.sum, 
+                                      'purchase': np.sum, 
+                                      'revenue': np.sum
+                                     }).reset_index()
+        custom_col(df_var)
+        df_clean(df_var)
+        return df_var
+    else:
+        df_var= load_data().groupby([variable1,variable2]).agg(
+                                        {'impressions':np.sum,
+                                         'link click': np.sum,
+                                         'spend $': np.sum,
+                                      'purchase': np.sum, 
+                                      'revenue $': np.sum}).reset_index()
+        custom_col_USD(df_var)
+        df_clean(df_var)
+        return df_var
+
 def main():
     
     ## Sidebar
@@ -119,7 +142,6 @@ def main():
     ## Reporting per country
     if menu == 'Country Analysis':
         status2 = st.select_slider("Select the prefered currency :",("Local","USD"))
-        #status2 = st.radio("Select the prefered currency :",("Local","USD")) 
         ## In local currency
         if status2 == "Local":
             # Page title                   
@@ -288,23 +310,20 @@ def main():
         
         st.plotly_chart(fig3)
         
+        
     if menu == 'Budget decision':
-        df = load_data()
-        df_behaviour = df(['country','adset name','target type','date']).agg(
-                                        {'spend $': np.sum,
-                                         'revenue $': np.sum,
-                                        'purchase': np.sum}
-                                        ).reset_index()
-        ROAS_col(df_behaviour) 
-        CPA_col(df_behaviour) 
+        status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
+        ## In local currency
+        if status3 == "Local":
+            df_behaviour = groupby_all_4('country','adset name','target type','date','local)
+            
+            # Select country
+            all_countries = df_behaviour['country'].unique().tolist()
+            options = st.selectbox('Country:', all_countries)
+            ind_country = df_behaviour[df_behaviour['country']== options]
         
-        # Select country
-        all_countries = df_behaviour['country'].unique().tolist()
-        options = st.selectbox('Country:', all_countries)
-        ind_country = df_behaviour[df_behaviour['country']== options]
-        
-        # Plot curves
-        fig4 = px.scatter(ind_country, 
+            # Plot curves
+            fig4 = px.scatter(ind_country, 
                  x = "spend $", 
                  y = "CPA $",
                  color='target type', 
@@ -312,20 +331,21 @@ def main():
                  trendline_scope="overall",
                  trendline_color_override="lightcoral")
 
-        fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
-        st.plotly_chart(fig4)
+            fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
+            st.plotly_chart(fig4)
         
-        #Get coeff
-        results = px.get_trendline_results(fig)
-        results = results.iloc[0]["px_fit_results"].params.tolist()
-        df_coeff = (pd.DataFrame(results))
+            #Get coeff
+            results = px.get_trendline_results(fig)
+            results = results.iloc[0]["px_fit_results"].params.tolist()
+            df_coeff = (pd.DataFrame(results))
         
-        ## Maximum budget per country to get a CPA below 35
+            ## Maximum budget per country to get a CPA below 35
         
-        CPA = st.number_input('Enter your CPA goal:')
-        spend = (CPA-df_coeff.loc[0])/df_coeff.loc[1]
-        st.write('Your optimal daily budget per adset is:',round(spend[0],2))
-               
-        
-       
+            CPA = st.number_input('Enter your CPA goal:')
+            spend = (CPA-df_coeff.loc[0])/df_coeff.loc[1]
+            st.write('Your optimal daily budget per adset is:',round(spend[0],2))
+                                         
+        if status3 == "USD":
+            st.write('TO DO')
+      
 main()  
