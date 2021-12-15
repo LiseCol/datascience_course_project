@@ -27,8 +27,9 @@ st.markdown( """ <style> .css-1d391kg
 #.css-1ht1j8u {}
 st.markdown( """ <style> 
             body {
-              background: #f0f0f0;
-                 }
+    color: #fff;
+    background-color: #4F8BF9;
+}
                 
                 </style> """, unsafe_allow_html=True, )
 
