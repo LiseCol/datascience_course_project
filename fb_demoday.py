@@ -321,8 +321,7 @@ def main():
     if menu == 'Budget decision':
         st.title('Optimal budget :ok_hand:')
         col1, col2= st.columns(2)
-        with col1:
-            status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
+        status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
         ## In local currency
         if status3 == "Local":
             df_behaviour = groupby_all_4('country','adset name','target type','date','local')
@@ -330,8 +329,8 @@ def main():
             
             # Select country
             all_countries = df_behaviour['country'].unique().tolist()
-        with col2:
-            options = st.selectbox('Country:', all_countries)
+            with col1:
+                options = st.selectbox('Country:', all_countries)
             ind_country = df_behaviour[df_behaviour['country']== options]
             
             # Model
@@ -353,8 +352,8 @@ def main():
             intercept = model.intercept_
         
             ## Maximum budget per country to get a CPA below 35
-        
-            CPA = st.number_input('Enter your CPA goal:',value=25)
+            with col2:
+                CPA = st.number_input('Enter your CPA goal:',value=25)
             spend = (CPA-intercept)/coef
             st.subheader("Your Facebook daily budget per adset should be:")
             
