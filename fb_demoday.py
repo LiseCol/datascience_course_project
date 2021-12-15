@@ -321,7 +321,8 @@ def main():
     if menu == 'Budget decision':
         st.title('Optimal budget :ok_hand:')
         col1, col2= st.columns(2)
-        status3 = st.select_slider("Select the prefered currency :",("Local","USD"))
+            with col3:
+                status3 = st.radio("Select the prefered currency :",("Local","USD"))
         ## In local currency
         if status3 == "Local":
             df_behaviour = groupby_all_4('country','adset name','target type','date','local')
