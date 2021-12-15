@@ -327,8 +327,8 @@ def main():
                  y = "CPA",
                  color='target type',
                  trendline="ols", 
-                 trendline_scope="overall",
-                 trendline_color_override="black"
+                 #trendline_scope="overall",
+                 #trendline_color_override="black"
                              )
 
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
