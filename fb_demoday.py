@@ -323,8 +323,8 @@ def main():
         
             # Plot curves
             fig4 = px.scatter(ind_country, 
-                 x = "spend $", 
-                 y = "CPA $",
+                 x = "spend", 
+                 y = "CPA",
                  #color='target type'
                  #trendline="ols", 
                  #trendline_scope="overall",
