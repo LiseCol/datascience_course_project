@@ -333,7 +333,7 @@ def main():
 
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
             
-            st.plotly_chart(fig4)
+            st.write(fig4)
         
             #Get coeff
             results = px.get_trendline_results(fig)
