@@ -24,6 +24,13 @@ st.markdown( """ <style> .css-1d391kg
     font-weight: 600;
 }
                 </style> """, unsafe_allow_html=True, )
+#.css-1ht1j8u {}
+st.markdown( """ <style> 
+            body {
+              background: #f0f0f0;
+                 }
+                
+                </style> """, unsafe_allow_html=True, )
 
 # Define functions
 @st.cache
@@ -353,13 +360,7 @@ def main():
             
             st.write(fig4)
             
-            st.markdown('''<div class="col-lg-3 col-xs-6">
-            <div class="rad-info-box rad-txt-primary">
-              <i class="fa fa-facebook"></i>
-              <span class="heading">Facebook</span>
-              <span class="value"><span>'value=round(spend,2)'</span></span>
-            </div>
-          </div>''', unsafe_allow_html=True, )
+    
             
              
                                          
