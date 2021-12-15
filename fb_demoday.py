@@ -352,6 +352,16 @@ def main():
             st.write('----------------')
             
             st.write(fig4)
+            
+            st.markdown('''<div class="col-lg-3 col-xs-6">
+            <div class="rad-info-box rad-txt-primary">
+              <i class="fa fa-facebook"></i>
+              <span class="heading">Facebook</span>
+              <span class="value"><span>23K</span></span>
+            </div>
+          </div>''', unsafe_allow_html=True, )
+            
+             
                                          
         if status3 == "USD":
             st.write('TO DO')
