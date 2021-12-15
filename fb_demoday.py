@@ -289,10 +289,8 @@ def main():
         st.plotly_chart(fig3)
         
     if menu == 'Budget decision':
-        df_behaviour = load_data()(['country','adset name',
-                           'target type',
-                           'date'
-                          ]).agg(
+        df = load_data()
+        df_behaviour = df(['country','adset name','target type','date']).agg(
                                         {'spend $': np.sum,
                                          'revenue $': np.sum,
                                         'purchase': np.sum}
