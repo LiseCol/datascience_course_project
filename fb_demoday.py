@@ -348,6 +348,8 @@ def main():
             st.subheader("Your Facebook daily budget per adset should be:")
             st.text(round(spend,2))
             
+            st.metric(label="Temperature", value=round(spend,2), delta="1.2 °F")
+            
             st.write('----------------')
             
             st.write(fig4)
