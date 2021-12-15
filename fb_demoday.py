@@ -102,7 +102,7 @@ def groupby_all(variable1,variable2,cur):
 
 def groupby_all_4(variable1,variable2,variable3,variable4,cur):
     if cur == "local":
-        df_var= load_data().groupby([variable1,variable2]).agg(
+        df_var= load_data().groupby([variable1,variable2,variable3,variable4variable1,variable2]).agg(
                                         {'impressions':np.sum, 
                                       'link click': np.sum, 
                                       'spend': np.sum, 
@@ -113,7 +113,7 @@ def groupby_all_4(variable1,variable2,variable3,variable4,cur):
         df_clean(df_var)
         return df_var
     else:
-        df_var= load_data().groupby([variable1,variable2]).agg(
+        df_var= load_data().groupby([variable1,variable2,variable3,variable4]).agg(
                                         {'impressions':np.sum,
                                          'link click': np.sum,
                                          'spend $': np.sum,
@@ -325,10 +325,10 @@ def main():
             fig4 = px.scatter(ind_country, 
                  x = "spend", 
                  y = "CPA",
-                 #color='target type',
-                 #trendline="ols", 
-                 #trendline_scope="overall",
-                 #trendline_color_override="black"
+                 color='target type',
+                 trendline="ols", 
+                 trendline_scope="overall",
+                 trendline_color_override="black"
                              )
 
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
