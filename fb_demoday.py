@@ -325,7 +325,7 @@ def main():
             fig4 = px.scatter(ind_country, 
                  x = "spend", 
                  y = "CPA",
-                 color='target type',
+                 #color='target type',
                  #trendline="ols", 
                  #trendline_scope="overall",
                  #trendline_color_override="black"
