@@ -326,9 +326,9 @@ def main():
                  x = "spend", 
                  y = "CPA",
                  color='target type',
-                 trendline="ols", 
-                 trendline_scope="overall",
-                 trendline_color_override="black"
+                 #trendline="ols", 
+                 #trendline_scope="overall",
+                 #trendline_color_override="black"
                              )
 
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
@@ -336,15 +336,15 @@ def main():
             st.write(fig4)
         
             #Get coeff
-            results = px.get_trendline_results(fig)
-            results = results.iloc[0]["px_fit_results"].params.tolist()
-            df_coeff = (pd.DataFrame(results))
+            #results = px.get_trendline_results(fig)
+            #results = results.iloc[0]["px_fit_results"].params.tolist()
+            #df_coeff = (pd.DataFrame(results))
         
             ## Maximum budget per country to get a CPA below 35
         
-            CPA = st.number_input('Enter your CPA goal:')
-            spend = (CPA-df_coeff.loc[0])/df_coeff.loc[1]
-            st.write('Your optimal daily budget per adset is:',round(spend[0],2))
+            #CPA = st.number_input('Enter your CPA goal:')
+            #spend = (CPA-df_coeff.loc[0])/df_coeff.loc[1]
+            #st.write('Your optimal daily budget per adset is:',round(spend[0],2))
                                          
         if status3 == "USD":
             st.write('TO DO')
