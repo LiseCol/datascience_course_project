@@ -289,7 +289,7 @@ def main():
         st.plotly_chart(fig3)
         
     if menu == 'Budget decision':
-        df_behaviour = df.groupby(['country','adset name',
+        df_behaviour = load_data()(['country','adset name',
                            'target type',
                            'date'
                           ]).agg(
