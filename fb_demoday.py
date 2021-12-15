@@ -11,7 +11,6 @@ import datetime
 import time
 from sklearn.linear_model import LinearRegression
 
-
 ## Page config ##
 st.set_page_config(page_title="Facebook ad Report", 
                    page_icon=":bar_chart:",
@@ -331,7 +330,7 @@ def main():
             x_range = np.linspace(ind_country["spend"].min(), ind_country["spend"].max(), ind_country.shape[0])
             y_range = model.predict(x_range.reshape(-1, 1))
    
-            # Plot curves
+            # Plot CPA curves
             fig4 = px.scatter(ind_country, x="spend", y='CPA',color='target type', opacity=0.65)
             fig4.add_hline(y=35, line_width=3, line_dash="dash", line_color="green",annotation_text="Maximum CPA")
             fig4.add_traces(go.Scatter(x=x_range, y=y_range,line_color="black", name='Regression Fit'))
