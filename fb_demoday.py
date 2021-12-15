@@ -320,7 +320,7 @@ def main():
         
     if menu == 'Budget decision':
         st.title('Optimal budget :ok_hand:')
-        col1, col2= st.columns(2)
+        col1, col2, col3= st.columns(3)
         with col3:
             status3 = st.radio("Select the prefered currency :",("Local","USD"))
         ## In local currency
