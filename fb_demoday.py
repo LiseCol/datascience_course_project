@@ -345,7 +345,8 @@ def main():
         
             CPA = st.number_input('Enter your CPA goal:')
             spend = (CPA-intercept)/coef
-            st.write('Your optimal daily budget per adset is:',round(spend,2))
+            st.subheader("'Your Facebook daily budget per adset should be:'")
+            st.write(round(spend,2))
             
             st.write('----------------')
             
